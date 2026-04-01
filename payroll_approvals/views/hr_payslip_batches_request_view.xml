@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="hr_payslip_inherit_approval_run" model="ir.ui.view">
+        <field name="name">hr.payslip.form.inherit</field>
+        <field name="model">hr.payslip.run</field>
+        <field name="inherit_id" ref="hr_payroll_community.hr_payslip_run_view_form"/>
+        <field name="arch" type="xml">
+
+            <!--Approval field after Responsible-->
+            <xpath expr="//field[@name='credit_note']" position="after">
+                <field name="approver_id" readonly="state in ['01_approved', '1_canceled']"/>
+                <field name="rejection_reason" readonly="1"/>
+            </xpath>
+            <xpath expr="//button[@name='close_payslip_run']" position="attributes">
+                <attribute name="invisible">state != '01_approved'</attribute>
+            </xpath>
+
+
+            <xpath expr="//header/field[@name='state']" position="attributes">
+                <attribute name="statusbar_visible">draft</attribute>
+            </xpath>
+
+            <!-- Inject Buttons in header -->
+            <xpath expr="//header" position="inside">
+                <field name="user_status" invisible="1"/>
+                <button name="send_for_approvals" string="Send For Approval" type="object"
+                        invisible="not approver_ids or state != 'draft'" class="btn-primary"/>
+                <button name="action_approve" string="Approve" type="object" class="btn btn-success"
+                        invisible="state in ['01_approved', '1_canceled'] or user_status != 'pending'"/>
+                <button name="%(cancel_wizard_reason_action_view_payroll)d" string="Cancel" type="action"
+                        class="btn btn-danger"
+                        invisible="state in ['01_approved', 'close','cancel', 'draft'] or user_status != 'pending'"/>
+            </xpath>
+
+
+            <!-- Approver Tab -->
+            <xpath expr="//field[@name='slip_ids']" position="after">
+                <separator string="Approvers"/>
+                <field name="approver_ids" mode="list" readonly="state != 'under_approved'">
+                    <list editable="bottom" create="0" decoration-success="status=='approved'"
+                          decoration-warning="status in ['pending', 'waiting']"
+                          decoration-danger="status=='cancel'" no_open="1">
+                        <field name="existing_request_user_ids" column_invisible="True"/>
+                        <field name="sequence" column_invisible="True"/>
+                        <field name="can_edit" column_invisible="True"/>
+                        <field name="can_edit_user_id" column_invisible="True"/>
+                        <field name="user_id" string="Approver"
+                               readonly="not can_edit_user_id or status != 'new'" force_save="1"/>
+                        <field name="required" readonly="not can_edit" force_save="1"/>
+                        <field name="status"/>
+                        <!-- <field name="company_id" column_invisible="True"/>-->
+                    </list>
+                </field>
+            </xpath>
+            <xpath expr="//sheet" position="after">
+                <chatter/>
+            </xpath>
+        </field>
+    </record>
+
+
+</odoo>
+

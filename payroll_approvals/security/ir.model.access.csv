@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_payroll_approver,access_payroll_approver,model_payroll_approver,base.group_user,1,1,1,1
+access_payroll_category_approver,access_payroll_category_approver,model_payroll_category_approver,base.group_user,1,1,1,1
+access_payroll_approval_approver,access_payroll_approval_approver,model_payroll_approval_approver,base.group_user,1,1,1,1
+access_payroll_payslip_approver,access_payroll_payslip_approver,model_payroll_payslip_approver,base.group_user,1,1,1,1
+access_payroll_refuse_wizard_reason,access_payroll_refuse_wizard_reason,model_payroll_refuse_wizard_reason,base.group_user,1,1,1,1

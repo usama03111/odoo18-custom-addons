@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_employee_form_leave_inherit_air_ticket" model="ir.ui.view">
+        <field name="name">hr.employee.leave.form.inherit.air.ticket</field>
+        <field name="model">hr.employee</field>
+        <!-- Use priority 25 to ensure it applies after the standard hr_holidays view, which uses 20 -->
+        <field name="inherit_id" ref="hr_holidays.view_employee_form_leave_inherit"/>
+        <field name="priority" eval="25"/>
+        <field name="arch" type="xml">
+            <!-- Hide the original Time Off button -->
+            <xpath expr="//button[@name='action_time_off_dashboard'][2]" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <!-- Add our two new buttons -->
+            <xpath expr="//button[@name='action_time_off_dashboard'][2]" position="after">
+                <!-- Paid Time Off Button -->
+                <button name="action_time_off_dashboard"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-calendar"
+                        invisible="not show_leaves"
+                        context="{'search_default_employee_ids': id}"
+                        groups="base.group_user"
+                        help="Remaining Paid Time Off">
+                    <div class="o_field_widget o_stat_info" invisible="paid_time_off_display == '0'">
+                        <span class="o_stat_value">
+                            <field name="paid_time_off_remaining_display"/>/
+                            <field name="paid_time_off_display"/>
+                            Days
+                        </span>
+                        <span class="o_stat_text">
+                            Time Off
+                        </span>
+                    </div>
+                    <div class="o_field_widget o_stat_info" invisible="paid_time_off_display != '0'">
+                        <span class="o_stat_text">
+                            Time Off
+                        </span>
+                    </div>
+                </button>
+
+                <!-- Air Ticket Button -->
+                <button name="action_time_off_dashboard"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-plane"
+                        invisible="not show_leaves"
+                        context="{'search_default_employee_ids': id}"
+                        groups="base.group_user"
+                        help="Remaining Air Ticket Allocations">
+                    <div class="o_field_widget o_stat_info" invisible="air_ticket_display == '0'">
+                        <span class="o_stat_value">
+                            <field name="air_ticket_remaining_display"/>/
+                            <field name="air_ticket_display"/>
+
+                        </span>
+                        <span class="o_stat_text">
+                            Air Ticket
+                        </span>
+                    </div>
+                    <div class="o_field_widget o_stat_info" invisible="air_ticket_display != '0'">
+                        <span class="o_stat_text">
+                            Air Ticket
+                        </span>
+                    </div>
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="hr_kanban_view_employees_air_ticket_kanban" model="ir.ui.view">
+        <field name="name">hr.employee.kanban.air.ticket</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.hr_kanban_view_employees"/>
+        <!-- Low priority so it executes after the expiry_date inheritance, meaning visually it might be pushed further down or up depending on xpath nature -->
+        <field name="priority">99</field>
+        <field name="arch" type="xml">
+            <xpath expr="//templates" position="before">
+                <field name="paid_time_off_display"/>
+                <field name="paid_time_off_remaining_display"/>
+                <field name="air_ticket_display"/>
+                <field name="air_ticket_remaining_display"/>
+            </xpath>
+            <!-- We will use position="inside" on the main content div or just after category_ids -->
+            <xpath expr="//div[@t-if='record.expiry_date.raw_value']" position="after">
+                <div t-if="record.paid_time_off_display.raw_value != '0' or record.air_ticket_display.raw_value != '0'"
+                     class="mt-2 text-muted" style="font-size: 0.9em;">
+                    <div t-if="record.paid_time_off_display.raw_value != '0'">
+                        <strong>Time Off:</strong>
+                        <t t-esc="record.paid_time_off_remaining_display.value"/>
+                        /
+                        <t t-esc="record.paid_time_off_display.value"/>
+                        Days
+                    </div>
+                    <div t-if="record.air_ticket_display.raw_value != '0'">
+                        <strong>Air Ticket:</strong>
+                        <t t-esc="record.air_ticket_remaining_display.value"/>
+                        /
+                        <t t-esc="record.air_ticket_display.value"/>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Inherit the Discuss block inside Settings -->
+        <record id="res_config_settings_view_form_inherit_restrict_channels" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.restrict.channels</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="mail.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <!-- Inject field after an existing setting in Discuss block -->
+                <xpath expr="//block[@id='discuss']" position="inside">
+                    <setting string="Restrict Posting in Channels"
+                             help="Select the channels where only specific users/groups can post, others will have read-only access.">
+                        <field name="restricted_channel_ids" widget="many2many_tags"
+                               options="{'no_create': True}"/>
+                    </setting>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

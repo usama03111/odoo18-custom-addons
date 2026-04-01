@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="group_general_channel_post" model="res.groups">
+        <field name="name">Restricted Channel Posters</field>
+        <field name="category_id" ref="base.module_category_discuss"/>
+        <field name="comment">
+        This group grants users permission to post messages in selected restricted channels.
+        Users not in this group will be able to see the channels but cannot send messages.
+    </field>
+    </record>
+</odoo> 

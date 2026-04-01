@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!--    this is the menu of our task-->
+    <template id="portal_my_home_menu_recruitment" name="Recruitment" inherit_id="portal.portal_my_home" priority="30">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <div class="col-md-6 o_portal_doc">
+                <t t-call="portal.portal_docs_entry">
+                    <t t-set="icon" t-value="'/codex_task_approvals/static/src/img/task.png'"/>
+                    <t t-set="title">Approvals</t>
+                    <t t-set="url" t-value="'/tasks/my'"/>
+                    <t t-set="text">All the approvals of the user</t>
+                    <!--                    <t t-set="show_count" t-value="True"/>-->
+                    <t t-set="placeholder_count" t-value="'project_checkout_count'"/>
+                </t>
+            </div>
+        </xpath>
+    </template>
+
+    <!-- this is the kanban view format-->
+    <template id="project_tasks_templ_id" name="Project Tasks Cards">
+        <t t-call="portal.portal_layout">
+            <main class="container py-5">
+                <section class="text-center mb-5">
+                    <h1 class="display-4 fw-bold text-primary">My Project Tasks</h1>
+                    <p class="lead text-muted">Review your tasks and stay on top of your work</p>
+                    <!--<a href="#" class="btn btn-outline-primary btn-lg mt-3">Create New Task</a>-->
+                </section>
+                <section class="text-center mb-5">
+                    <form method="get" class="mb-4">
+                        <div class="row justify-content-center">
+                            <div class="col-md-4">
+                                <input type="text" name="search" class="form-control" t-att-value="search"
+                                       placeholder="Search tasks..."/>
+                            </div>
+                            <div class="col-md-3">
+                                <select name="search_in" class="form-select">
+                                    <t t-foreach="search_input_values.items()" t-as="sval">
+                                        <option t-att-value="sval[0]" t-att-selected="search_in == sval[0]">
+                                            <t t-esc="sval[1]['label']"/>
+                                        </option>
+                                    </t>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-primary" type="submit">Search</button>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+
+                <t t-if="checkouts">
+                    <div class="row">
+                        <t t-foreach="checkouts" t-as="doc">
+                            <div class="col-md-6 col-lg-4 mb-4 d-flex align-items-stretch">
+                                <div class="card shadow rounded-4 w-100">
+                                    <div class="card-body">
+                                        <h5 class="card-title fw-bold text-primary">
+                                            <t t-esc="doc.name"/>
+                                        </h5>
+                                        <p class="card-text">
+                                            <div class="mb-2">
+                                                <strong>🆔 Serial Number:</strong>
+                                                <span t-field="doc.reference"/>
+                                            </div>
+                                            <div class="mb-2">
+                                                <strong>📁 Project:</strong>
+                                                <span t-field="doc.project_id.name"/>
+                                            </div>
+                                            <div class="mb-2">
+                                                <strong>👥 Assignees:</strong>
+                                                <t t-foreach="doc.user_ids" t-as="user" t-separator=", ">
+                                                    <span t-esc="user.name"/>
+                                                </t>
+                                            </div>
+                                            <div class="mb-2">
+                                                <strong>🏁 Milestone:</strong>
+                                                <span t-field="doc.milestone_id.name"/>
+                                            </div>
+                                            <div class="mb-2">
+                                                <strong>📅 Deadline:</strong>
+                                                <span t-field="doc.date_deadline"/>
+                                            </div>
+                                            <div class="mb-2">
+                                                <strong>📌 Stage:</strong>
+                                                <span t-field="doc.stage_id.name"/>
+                                            </div>
+                                            <div class="mb-2">
+                                                <strong>🔖 State:</strong>
+                                                <span t-field="doc.state"/>
+                                            </div>
+                                        </p>
+                                    </div>
+                                    <div class="card-footer bg-light text-end">
+                                        <a t-attf-href="/task/project/{{ slug(doc) }}"
+                                           class="btn btn-sm btn-outline-success">
+                                            View Task
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </t>
+
+                <t t-else="">
+                    <div class="alert alert-warning text-center">
+                        No tasks found.
+                    </div>
+                </t>
+            </main>
+        </t>
+    </template>
+
+    <!--    Here we add the buttons-->
+    <template id="inherit_buttons_task_detail_breadcrumbs" inherit_id="portal.portal_breadcrumbs"
+              name="Project Task Detail Breadcrumbs">
+        <xpath expr="//ol[contains(@class, 'breadcrumb')]" position="after">
+            <div t-if="page_name == 'portal_form_view'" aria-current="page">
+                <div class="row d-flex align-items-center">
+                    <div class="col">
+                        <t t-if="can_approve">
+                            <a t-attf-href="/task/project/{{ name.id }}/accept" class="btn btn-success btn-rounded">
+                                Accept Approval
+                            </a>
+                            <a t-attf-href="/task/project/{{ name.id }}/reject/form" class="btn btn-danger btn-rounded">
+                                Reject Approval
+                            </a>
+                        </t>
+                        <t t-else="">
+                            <div class="alert alert-info" role="alert">
+                                <t t-if="current_approver">
+                                    <p>Your approval status:
+                                        <strong t-field="current_approver.status"/>
+                                    </p>
+                                </t>
+                                <t t-if="name.approver_sequence and name.state in ['pending', '03_approved']">
+                                    <p>Waiting for other approvers to take action.</p>
+                                </t>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+
+    <template id="inherit_task_detail_breadcrumbs" inherit_id="portal.portal_breadcrumbs"
+              name="Task Detail Breadcrumbs">
+        <xpath expr="//ol[contains(@class, 'breadcrumb')]" position="inside">
+            <li t-if="page_name == 'project_tasks_temp_id'" class="breadcrumb-item" aria-current="page">
+                <span>Tasks</span>
+            </li>
+            <li t-if="page_name == 'portal_form_view'" class="breadcrumb-item" aria-current="page">
+                <a href="/tasks/my">My Tasks</a>
+            </li>
+            <li t-if="page_name == 'task_rejection'" class="breadcrumb-item active" aria-current="page">
+                <a href="/tasks/my">My Tasks</a>
+            </li>
+        </xpath>
+    </template>
+
+    <!--    This is the form view -->
+    <template id="task_project_portal_form_view" inherit_id="portal.portal_sidebar">
+        <xpath expr="//div[hasclass('o_portal_sidebar')]" position="inside">
+            <t t-if="page_name == 'portal_form_view'">
+                <section style="background-color: #eee;">
+                    <div class="col-auto">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-0">Serial No</p>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <p class="text-muted mb-0">
+                                            <t t-out="name.reference"/>
+                                        </p>
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-0">Task Name</p>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <p class="text-muted mb-0">
+                                            <t t-out="name.name"/>
+                                        </p>
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-0">Assignees</p>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <t t-foreach="name.user_ids" t-as="user">
+                                            <p class="text-muted mb-1">
+                                                <t t-out="user.name"/>
+                                            </p>
+                                        </t>
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-0">Deadline</p>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <p class="text-muted mb-0">
+                                            <t t-out="name.date_deadline"/>
+                                        </p>
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-0">State</p>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <p class="text-muted mb-0">
+                                            <t t-out="state_label"/>
+                                        </p>
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-0">Approvers</p>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <t t-foreach="name.approver_ids" t-as="approver">
+                                            <p class="text-muted mb-1">
+                                                <t t-out="approver.user_id.name"/>
+                                                -
+                                                <span t-att-class="{'text-success': approver.status == 'approved',
+                                                                  'text-warning': approver.status in ['pending', 'waiting'],
+                                                                  'text-danger': approver.status == 'cancel'}">
+                                                    <t t-out="approver.status"/>
+                                                </span>
+                                            </p>
+                                        </t>
+                                    </div>
+                                </div>
+                                <hr t-if="name.rejection_reason"/>
+                                <div class="row" t-if="name.rejection_reason">
+                                    <div class="col-sm-3">
+                                        <p class="mb-0">Rejection Reason</p>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <p class="text-muted mb-0 text-danger">
+                                            <t t-out="name.rejection_reason"/>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </t>
+        </xpath>
+    </template>
+
+    <!-- Rejection Page Template -->
+    <template id="task_rejection_form" name="Task Rejection Form">
+        <t t-call="portal.portal_layout">
+            <t t-set="no_breadcrumbs" t-value="True"/>
+            <div class="container mt-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Task Rejection</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <strong>Task Name:</strong>
+                                <span t-field="task.name"/>
+                            </div>
+                            <div class="col-md-6">
+                                <strong>Project:</strong>
+                                <span t-field="task.project_id.name"/>
+                            </div>
+                        </div>
+                        <form t-attf-action="/task/project/{{ task.id }}/reject/submit" method="post">
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <div class="form-group mb-3">
+                                <label for="rejection_reason" class="form-label">Rejection Reason</label>
+                                <textarea name="rejection_reason" id="rejection_reason" class="form-control" rows="4"
+                                          required="required"></textarea>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <a t-attf-href="/task/project/{{ task.id }}/" class="btn btn-secondary">Cancel</a>
+                                <button type="submit" class="btn btn-danger">Submit Rejection</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+
+</odoo>

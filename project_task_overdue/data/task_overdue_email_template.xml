@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="email_template_task_overdue" model="mail.template">
+        <field name="name">Overdue Task Notification</field>
+        <field name="email_from">{{user.email or 'admin@example.com'}}</field>
+        <field name="email_to">{{ctx.get('email_to')}}</field>
+        <field name="model_id" ref="project.model_project_task"/>
+        <field name="subject">Overdue Task: {{object.name or 'No Name'}}</field>
+        <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                    Dear <t t-out="ctx.get('user_name', '')"/>,
+                    <br/>
+                    <br/>
+                    This is a reminder that the deadline for the task
+                    "
+                    <strong>
+                        <t t-out="object.name or 'No Name'"/>
+                    </strong>
+                    " is overdue.
+                    Its deadline was
+                    <strong>
+                        <t t-out="object.date_deadline.strftime('%d-%m-%Y') if object.date_deadline else ''"/>
+                    </strong>
+                    and has already passed.
+                    <br/>
+                    <br/>
+                    Kindly review the task and take the necessary action at your earliest convenience.
+                    <br/>
+                    <br/>
+                    Thank you,
+                    <br/>
+                    Company: <t t-out="object.company_id.name or user.company_id.name or 'No Company'"/>
+                </p>
+            </div>
+        </field>
+    </record>
+
+    <!-- COO Overdue Tasks Summary Template -->
+    <record id="email_template_coo_overdue_summary" model="mail.template">
+        <field name="name">COO Overdue Tasks Summary</field>
+        <field name="email_from">{{user.email or 'admin@example.com'}}</field>
+        <field name="email_to">{{ctx.get('email_to')}}</field>
+        <field name="model_id" ref="project.model_project_task"/>
+        <field name="subject">Overdue Tasks Summary - {{ctx.get('total_overdue_count', 0)}} Tasks</field>
+        <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                    Dear <t t-out="ctx.get('coo_name', 'COO')"/>,
+                    <br/>
+                    <br/>
+                    This is a summary of all overdue tasks in the system. There are currently 
+                    <strong><t t-out="ctx.get('total_overdue_count', 0)"/></strong> overdue tasks that require attention.
+                    <br/>
+                    <br/>
+                    <strong>Overdue Tasks Details:</strong>
+                    <br/>
+                </p>
+                <table style="border-collapse: collapse; width: 100%; margin: 10px 0;">
+                    <thead>
+                        <tr style="background-color: #f2f2f2;">
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Task Name</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Project</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Assigned To</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Deadline</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Days Overdue</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="ctx.get('overdue_items', [])" t-as="item">
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">
+                                    <t t-out="item.get('name')"/>
+                                </td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">
+                                    <t t-out="item.get('project_name')"/>
+                                </td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">
+                                    <t t-out="item.get('assigned_names')"/>
+                                </td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">
+                                    <t t-out="item.get('deadline_str')"/>
+                                </td>
+                                <td style="border: 1px solid #ddd; padding: 8px; color: red;">
+                                    <t t-out="item.get('days_overdue')"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+                <br/>
+                <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                    Please review these overdue tasks and take appropriate action to ensure project timelines are met.
+                    <br/>
+                    <br/>
+                    Thank you,
+                    <br/>
+                    System Administrator
+                </p>
+            </div>
+        </field>
+    </record>
+</odoo> 

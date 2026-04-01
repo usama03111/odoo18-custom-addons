@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- ============================================================
+             Security Group: COO (Chief Operating Officer)
+             Purpose: Assign this group to the COO user(s) who should
+             receive automated overdue task summary emails.
+             ============================================================ -->
+        <record id="group_coo_overdue_mail" model="res.groups">
+            <field name="name">COO - Overdue Tasks Recipient</field>
+            <field name="comment">Security Group: COO (Chief Operating Officer)
+             Purpose: Assign this group to the COO user(s) who should
+                receive automated overdue task summary emails</field>
+        </record>
+    </data>
+</odoo>

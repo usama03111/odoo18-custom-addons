@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_discuss_message_approver_wizard_form" model="ir.ui.view">
+        <field name="name">discuss.message.approver.wizard.form</field>
+        <field name="model">discuss.message.approver.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Create Task">
+                <group>
+                    <field name="name"/>
+                    <field name="approver_id"/>
+                    <field name="date_deadline"/>
+                    <field name="project_id"/>
+                    <field name="body" />
+                </group>
+                <footer>
+                    <button name="action_create_task" string="Create" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_discuss_message_approver_wizard" model="ir.actions.act_window">
+        <field name="name">Create Task</field>
+        <field name="res_model">discuss.message.approver.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_discuss_message_approver_wizard_form"/>
+        <field name="target">new</field>
+    </record>
+</odoo>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Check-in Email Template -->
+    <record id="email_template_check_in" model="mail.template">
+        <field name="name">Attendance Check-in Notification</field>
+        <field name="email_from">{{user.email or 'admin@example.com'}}</field>
+        <field name="email_to">{{ctx.get('email_to')}}</field>
+        <field name="model_id" ref="hr_attendance.model_hr_attendance"/>
+        <field name="subject">Check-in Confirmation - {{object.employee_id.name}}</field>
+        <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                    Dear <t t-out="ctx.get('employee_name', '')"/>,
+                    <br/>
+                    <br/>
+                    This is a confirmation that you have successfully checked in at
+                    <strong>Time:</strong> <t t-out="ctx.get('local_time_str', '')"/> on
+                    <strong>Date:</strong> <t t-out="ctx.get('local_time_date', '')"/>
+                    <br/>
+                    Thank You.
+                    <br/>
+                    Company:
+                    <t t-out="object.employee_id.company_id.name  or 'No Company'"/>
+
+                </p>
+            </div>
+        </field>
+    </record>
+
+    <!-- Check-out Email Template -->
+    <record id="email_template_check_out" model="mail.template">
+        <field name="name">Attendance Check-out Notification</field>
+        <field name="email_from">{{user.email or 'admin@example.com'}}</field>
+        <field name="email_to">{{ctx.get('email_to')}}</field>
+        <field name="model_id" ref="hr_attendance.model_hr_attendance"/>
+        <field name="subject">Check-out Confirmation - {{object.employee_id.name}}</field>
+        <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                    Dear <t t-out="ctx.get('employee_name', '')"/>,
+                    <br/>
+                    <br/>
+                    This is a confirmation that you have successfully checked out at
+                     <strong>Time:</strong> <t t-out="ctx.get('local_time_str', '')"/> on
+                    <strong>Date:</strong> <t t-out="ctx.get('local_time_date', '')"/>
+                    <br/>
+                    Thank you for your work today!
+                    <br/>
+                    Company:
+                    <t t-out="object.employee_id.company_id.name  or 'No Company'"/>
+                </p>
+            </div>
+        </field>
+    </record>
+</odoo>  

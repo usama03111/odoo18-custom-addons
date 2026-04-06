@@ -1,0 +1,89 @@
+<odoo>
+    <record id="view_hr_contract_form_inherit_allowances_deductions" model="ir.ui.view">
+        <field name="name">hr.contract.form.inherit.allowances_deductions</field>
+        <field name="model">hr.contract</field>
+        <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//group[@name='salary_info']" position="after">
+                <group name="allowance_deduction_main">
+                    <group string="Allowance" name="allowances_group">
+                        <field name="gen_allowance" string="GEN. ALLOW"/>
+                        <field name="phone_allow" string="PHONE ALLOW"/>
+                        <field name="food_allow" string="FOOD ALLOW"/>
+                        <field name="hra" string="HRA"/>
+                        <field name="transportation" string="TRANSPORTATION"/>
+                        <field name="other_income" string="OTHER INCOME"/>
+                        <field name="total_allowance_month" invisible="1"/>
+                    </group>
+                    <group>
+                        <field name="monthly_cost" string="Monthly Cost (Real)" readonly="1"/>
+                        <field name="yearly_cost" string="Yearly Cost (Real)" readonly="1"/>
+                    </group>
+
+                </group>
+                <group name="cost_summary">
+                    <group string="DEDUCTION" name="deductions_group">
+                        <field name="other_deduction" string="Other Deduction"/>
+                        <field name="hold_paid" string="Hold/Paid"/>
+                        <field name="training_amount" string="Training Amount"/>
+                        <field name="total_deduction" invisible="1"/>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+
+    <record id="view_contract_form_inherit_offer_details" model="ir.ui.view">
+        <field name="name">hr.contract.form.offer.details</field>
+        <field name="model">hr.contract</field>
+        <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//sheet/notebook" position="inside">
+                <page string="Offer Details">
+
+                    <group>
+                        <field name="airfare_policy"/>
+                        <field name="annual_vacation_policy"/>
+                        <field name="medical_care_policy"/>
+                    </group>
+
+                    <group>
+                        <field name="offer_subject_to" />
+                    </group>
+
+                    <group>
+                        <field name="governing_law"/>
+                        <field name="offer_validity"/>
+                    </group>
+
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+
+
+    <record id="view_contract_form_inherit_probation" model="ir.ui.view">
+        <field name="name">hr.contract.form.inherit.probation</field>
+        <field name="model">hr.contract</field>
+        <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+        <field name="arch" type="xml">
+
+            <!-- Add after hr_responsible_id -->
+            <xpath expr="//field[@name='hr_responsible_id']" position="after">
+                <field name="probation_period"/>
+                <field name="employee_grade"/>
+                <field name="owner_name"/>
+            </xpath>
+
+            <xpath expr="//label[@for='wage']" position="replace">
+            <label for="wage" string="Basic Salary"/>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

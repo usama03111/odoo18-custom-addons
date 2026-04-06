@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="cancel_wizard_reason_form_view_task" model="ir.ui.view">
+            <field name="name">task.refuse.wizard.reason</field>
+            <field name="model">task.refuse.wizard.reason</field>
+            <field name="arch" type="xml">
+                <form string="Refusal Reason">
+                    <sheet>
+                        <group>
+                            <field name="reason" string="Reason"/>
+                        </group>
+                        <footer>
+                            <button name="action_refuse" string="Refuse" type="object" default_focus="1"
+                                    class="oe_highlight"/>
+                            <button string="Cancel" class="oe_link" special="cancel"/>
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="cancel_wizard_reason_action_view_task" model="ir.actions.act_window">
+            <field name="name">Cancel Reason</field>
+            <field name="res_model">task.refuse.wizard.reason</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="odoo_task_approvals.cancel_wizard_reason_form_view_task"/>
+        </record>
+
+        <!-- Task Start Rejection Wizard -->
+        <record id="cancel_wizard_task_start_reason_form_view_task" model="ir.ui.view">
+            <field name="name">task.start.refuse.wizard.reason</field>
+            <field name="model">task.start.refuse.wizard.reason</field>
+            <field name="arch" type="xml">
+                <form string="Task Start Refusal Reason">
+                    <sheet>
+                        <group>
+                            <field name="reason" string="Reason"/>
+                        </group>
+                        <footer>
+                            <button name="action_refuse_task_start" string="Reject Task Start" type="object" default_focus="1"
+                                    class="oe_highlight"/>
+                            <button string="Cancel" class="oe_link" special="cancel"/>
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="cancel_wizard_task_start_reason_action_view_task" model="ir.actions.act_window">
+            <field name="name">Task Start Rejection Reason</field>
+            <field name="res_model">task.start.refuse.wizard.reason</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="odoo_task_approvals.cancel_wizard_task_start_reason_form_view_task"/>
+        </record>
+
+    </data>
+</odoo>

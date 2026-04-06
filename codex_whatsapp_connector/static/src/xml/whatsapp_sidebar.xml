@@ -1,0 +1,30 @@
+<templates xml:space="preserve">
+    <!-- Mark WhatsApp channels on both container and button -->
+    <t t-inherit="mail.DiscussSidebarChannel" t-inherit-mode="extension">
+        <xpath expr="//div[contains(@class,'o-mail-DiscussSidebarChannel-container')]" position="attributes">
+            <attribute name="t-att-class">attClassContainer + (thread.wa_customer_partner_id ? ' o-wa-channel-container' : '')</attribute>
+        </xpath>
+    </t>
+    <t t-inherit="mail.DiscussSidebarChannel.main" t-inherit-mode="extension">
+        <xpath expr="//button[contains(@class,'o-mail-DiscussSidebarChannel')]" position="attributes">
+            <attribute name="t-att-class">attClass + (thread.wa_customer_partner_id ? ' o-wa-channel' : '')</attribute>
+            <attribute name="t-att-data-thread-id">'' + thread.id</attribute>
+        </xpath>
+    </t>
+
+    <!-- Add a WhatsApp-only category header in the categories list -->
+    <t t-inherit="mail.DiscussSidebarCategories" t-inherit-mode="extension">
+        <xpath expr="." position="inside">
+            <div class="o-mail-DiscussSidebarCategory d-flex align-items-center o-wa-sidebar-toggle" t-att-class="{ 'mx-1 my-2 position-relative': store.discuss.isSidebarCompact, 'mt-1 ms-1 me-2': !store.discuss.isSidebarCompact }">
+                <button class="o-mail-DiscussSidebarCategory-toggler btn btn-link text-reset flex-grow-1 d-flex p-0 text-start opacity-100-hover" t-att-class="{ 'align-items-baseline opacity-75 o-gap-0_5': !store.discuss.isSidebarCompact, 'align-items-center justify-content-center border-0 o-compact opacity-50 gap-1': store.discuss.isSidebarCompact }" type="button">
+                    <i class="o-mail-DiscussSidebarCategory-icon o-xxsmaller fa-fw oi oi-chevron-right opacity-50"/>
+                    <span class="btn-sm p-0 text-uppercase text-break fw-bolder o-xsmaller text-muted">WHATSAPP</span>
+                </button>
+                <div class="o-mail-DiscussSidebar-badge badge rounded-pill o-discuss-badge fw-bold o-wa-badge" t-att-class="{ 'position-absolute top-0 o-compact': store.discuss.isSidebarCompact, 'me-1': !store.discuss.isSidebarCompact }">
+                    <span class="o-wa-badge-count">0</span>
+                </div>
+            </div>
+            <div class="o-wa-list mx-2"/>
+        </xpath>
+    </t>
+</templates> 

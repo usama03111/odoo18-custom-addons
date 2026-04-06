@@ -1,0 +1,25 @@
+# -*- coding: utf-8 -*-
+{
+    "name": "Task Dynamic Approval",
+    "author": "Softhealer Technologies",
+    "website": "https://www.softhealer.com",
+    "support": "support@softhealer.com",
+    "category": "Project",
+    "summary": "Dynamic Task Approval Task Multi Approval Task Multiple Approval Tasks Multi Approval Tasks Multiple Approval Double Approval Task Dynamic Approvals User Wise Approval Group Wise Approval Reject Task Approve Task",
+    "description": """This module allows you to set dynamic and multi-level approvals in tasks. Tasks can be approved by many levels. Tasks can be approved by particular users or groups who get email notifications about tasks waiting for approval.""",
+    'version': '18.0.1.0',
+    'license': 'LGPL-3',
+    'category': 'Sales/Sales',
+    'images': ['static/description/image.jpg'],
+    "depends": ["project", "bus", "mail"],
+    "data": [
+        'security/ir.model.access.csv',
+        # 'data/mail_data.xml',
+        'wizard/sh_task_rejection_wizard_views.xml',
+        'views/sh_task_approval_config_views.xml',
+        'views/project_task_views.xml',
+        'views/sh_approval_info_views.xml',
+    ],
+    'installable': True,
+    'application': False,
+}

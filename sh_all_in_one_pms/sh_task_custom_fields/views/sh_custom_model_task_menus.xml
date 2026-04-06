@@ -1,0 +1,4 @@
+<?xml version ="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="sh_task_custom_fields_menu" name="Task Custom Fields" parent="project.menu_project_config" sequence="12" action="sh_action_project_task_custom_fields" groups="sh_all_in_one_pms.group_task_custom_field" />
+</odoo>

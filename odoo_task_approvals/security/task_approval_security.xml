@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="task_group_approval_users" model="res.groups">
+            <field name="name">Approvers Will See And Approve Their Tasks</field>
+        </record>
+
+        <record id="project_task_rule_portal" model="ir.rule">
+            <field name="name">Portal User: Access Only Tasks to Approve</field>
+            <field name="model_id" ref="project.model_project_task"/>
+            <field name="domain_force">[('approver_ids.user_id', '=', user.id)]</field>
+            <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
+        </record>
+
+        <record id="project_task_rule_approver_group" model="ir.rule">
+            <field name="name">Approver Group: Access Only Tasks to Approve</field>
+            <field name="model_id" ref="project.model_project_task"/>
+            <field name="domain_force">[('approver_ids.user_id', '=', user.id)]</field>
+            <field name="groups" eval="[(4, ref('odoo_task_approvals.task_group_approval_users'))]"/>
+        </record>
+
+
+    </data>
+</odoo> 

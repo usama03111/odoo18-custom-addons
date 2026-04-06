@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="branches_foodics_connector" model="foodics.connector">
+            <field name="name">Sync Branches</field>
+            <field name="import_option">branches</field>
+            <field name="data_access_url">https://api.foodics.com/v5/branches</field>
+        </record>
+        
+        <record id="payment_methods_foodics_connector" model="foodics.connector">
+            <field name="name">Sync Payment Methods</field>
+            <field name="import_option">payment_methods</field>
+            <field name="data_access_url">https://api.foodics.com/v5/payment_methods</field>
+        </record>
+        
+        <record id="categories_foodics_connector" model="foodics.connector">
+            <field name="name">Sync Categories</field>
+            <field name="import_option">categories</field>
+            <field name="data_access_url">https://api.foodics.com/v5/categories</field>
+        </record>
+
+        <record id="product_foodics_connector" model="foodics.connector">
+            <field name="name">Sync Products</field>
+            <field name="import_option">products</field>
+            <field name="data_access_url">https://api.foodics.com/v5/products</field>
+        </record>
+
+        <record id="pos_foodics_connector" model="foodics.connector">
+            <field name="name">Sync Orders</field>
+            <field name="import_option">orders</field>
+            <field name="data_access_url">https://api.foodics.com/v5/orders</field>
+        </record>
+
+    </data>
+</odoo>

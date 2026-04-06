@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- WhatsApp Conversation Tree View -->
+    <record id="whatsapp_conversation_view_tree" model="ir.ui.view">
+        <field name="name">whatsapp.conversation.view.tree</field>
+        <field name="model">whatsapp.conversation</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="mobile"/>
+                <field name="last_message_date"/>
+                <field name="message_count"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- WhatsApp Conversation Form View -->
+    <record id="whatsapp_conversation_view_form" model="ir.ui.view">
+        <field name="name">whatsapp.conversation.view.form</field>
+        <field name="model">whatsapp.conversation</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_view_messages" string="Open Chat" type="object" class="btn-primary" icon="fa-comments"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="mobile"/>
+                        </group>
+                        <group>
+                            <field name="last_message_date"/>
+                            <field name="message_count"/>
+                            <field name="state"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Messages">
+                            <field name="message_ids" readonly="1">
+                                <list>
+                                    <field name="message_type"/>
+                                    <field name="message_content"/>
+                                    <field name="message_date"/>
+                                    <field name="has_media"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- WhatsApp Conversation Chat View -->
+    <record id="whatsapp_conversation_chat_view" model="ir.ui.view">
+        <field name="name">whatsapp.conversation.chat.view</field>
+        <field name="model">whatsapp.conversation</field>
+        <field name="arch" type="xml">
+            <form string="WhatsApp Chat">
+                <sheet>
+                    <div class="oe_chat_container">
+                        <!-- Chat Header -->
+                        <div class="oe_chat_header">
+                            <i class="fa fa-whatsapp"/>
+                            <div>
+                                <h4><field name="name"/></h4>
+                                <small><field name="mobile"/></small>
+                            </div>
+                        </div>
+                        
+                        <!-- Chat Messages Area -->
+                        <div class="oe_chat_messages">
+                            <field name="message_ids" readonly="1">
+                                <list>
+                                    <field name="message_type" invisible="1"/>
+                                    <field name="message_date" invisible="1"/>
+                                    <field name="message_content" widget="text"/>
+                                    <field name="has_media" invisible="1"/>
+                                    <field name="media_type" invisible="1"/>
+                                    <field name="media_url" invisible="1"/>
+                                </list>
+                            </field>
+                        </div>
+                        
+                        <!-- Chat Input Area -->
+                        <div class="oe_chat_input">
+                            <div class="chat-input-container">
+                                <field name="new_message" placeholder="Type a message..."/>
+                                <button name="action_send_message" string="Send" type="object" class="btn-primary" icon="fa-paper-plane"/>
+                            </div>
+                        </div>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- WhatsApp Conversation Search View -->
+    <record id="whatsapp_conversation_view_search" model="ir.ui.view">
+        <field name="name">whatsapp.conversation.view.search</field>
+        <field name="model">whatsapp.conversation</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="mobile"/>
+                <filter string="Active" name="active" domain="[('state', '=', 'active')]"/>
+                <filter string="Archived" name="archived" domain="[('state', '=', 'archived')]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Customer" name="partner" context="{'group_by': 'partner_id'}"/>
+                    <filter string="Status" name="state" context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- WhatsApp Conversation Action -->
+    <record id="whatsapp_conversation_action" model="ir.actions.act_window">
+        <field name="name">WhatsApp Conversations</field>
+        <field name="res_model">whatsapp.conversation</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="whatsapp_conversation_view_tree"/>
+        <field name="search_view_id" ref="whatsapp_conversation_view_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No WhatsApp conversations found
+            </p>
+            <p>
+                Conversations will appear here when customers reply to your WhatsApp messages.
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu Item -->
+    <menuitem name="WhatsApp Conversations"
+              id="menu_whatsapp_conversations"
+              action="whatsapp_conversation_action"
+              parent="website.menu_website_global_configuration"
+              sequence="51"/>
+</odoo> 

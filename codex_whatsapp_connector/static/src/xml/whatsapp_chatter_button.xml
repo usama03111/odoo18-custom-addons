@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <!-- Add WhatsApp button next to the default send button in the extended composer -->
+    <t t-inherit="mail.Composer" t-inherit-mode="extension">
+        <xpath expr="//t[@t-call='mail.Composer.sendButton']" position="after">
+                <button type="button"
+                        class="btn btn-success btn-sm o_whatsapp_send_btn ms-1" 
+                        title="Send in WhatsApp"
+                        t-att-data-thread-model="props.composer.thread and props.composer.thread.model or ''"
+                        t-att-data-thread-id="props.composer.thread and props.composer.thread.id or ''">
+                    <i class="fa fa-whatsapp me-1 text-white"/>
+                    WhatsApp
+                </button>
+        </xpath>
+    </t>
+
+</templates> 

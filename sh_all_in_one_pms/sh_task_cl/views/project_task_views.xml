@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    
+    <record id="sh_project_task_checklist_tree_view_inherit" model="ir.ui.view">
+        <field name="name">project.task.checklist.tree</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_tree2" />
+        <field name="arch" type="xml">
+            <field name="stage_id" position="before">
+                <field name="checklist" widget="progressbar" />
+            </field>
+        </field>
+    </record>
+
+    <record id="sh_project_task_checklist_kanban_view_inherit" model="ir.ui.view">
+        <field name="name">project.task.checklist.kanban</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_kanban" />
+        <field name="arch" type="xml">
+<!--            <xpath expr="//div[hasclass('o_kanban_record_body')]" position="before">-->
+            <xpath expr="//main/field[@name='tag_ids']" position="after">
+                <div>
+                    <field name="checklist" string="Checklist" widget="percentpie" />
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sh_project_task_search_view_inherit" model="ir.ui.view">
+        <field name="name">sh.project.task.checklist.search</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_search_form" />
+        <field name="arch" type="xml">
+            <filter name="inactive" position="after">
+                <filter string="Complete Checklist" name="complete_state" domain="[('state_name','=', 'completed')]" />
+                <filter string="Uncompleted Checklist" name="uncomplete_state" domain="[('state_name','=', 'cancelled')]" />
+            </filter>
+        </field>
+    </record>
+
+    <record id="sh_project_task_checklist_form_view_inherit" model="ir.ui.view">
+        <field name="name">project.task.checklist.form</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page name="checklist" string="Checklist">
+                    <group>
+                        <group>
+                            <field name="checklist_ids" widget="many2many_checkboxes" />
+                        </group>
+                        <group>
+                            <!-- <button name="%(action_menu_task_checklist)d" type="action" class="oe_stat_button" style="height: 40px; background: White;"> -->
+                                <field name="checklist" string="Checklist Completed" widget="percentpie" style="height: 30px; background: White;" />
+                            <!-- </button> -->
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

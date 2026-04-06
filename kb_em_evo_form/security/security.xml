@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- HR: full access to evaluations -->
+        <record id="rule_kb_em_evo_form_hr_all" model="ir.rule">
+            <field name="name">KB Evaluation: HR all</field>
+            <field name="model_id" ref="model_kb_em_evo_form"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('kb_em_evo_form.group_hr_employee_evaluation'))]"/>
+        </record>
+
+        <!-- Manager: only assigned evaluations -->
+        <record id="rule_kb_em_evo_form_manager_assigned" model="ir.rule">
+            <field name="name">KB Evaluation: Manager assigned</field>
+            <field name="model_id" ref="model_kb_em_evo_form"/>
+            <field name="domain_force">[('manager_user_id', '=', user.id)]</field>
+            <field name="groups" eval="[(4, ref('kb_em_evo_form.group_manager_employee_evaluation'))]"/>
+        </record>
+
+        <!-- HR: full access to lines -->
+        <record id="rule_kb_em_evo_form_line_hr_all" model="ir.rule">
+            <field name="name">KB Evaluation Lines: HR all</field>
+            <field name="model_id" ref="model_kb_em_evo_form_line"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('kb_em_evo_form.group_hr_employee_evaluation'))]"/>
+        </record>
+
+        <!-- Manager: only lines of assigned evaluations -->
+        <record id="rule_kb_em_evo_form_line_manager_assigned" model="ir.rule">
+            <field name="name">KB Evaluation Lines: Manager assigned</field>
+            <field name="model_id" ref="model_kb_em_evo_form_line"/>
+            <field name="domain_force">[('evaluation_id.manager_user_id', '=', user.id)]</field>
+            <field name="groups" eval="[(4, ref('kb_em_evo_form.group_manager_employee_evaluation'))]"/>
+        </record>
+
+    </data>
+</odoo>

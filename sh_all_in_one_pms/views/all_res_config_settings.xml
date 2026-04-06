@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sh_mass_project_stage_config_setting_view" model="ir.ui.view">
+        <field name="name">project.stage.config.setting.view</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="project.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//block[@name='project_time']" position="after">
+                <block title="All in PMS Configuration" id="setting_all_in_one_pms_config">
+                    <!-- ====== Overdue Task Email Notification ====== -->
+                    <setting id="notification_bool_setting">
+                        <field name="notification" />
+                        <label for="overdue_days" class="col-4" invisible="not notification"/>
+                        <field name="overdue_days"  class="col-8" invisible="not notification"/>
+                    </setting>
+
+                    <!-- ====== Mass Project Stage ====== -->
+                    <setting id="enable_mass_project_stage_setting">
+                        <field name="enable_mass_project_stage"/>
+                    </setting>
+
+                    <!-- ====== Project Stage ====== -->
+                    <setting id="group_enable_project_stage_setting">
+                        <field name="group_enable_project_stage"/>
+                    </setting>
+
+                    <!-- ====== Project Category ====== -->
+                    <setting id="group_enable_project_category_setting">
+                        <field name="group_enable_project_category"/>
+                    </setting>
+
+                    <!-- ====== Project Priority ====== -->
+                    <setting id="enable_project_priority_setting">
+                        <field name="enable_project_priority"/>
+                    </setting>
+
+                    <!-- ====== Project Custom Checklist ====== -->
+                    <setting id="group_project_custom_checklist_setting">
+                        <field name="group_project_custom_checklist"/>
+                    </setting>
+                    
+                    <!-- ====== Task Checklist ====== -->
+                    <setting id="group_enable_task_checklist_setting">
+                        <field name="group_enable_task_checklist"/>
+                    </setting>
+                    
+                    <!-- ====== Task Custom Checklist ====== -->
+                    <setting id="group_enable_task_custom_checklist_setting">
+                        <field name="group_enable_task_custom_checklist"/>
+                    </setting>
+                    
+                    <!-- ====== Task Custom Fields ====== -->
+                    <setting id="group_task_custom_field_setting">
+                        <field name="group_task_custom_field"/>
+                    </setting>
+
+                    <!-- ====== Task Send by Mail ====== -->
+                    <setting id="enable_task_send_by_email_setting">
+                        <field name="enable_task_send_by_email"/>
+                    </setting>
+
+                    <!-- ====== Task Timer Advance ====== -->
+                    <setting id="sh_allow_multi_user_setting">
+                        <field name="sh_allow_multi_user"/>
+                    </setting>
+                </block>
+            </xpath>
+
+            <!-- Project Document -->
+            <xpath expr="//block[@name='project_time']" position="before">
+                <block title="Project Document" id="project_document_config" groups="sh_all_in_one_pms.group_sh_project_document">
+                    <setting id="sh_project_expiry_notification_setting" help="Set Mail Document Expiry Notification">
+                        <field name="sh_project_expiry_notification" />
+                    </setting>
+                    <setting id="sh_project_on_date_notify_setting" help="On Document Expiry Date Notification" invisible="not sh_project_expiry_notification">
+                        <field name="sh_project_on_date_notify" />
+                    </setting>
+                    <setting id="sh_is_project_notify_customer_setting" help="Notify Customer" invisible="not sh_project_expiry_notification">
+                        <field name="sh_is_project_notify_customer" />
+                    </setting>
+                    <setting id="project_attachment_email_setting" invisible="not sh_project_expiry_notification">
+                        <field name="project_attachment_email"/>
+                    </setting>
+                    <setting id="project_enter_before_first_notify_setting" invisible="not sh_project_expiry_notification">
+                        <field name="project_enter_before_first_notify" />
+                    </setting>
+                    <setting id="project_enter_after_first_notify_setting" invisible="not sh_project_expiry_notification">
+                        <field name="project_enter_after_first_notify" />
+                    </setting>
+                    <setting id="project_enter_before_second_notify_setting" invisible="not sh_project_expiry_notification">
+                        <field name="project_enter_before_second_notify" />
+                    </setting>
+                    <setting id="project_enter_after_second_notify_setting" invisible="not sh_project_expiry_notification">
+                        <field name="project_enter_after_second_notify" />
+                    </setting>
+                    <setting id="project_enter_before_third_notify_setting" invisible="not sh_project_expiry_notification">
+                        <field name="project_enter_before_third_notify" />
+                    </setting>
+                    <setting id="project_enter_after_third_notify_setting" invisible="not sh_project_expiry_notification">
+                        <field name="project_enter_after_third_notify" />
+                    </setting>
+                </block>             
+            </xpath>
+
+            <!-- Task Document -->
+            <xpath expr="//block[@name='project_time']" position="before">
+                <block title="Task Document" id="project_document_config" groups="sh_all_in_one_pms.group_sh_task_document">
+                    <setting id="sh_task_expiry_notification_setting" help="Set Mail Document Expiry Notification">
+                        <field name="sh_task_expiry_notification" />
+                    </setting>
+                    <setting id="sh_task_on_date_notify_setting" help="On Document Expiry Date Notification" invisible="not sh_task_expiry_notification">
+                        <field name="sh_task_on_date_notify" />
+                    </setting>
+                    <setting id="sh_task_is_notify_customer_setting" help="Notify Customer" invisible="not sh_task_expiry_notification">
+                        <field name="sh_task_is_notify_customer" />
+                    </setting>
+                    <setting id="task_attachment_email_setting" invisible="not sh_task_expiry_notification">
+                        <field name="task_attachment_email"/>
+                    </setting>
+                    <setting id="task_enter_before_first_notify_setting" invisible="not sh_task_expiry_notification">
+                        <field name="task_enter_before_first_notify" />
+                    </setting>
+                    <setting id="task_enter_after_first_notify_setting" invisible="not sh_task_expiry_notification">
+                        <field name="task_enter_after_first_notify" />
+                    </setting>
+                    <setting id="task_enter_before_second_notify_setting" invisible="not sh_task_expiry_notification">
+                        <field name="task_enter_before_second_notify" />
+                    </setting>
+                    <setting id="task_enter_after_second_notify_setting" invisible="not sh_task_expiry_notification">
+                        <field name="task_enter_after_second_notify" />
+                    </setting>
+                    <setting id="task_enter_before_third_notify_setting" invisible="not sh_task_expiry_notification">
+                        <field name="task_enter_before_third_notify" />
+                    </setting>
+                    <setting id="task_enter_after_third_notify_setting" invisible="not sh_task_expiry_notification">
+                        <field name="task_enter_after_third_notify" />
+                    </setting>
+                </block>             
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

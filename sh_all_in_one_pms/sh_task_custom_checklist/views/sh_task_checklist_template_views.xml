@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sh_task_checklist_template_form_view" model="ir.ui.view">
+        <field name="name">sh.task.checklist.template.form</field>
+        <field name="model">sh.task.checklist.template</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" />
+                            <field name="company_id" options="{'no_create': True}" />
+                        </group>
+                        <group>
+                            <field name="checklist_ids" widget="many2many_tags" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="sh_task_checklist_template_tree_view" model="ir.ui.view">
+        <field name="name">sh.task.checklist.template.tree</field>
+        <field name="model">sh.task.checklist.template</field>
+        <field name="arch" type="xml">
+            <list multi_edit="1">
+                <field name="sequence" widget="handle" />
+                <field name="name" />
+                <field name="company_id" options="{'no_create': True}" invisible='1'/>
+                <field name="checklist_ids" widget="many2many_tags" optional="show" />
+            </list>
+        </field>
+    </record>
+
+    <record id="sh_task_custom_checklist_template_search_view" model="ir.ui.view">
+        <field name="name">sh.task.checklist.template.view.search</field>
+        <field name="model">sh.task.checklist.template</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="checklist_ids" />
+                <filter string="Checklist Template" name="checklist_template" domain="[]" context="{'group_by': 'checklist_ids'}" />
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_task_checklist_template">
+        <field name="name">Task Checklist Template</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sh.task.checklist.template</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_task_check_list_template" name="Task Custom Checklist Template" action="action_task_checklist_template" parent="project.menu_project_config" groups="sh_all_in_one_pms.group_enable_task_custom_checklist"/>
+
+    <menuitem id="menu_import_task_custom_checklist" name="Import Task Custom Checklist"  action="sh_all_in_one_pms.sh_import_task_custom_cl_action" parent="project.menu_project_config" groups="sh_all_in_one_pms.group_enable_task_custom_checklist"/>
+
+</odoo>

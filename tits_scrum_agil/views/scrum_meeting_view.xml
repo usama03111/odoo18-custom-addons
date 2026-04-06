@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--Scrum Meeting-->
+        <!--daily meeting tree view-->
+        <record id="view_ps_meeting_tree" model="ir.ui.view">
+            <field name="name">project.scrum.meeting.tree</field>
+            <field name="model">project.scrum.meeting</field>
+            <field name="arch" type="xml">
+                <list string="Scrum Meeting">
+                    <field name="date_meeting"/>
+                    <field name="user_id_meeting"/>
+                    <field name="sprint_id"/>
+                </list>
+            </field>
+        </record>
+
+        <!--daily meeting form view-->
+        <record id="view_ps_meeting_form" model="ir.ui.view">
+            <field name="name">project.scrum.meeting.form</field>
+            <field name="model">project.scrum.meeting</field>
+            <field name="arch" type="xml">
+                <form string="Scrum Meeting">
+                    <sheet string="Daily Meeting">
+                        <group>
+                            <field name="name"/>
+                            <field name="date_meeting"/>
+                            <field name="user_id_meeting"/>
+                            <field name="project_id"/>
+                            <field name="sprint_id" domain="[('project_id', '=', project_id)]"
+                                   context="{'default_project_id': project_id}"/>
+                            <button name="send_email" string="Send Email" type="object" icon="terp-mail-message-new"/>
+                        </group>
+                        <group>
+                            <separator string="What did you do since the last meeting?"/>
+                            <field name="question_yesterday" nolabel="1"/>
+                            <separator string="What do you plan to do till the next meeting?"/>
+                            <field name="question_today" nolabel="1"/>
+                            <separator string="Are there anything blocking you?"/>
+                            <field name="question_blocks" nolabel="1"/>
+                            <separator string="Are your Sprint Backlog estimate accurate ?"/>
+                            <field name="question_backlog" nolabel="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!--daily meeting calendar view-->
+        <record id="view_ps_meeting_calendar" model="ir.ui.view">
+            <field name="name">project.scrum.meeting.calendar</field>
+            <field name="model">project.scrum.meeting</field>
+            <field name="type">calendar</field>
+            <field name="arch" type="xml">
+                <calendar string="Scrum Meeting" date_start="date_meeting" color="user_id_meeting">
+                    <field name="user_id_meeting"/>
+                </calendar>
+            </field>
+        </record>
+        <!--access to all daily meeting calendar view-->
+        <record id="action_ps_meeting_all" model="ir.actions.act_window">
+            <field name="name">Meetings</field>
+            <field name="res_model">project.scrum.meeting</field>
+            <field name="view_mode">list,form,calendar</field>
+            <field name="view_id" ref="view_ps_meeting_calendar"/>
+            <field name="context">{"search_default_current": 1}</field>
+
+            <field name="help">The daily meeting of scrum.</field>
+        </record>
+        <!--access to current daily meeting calendar view-->
+        <record id="action_ps_meeting_current" model="ir.actions.act_window">
+            <field name="name">Meetings</field>
+            <field name="res_model">project.scrum.meeting</field>
+            <field name="view_mode">list,form,calendar</field>
+            <field name="view_id" ref="view_ps_meeting_calendar"/>
+            <field name="context">
+                {
+                'search_default_project_id': [active_id],
+                'default_project_id': active_id,
+                'active_test': False,
+                }
+            </field>
+
+            <field name="help">The daily meeting of scrum.</field>
+        </record>
+
+
+    </data>
+</odoo>

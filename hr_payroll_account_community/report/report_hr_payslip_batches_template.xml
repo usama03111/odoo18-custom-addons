@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--Template for Contribution Register Report-->
+    <template id="hr_report_payslip_batches">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div class="text-center">
+                        <h2><span t-esc="o.reference"/></h2>
+                            </div>
+
+                        <!-- Batch Information -->
+                        <div class="row mt32 mb32">
+                            <div class="col-3">
+                                <strong>Batch Name:</strong>
+                                <p t-esc="o.name"/>
+                            </div>
+                            <div class="col-3">
+                                <strong>Date From:</strong>
+                                <p t-esc="o.date_start"/>
+                            </div>
+                            <div class="col-3">
+                                <strong>Date To:</strong>
+                                <p t-esc="o.date_end"/>
+                            </div>
+                            <div class="col-3">
+                                <strong>Total Employees:</strong>
+                                <p t-esc="len(payslip_summary_per_run[o.id])"/>
+                            </div>
+                        </div>
+
+                        <!-- Payslip Summary Table -->
+                        <h4 class="mt16">Payslip Summary</h4>
+                        <table class="table table-sm mt8">
+                            <thead>
+                                <tr>
+                                    <th>Employee</th>
+                                    <t t-foreach="payslip_columns_per_run.get(o.id, [])" t-as="col">
+                                        <th class="text-right"><span t-esc="col.get('name') or col.get('code')"/></th>
+                                    </t>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-if="payslip_summary_per_run[o.id]"/>
+                                <tr t-foreach="payslip_summary_per_run[o.id]" t-as="slip">
+                                    <td>
+                                        <span t-esc="slip.get('employee')"/>
+                                    </td>
+                                    <t t-foreach="payslip_columns_per_run.get(o.id, [])" t-as="col">
+                                        <td class="text-right">
+                                            <span t-esc="slip.get('amounts').get(col.get('code')) or 0.0"
+                                                  t-options='{"widget": "monetary", "display_currency": slip.get("currency")}'/>
+                                        </td>
+                                    </t>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>
+

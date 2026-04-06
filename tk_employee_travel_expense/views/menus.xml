@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <menuitem id="menu_employee_travel_management"
+                  name="Travel Expense"
+        />
+        <menuitem id="menu_employee_trave"
+                  name="Expense Request"
+                  parent="menu_employee_travel_management"
+                  sequence="1"
+                  action="employee_travel_request_action"
+        />
+        <menuitem id="menu_configuration"
+                  name="Configuration"
+                  parent="menu_employee_travel_management"
+        />
+        <menuitem id="menu_departure_mode"
+                  name="Travel Modes"
+                  parent="menu_configuration"
+                  action="departure_mode_action"
+        />
+        <menuitem id="menu_request_reject_reasons"
+                  name="Request Reject Reasons"
+                  parent="menu_configuration"
+                  action="request_reject_reason_action"
+        />
+    </data>
+</odoo>

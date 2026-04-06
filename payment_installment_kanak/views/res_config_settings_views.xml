@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.sale</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//block[@id='connectors_setting_container']" position="before">
+                  <block title="Installment On Sales" id="installment_settings">
+
+        <!-- Enable Installments -->
+        <setting string="Enable Installments"
+                 help="Receive payments in installments.">
+            <field name="enable_installments"/>
+        </setting>
+
+        <!-- Invoice Settings -->
+        <setting string="Invoice Settings"
+                 invisible="not enable_installments"
+                 help="Choose how installment invoices should be handled.">
+            <field name="installment_invoice_settings" widget="radio"/>
+        </setting>
+
+        <!-- Days Before Invoice -->
+        <setting string="Days Before Invoice"
+                 invisible="not enable_installments or installment_invoice_settings != 'multiple_invoice'"
+                 help="Number of days before Date Order that invoices will be created.">
+
+            <field name="days_before_invoice"/>
+        </setting>
+
+    </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>

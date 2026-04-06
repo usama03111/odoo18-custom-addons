@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="module_category_employee_travel_management" model="ir.module.category">
+            <field name="name">Employee Travel Expense</field>
+            <field name="description">Helps you manage employee travel expenses.</field>
+            <field name="sequence">10</field>
+        </record>
+
+        <record id="employee_group" model="res.groups">
+            <field name="name">Employee</field>
+            <field name="category_id" ref="module_category_employee_travel_management"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <record id="admin_group" model="res.groups">
+            <field name="name">Travel User/Administrator</field>
+            <field name="category_id" ref="module_category_employee_travel_management"/>
+            <field name="implied_ids" eval="[(4, ref('employee_group'))]"/>
+        </record>
+    </data>
+</odoo>

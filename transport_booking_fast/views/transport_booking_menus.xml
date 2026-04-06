@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_transport_booking_client" model="ir.actions.client">
+        <field name="name">Transport Booking</field>
+        <field name="tag">transport_booking_fast.TransportBooking</field>
+    </record>
+
+    <menuitem id="menu_transport_booking_root" name="Transport Booking" sequence="10" action="action_transport_booking_client"/>
+
+    <menuitem id="menu_transport_configuration" name="Configuration" parent="menu_transport_booking_root" sequence="100"/>
+    <menuitem id="menu_transport_route" name="Routes" parent="menu_transport_configuration" action="action_transport_route" sequence="10"/>
+    <menuitem id="menu_transport_vehicle" name="Vehicles" parent="menu_transport_configuration" action="action_transport_vehicle" sequence="20"/>
+    <menuitem id="menu_transport_booking" name="Booking Data" parent="menu_transport_configuration" action="action_transport_booking_data_action" sequence="30"/>
+</odoo>

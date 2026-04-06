@@ -1,0 +1,35 @@
+<!--<odoo>-->
+<!--    <record id="view_picking_form_inherit_rma" model="ir.ui.view">-->
+<!--        <field name="name">stock.picking.form.inherit.rma</field>-->
+<!--        <field name="model">rma.request</field>-->
+<!--        <field name="inherit_id" ref="stock.view_picking_form"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            &lt;!&ndash; Insert RMA button next to existing 'Returns' button &ndash;&gt;-->
+<!--            <xpath expr="//button[@name='action_see_returns']" position="inside">-->
+<!--                 <button class="oe_stat_button" name="action_open_warehouse_in" type="object" icon="fa-rotate-left"  >-->
+<!--                    <div class="o_field_widget o_stat_info">-->
+<!--                        <span class="o_stat_value"><field name="rma_count"/></span>-->
+<!--                        <span class="o_stat_text">RMA</span>-->
+<!--                    </div>-->
+<!--                </button>-->
+<!--            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
+<!--</odoo>-->
+<odoo>
+    <record id="view_picking_form_inherit_rma" model="ir.ui.view">
+        <field name="name">stock.picking.form.inherit.rma</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <!-- Add RMA button next to existing smart buttons -->
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_open_warehouse_in" type="object"
+                        string="RMA IN" class="oe_stat_button" icon="fa-rotate-left">
+                    <field name="rma_count" widget="statinfo"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+

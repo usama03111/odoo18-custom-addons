@@ -1,0 +1,113 @@
+<odoo>
+
+
+    <record id="view_kpi_dashboard" model="ir.ui.view">
+        <field name="name">custom.kpi.dashboard.form</field>
+        <field name="model">custom.kpi.dashboard</field>
+        <field name="arch" type="xml">
+            <form string="Sales &amp; Inventory Dashboard" create="false" edit="false">
+                <sheet>
+                    <!-- Filters -->
+                <group string="Date Filter">
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                </group>
+                    <!-- Purchase Section -->
+                    <div class="kpi-section-title purchase">
+                        <h2>Purchase Overview</h2>
+                    </div>
+                    <div class="kpi-dashboard">
+                        <div class="kpi-card-container">
+                            <div class="kpi-card kpi-purchase">
+                                <h3>Total Purchase</h3>
+                                <span class="kpi-value">
+                                    <field name="total_purchase"/>
+                                </span>
+                            </div>
+                            <div class="kpi-card kpi-purchase_order">
+                                <h3>Total Purchase Orders</h3>
+                                <span class="kpi-value">
+                                    <field name="total_purchase_orders"/>
+                                </span>
+                            </div>
+                            <div class="kpi-card kpi-purchase_person">
+                                <h3>Total Buyers</h3>
+                                <span class="kpi-value">
+                                    <field name="total_buyers"/>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sales Section -->
+                    <div class="kpi-section-title sale">
+                        <h2>Sales Overview</h2>
+                    </div>
+                    <div class="kpi-dashboard">
+                        <div class="kpi-card-container">
+                            <div class="kpi-card kpi-sales">
+                                <h3>Total Sales</h3>
+                                <span class="kpi-value">
+                                    <field name="total_sales"/>
+                                </span>
+                            </div>
+                            <div class="kpi-card kpi-orders">
+                                <h3>Total Orders</h3>
+                                <span class="kpi-value">
+                                    <field name="total_orders"/>
+                                </span>
+                            </div>
+                            <div class="kpi-card kpi-sale_person">
+                                <h3>Total Sale Persons</h3>
+                                <span class="kpi-value">
+                                    <field name="salesperson_count"/>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stock Section -->
+                    <div class="kpi-section-title stock">
+                        <h2>Stock Overview</h2>
+                    </div>
+                    <div class="kpi-dashboard">
+                        <div class="kpi-card-container">
+                            <div class="kpi-card kpi-stock-total">
+                                <h3>Total Stock</h3>
+                                <span class="kpi-value">
+                                    <field name="total_stock"/>
+                                </span>
+                            </div>
+                            <div class="kpi-card kpi-stock-incoming">
+                                <h3>Incoming Stock</h3>
+                                <span class="kpi-value">
+                                    <field name="incoming_stock"/>
+                                </span>
+                            </div>
+                            <div class="kpi-card kpi-stock-outgoing">
+                                <h3>Outgoing Stock</h3>
+                                <span class="kpi-value">
+                                    <field name="outgoing_stock"/>
+                                </span>
+                            </div>
+
+                        </div>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_kpi_dashboard" model="ir.actions.act_window">
+        <field name="name">Sales,Inventory Dashboard</field>
+        <field name="res_model">custom.kpi.dashboard</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="view_id" ref="view_kpi_dashboard"/>
+    </record>
+
+    <menuitem id="menu_kpi_dashboard" name="KPI Dashboard"
+              parent="sale.sale_menu_root"
+              action="action_kpi_dashboard"
+              sequence="45"/>
+</odoo>

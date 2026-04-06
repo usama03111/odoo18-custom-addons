@@ -1,0 +1,2085 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sh_all_in_one_pms
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-10-09 05:11+0000\n"
+"PO-Revision-Date: 2021-10-09 05:11+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sh_all_in_one_pms
+#: model:mail.template,body_html:sh_all_in_one_pms.sh_task_mail_template_attachment
+msgid ""
+"\n"
+"\t\t\t\t\n"
+"\t\t\t\t<p>Dear,\n"
+"\t\t\t\t\t<br/>\n"
+"\t\t\t\t\tTask sent with attachment. \n"
+"\t\t\t\t</p>\n"
+"\t\t\t\t\n"
+"\t\t\t"
+msgstr ""
+"\n"
+"\t\t\t\t\n"
+"\t\t\t\t<p>親,\n"
+"\t\t\t\t\t<br/>\n"
+"\t\t\t\t\t任務發送附件. \n"
+"\t\t\t\t</p>\n"
+"\t\t\t\t\n"
+"\t\t\t"
+
+#. module: sh_all_in_one_pms
+#: model:mail.template,body_html:sh_all_in_one_pms.template_project_task_overdue_notify_email
+msgid ""
+"\n"
+"\t\t\t\t\n"
+"            <p>Dear Employee\n"
+"\t\t\t<t t-out=\"object.user_id.name\"/>,\n"
+"            </p>\n"
+"\t\t\t<html>            \t\n"
+"\t\t\t\t<head>Overdue Task List</head>\t\t\t\t\t\t\n"
+"\t\t\t\t\t<table border=\"1\" bgcolor=\"#ffffff\" style=\"border: 1px solid gray;width:100%\" >\n"
+"\t\t\t\t\t\t<thead style=\"background-color:#875A7B;text-decoration: none; color: #fff;font-size: 16px;\">\n"
+"\t\t\t\t\t\t\t<tr>\n"
+"\t\t\t\t\t\t\t\t<th align=\"center\">Project</th>\n"
+"\t\t\t\t\t\t\t\t<th align=\"center\">Task</th>\n"
+"\t\t\t\t\t\t\t\t<th align=\"center\">Deadline Date</th>\n"
+"\t\t\t\t\t\t\t</tr>\n"
+"\t\t\t\t\t\t</thead>\n"
+"\t\t\t\t\t\t<tbody>\n"
+"\t\t\t\t\t\t\t<t t-foreach=\"object.notify_ids\" t-as=\"row\">\n"
+"\t\t\t\t\t\t\t<tr>\n"
+"\t\t\t\t\t\t\t\t<td><span style=\"margin-left:5px\"><t t-out=\"row.project_id\"/></span></td>\n"
+"\t\t\t\t\t\t\t\t<td><span style=\"margin-left:5px\"><t t-out=\"row.name\"/></span></td>\n"
+"\t\t\t\t\t\t\t\t<td><span style=\"margin-left:5px\"><t t-out=\"row.date_deadline\"/></span></td>\n"
+"\t\t\t\t\t\t\t</tr>\n"
+"\t\t\t\t\t\t\t</t>\n"
+"\t\t\t\t\t\t</tbody>\n"
+"\t\t\t\t\t</table>\n"
+"\t\t\t\t</html>\t\t\n"
+"\t\t\t\t<br/>\n"
+"\t\t\t\t<p>Thank you</p>\t\t\t\t\t\t\t\t\t\t\t\t\n"
+"\t\t\t\t\n"
+"\t\t\t"
+msgstr ""
+"\n"
+"\t\t\t\t\n"
+"            <p>親愛的員工\n"
+"\t\t\t<t t-out=\"object.user_id.name\"/>,\n"
+"            </p>\n"
+"\t\t\t<html>            \t\n"
+"\t\t\t\t<head>逾期任務列表</head>\t\t\t\t\t\t\n"
+"\t\t\t\t\t<table border=\"1\" bgcolor=\"#ffffff\" style=\"border: 1px solid gray;width:100%\" >\n"
+"\t\t\t\t\t\t<thead style=\"background-color:#875A7B;text-decoration: none; color: #fff;font-size: 16px;\">\n"
+"\t\t\t\t\t\t\t<tr>\n"
+"\t\t\t\t\t\t\t\t<th align=\"center\">項目</th>\n"
+"\t\t\t\t\t\t\t\t<th align=\"center\">任務</th>\n"
+"\t\t\t\t\t\t\t\t<th align=\"center\">截止日期</th>\n"
+"\t\t\t\t\t\t\t</tr>\n"
+"\t\t\t\t\t\t</thead>\n"
+"\t\t\t\t\t\t<tbody>\n"
+"\t\t\t\t\t\t\t<t t-foreach=\"object.notify_ids\" t-as=\"row\">\n"
+"\t\t\t\t\t\t\t<tr>\n"
+"\t\t\t\t\t\t\t\t<td><span style=\"margin-left:5px\"><t t-out=\"row.project_id\"/></span></td>\n"
+"\t\t\t\t\t\t\t\t<td><span style=\"margin-left:5px\"><t t-out=\"row.name\"/></span></td>\n"
+"\t\t\t\t\t\t\t\t<td><span style=\"margin-left:5px\"><t t-out=\"row.date_deadline\"/></span></td>\n"
+"\t\t\t\t\t\t\t</tr>\n"
+"\t\t\t\t\t\t\t</t>\n"
+"\t\t\t\t\t\t</tbody>\n"
+"\t\t\t\t\t</table>\n"
+"\t\t\t\t</html>\t\t\n"
+"\t\t\t\t<br/>\n"
+"\t\t\t\t<p>謝謝</p>\t\t\t\t\t\t\t\t\t\t\t\t\n"
+"\t\t\t\t\n"
+"\t\t\t"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__widget_text_selection
+msgid "  Widget"
+msgstr "小部件"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task__checklist
+msgid " Checklist Completed"
+msgstr "清單完成"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_project__custom_checklist
+msgid " Checklist Completed "
+msgstr "清單完成"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__widget_float_selection
+msgid " Widget"
+msgstr "小部件"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__widget_char_selection
+msgid " Widget "
+msgstr "小部件"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__widget_m2o_selection
+msgid " Widget  "
+msgstr "小部件"
+
+#. module: sh_all_in_one_pms
+#: model:ir.actions.report,print_report_name:sh_all_in_one_pms.sh_project_report
+msgid "'Projec Detail'"
+msgstr "projec細節'"
+
+#. module: sh_all_in_one_pms
+#: model:ir.actions.report,print_report_name:sh_all_in_one_pms.sh_project_task
+msgid "'Projec Tassk Detail'"
+msgstr "projec tassk細節'"
+
+#. module: sh_all_in_one_pms
+#: code:addons/sh_all_in_one_pms/sh_task_custom_fields/models/task.py:0
+#: code:addons/sh_all_in_one_pms/sh_task_custom_fields/models/task.py:0
+#, python-format
+msgid ""
+"<?xml version=\"1.0\"?><data><field name=\"%s\" position=\"%s\"><field "
+"name=\"%s\" groups=\"%s\" widget=\"%s\"/></field></data>"
+msgstr ""
+"<?xml version=\"1.0\"?><data><field name=\"%s\" position=\"%s\"><field "
+"name=\"%s\" groups=\"%s\" widget=\"%s\"/></field></data>"
+
+#. module: sh_all_in_one_pms
+#: code:addons/sh_all_in_one_pms/sh_task_custom_fields/models/task.py:0
+#: code:addons/sh_all_in_one_pms/sh_task_custom_fields/models/task.py:0
+#, python-format
+msgid ""
+"<?xml version=\"1.0\"?><data><field name=\"%s\" position=\"%s\"><field "
+"name=\"%s\" groups=\"%s\"/></field></data>"
+msgstr ""
+"<?xml version=\"1.0\"?><data><field name=\"%s\" position=\"%s\"><field "
+"name=\"%s\" groups=\"%s\"/></field></data>"
+
+#. module: sh_all_in_one_pms
+#: code:addons/sh_all_in_one_pms/sh_task_custom_fields/models/task.py:0
+#: code:addons/sh_all_in_one_pms/sh_task_custom_fields/models/task.py:0
+#, python-format
+msgid ""
+"<?xml version=\"1.0\"?><data><field name=\"%s\" position=\"%s\"><field "
+"name=\"%s\" widget=\"%s\"/></field></data>"
+msgstr ""
+"<?xml version=\"1.0\"?><data><field name=\"%s\" position=\"%s\"><field "
+"name=\"%s\" widget=\"%s\"/></field></data>"
+
+#. module: sh_all_in_one_pms
+#: code:addons/sh_all_in_one_pms/sh_task_custom_fields/models/task.py:0
+#: code:addons/sh_all_in_one_pms/sh_task_custom_fields/models/task.py:0
+#, python-format
+msgid ""
+"<?xml version=\"1.0\"?><data><field name=\"%s\" position=\"%s\"><field "
+"name=\"%s\"/></field></data>"
+msgstr ""
+"<?xml version=\"1.0\"?><data><field name=\"%s\" position=\"%s\"><field "
+"name=\"%s\"/></field></data>"
+
+#. module: sh_all_in_one_pms
+#: code:addons/sh_all_in_one_pms/sh_task_custom_fields/models/task_tab.py:0
+#: code:addons/sh_all_in_one_pms/sh_task_custom_fields/models/task_tab.py:0
+#, python-format
+msgid ""
+"<?xml version=\"1.0\"?><data><xpath expr=\"//form/sheet/notebook\" "
+"position=\"inside\"><page name=\"%s\" groups=\"%s\"  "
+"string=\"%s\"><group></group></page></xpath></data>"
+msgstr ""
+"<?xml version=\"1.0\"?><data><xpath expr=\"//form/sheet/notebook\" "
+"position=\"inside\"><page name=\"%s\" groups=\"%s\"  "
+"string=\"%s\"><group></group></page></xpath></data>"
+
+#. module: sh_all_in_one_pms
+#: code:addons/sh_all_in_one_pms/sh_task_custom_fields/models/task_tab.py:0
+#: code:addons/sh_all_in_one_pms/sh_task_custom_fields/models/task_tab.py:0
+#, python-format
+msgid ""
+"<?xml version=\"1.0\"?><data><xpath expr=\"//form/sheet/notebook\" "
+"position=\"inside\"><page name=\"%s\" "
+"string=\"%s\"><group></group></page></xpath></data>"
+msgstr ""
+"<?xml version=\"1.0\"?><data><xpath expr=\"//form/sheet/notebook\" "
+"position=\"inside\"><page name=\"%s\" "
+"string=\"%s\"><group></group></page></xpath></data>"
+
+#. module: sh_all_in_one_pms
+#: code:addons/sh_all_in_one_pms/sh_task_custom_fields/models/task_tab.py:0
+#: code:addons/sh_all_in_one_pms/sh_task_custom_fields/models/task_tab.py:0
+#, python-format
+msgid ""
+"<?xml version=\"1.0\"?><data><xpath "
+"expr=\"//form/sheet/notebook/page[@name='%s']\" position=\"%s\"><page "
+"name=\"%s\" groups=\"%s\"  "
+"string=\"%s\"><group></group></page></xpath></data>"
+msgstr ""
+"<?xml version=\"1.0\"?><data><xpath "
+"expr=\"//form/sheet/notebook/page[@name='%s']\" position=\"%s\"><page "
+"name=\"%s\" groups=\"%s\"  "
+"string=\"%s\"><group></group></page></xpath></data>"
+
+#. module: sh_all_in_one_pms
+#: code:addons/sh_all_in_one_pms/sh_task_custom_fields/models/task_tab.py:0
+#: code:addons/sh_all_in_one_pms/sh_task_custom_fields/models/task_tab.py:0
+#, python-format
+msgid ""
+"<?xml version=\"1.0\"?><data><xpath "
+"expr=\"//form/sheet/notebook/page[@name='%s']\" position=\"%s\"><page "
+"name=\"%s\" string=\"%s\"><group></group></page></xpath></data>"
+msgstr ""
+"<?xml version=\"1.0\"?><data><xpath "
+"expr=\"//form/sheet/notebook/page[@name='%s']\" position=\"%s\"><page "
+"name=\"%s\" string=\"%s\"><group></group></page></xpath></data>"
+
+#. module: sh_all_in_one_pms
+#: code:addons/sh_all_in_one_pms/sh_task_custom_fields/models/task.py:0
+#, python-format
+msgid ""
+"<?xml version=\"1.0\"?><data><xpath "
+"expr=\"//form/sheet/notebook/page[@name='%s']/group\" "
+"position=\"inside\"><group><field name=\"%s\" groups=\"%s\" "
+"/></group></xpath></data>"
+msgstr ""
+"<?xml version=\"1.0\"?><data><xpath "
+"expr=\"//form/sheet/notebook/page[@name='%s']/group\" "
+"position=\"inside\"><group><field name=\"%s\" groups=\"%s\" "
+"/></group></xpath></data>"
+
+#. module: sh_all_in_one_pms
+#: code:addons/sh_all_in_one_pms/sh_task_custom_fields/models/task.py:0
+#: code:addons/sh_all_in_one_pms/sh_task_custom_fields/models/task.py:0
+#, python-format
+msgid ""
+"<?xml version=\"1.0\"?><data><xpath "
+"expr=\"//form/sheet/notebook/page[@name='%s']/group\" "
+"position=\"inside\"><group><field name=\"%s\" groups=\"%s\" "
+"widget=\"%s\"/></group></xpath></data>"
+msgstr ""
+"<?xml version=\"1.0\"?><data><xpath "
+"expr=\"//form/sheet/notebook/page[@name='%s']/group\" "
+"position=\"inside\"><group><field name=\"%s\" groups=\"%s\" "
+"widget=\"%s\"/></group></xpath></data>"
+
+#. module: sh_all_in_one_pms
+#: code:addons/sh_all_in_one_pms/sh_task_custom_fields/models/task.py:0
+#, python-format
+msgid ""
+"<?xml version=\"1.0\"?><data><xpath "
+"expr=\"//form/sheet/notebook/page[@name='%s']/group\" "
+"position=\"inside\"><group><field name=\"%s\" "
+"groups=\"%s\"/></group></xpath></data>"
+msgstr ""
+"<?xml version=\"1.0\"?><data><xpath "
+"expr=\"//form/sheet/notebook/page[@name='%s']/group\" "
+"position=\"inside\"><group><field name=\"%s\" "
+"groups=\"%s\"/></group></xpath></data>"
+
+#. module: sh_all_in_one_pms
+#: code:addons/sh_all_in_one_pms/sh_task_custom_fields/models/task.py:0
+#: code:addons/sh_all_in_one_pms/sh_task_custom_fields/models/task.py:0
+#, python-format
+msgid ""
+"<?xml version=\"1.0\"?><data><xpath "
+"expr=\"//form/sheet/notebook/page[@name='%s']/group\" "
+"position=\"inside\"><group><field name=\"%s\" "
+"widget=\"%s\"/></group></xpath></data>"
+msgstr ""
+"<?xml version=\"1.0\"?><data><xpath "
+"expr=\"//form/sheet/notebook/page[@name='%s']/group\" "
+"position=\"inside\"><group><field name=\"%s\" "
+"widget=\"%s\"/></group></xpath></data>"
+
+#. module: sh_all_in_one_pms
+#: code:addons/sh_all_in_one_pms/sh_task_custom_fields/models/task.py:0
+#: code:addons/sh_all_in_one_pms/sh_task_custom_fields/models/task.py:0
+#, python-format
+msgid ""
+"<?xml version=\"1.0\"?><data><xpath "
+"expr=\"//form/sheet/notebook/page[@name='%s']/group\" "
+"position=\"inside\"><group><field name=\"%s\"/></group></xpath></data>"
+msgstr ""
+"<?xml version=\"1.0\"?><data><xpath "
+"expr=\"//form/sheet/notebook/page[@name='%s']/group\" "
+"position=\"inside\"><group><field name=\"%s\"/></group></xpath></data>"
+
+#. module: sh_all_in_one_pms
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_time_inherit_kanban_view
+msgid "<span class=\"fa fa-play\" title=\"Play\"/>"
+msgstr "<span class=\"fa fa-play\" title=\"Play\"/>"
+
+#. module: sh_all_in_one_pms
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_time_inherit_kanban_view
+msgid "<span class=\"fa fa-stop\" title=\"Stop\"/>"
+msgstr "<span class=\"fa fa-stop\" title=\"Stop\"/>"
+
+#. module: sh_all_in_one_pms
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_report_doc
+msgid "<span style=\"font-size: 18px; font-weight: bold;\">Assign Date:</span>"
+msgstr "<span style=\"font-size: 18px; font-weight: bold;\">分配日期：</ span>"
+
+#. module: sh_all_in_one_pms
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_report_doc
+msgid "<span style=\"font-size: 18px; font-weight: bold;\">Assign To:</span>"
+msgstr "<span style=\"font-size: 18px; font-weight: bold;\">分配給：</ span>"
+
+#. module: sh_all_in_one_pms
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_report_doc
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_report_doc
+msgid ""
+"<span style=\"font-size: 18px; font-weight: bold;\">Completed Checklist "
+":</span>"
+msgstr ""
+"<span style=\"font-size: 18px; font-weight: bold;\">完成了清單 "
+":</span>"
+
+#. module: sh_all_in_one_pms
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_report_doc
+msgid "<span style=\"font-size: 18px; font-weight: bold;\">Customer Email:</span>"
+msgstr "<span style=\"font-size: 18px; font-weight: bold;\">客戶電子郵件：</ span>"
+
+#. module: sh_all_in_one_pms
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_report_doc
+msgid "<span style=\"font-size: 18px; font-weight: bold;\">Customer Name:</span>"
+msgstr "<span style=\"font-size: 18px; font-weight: bold;\">客戶名稱：</ span>"
+
+#. module: sh_all_in_one_pms
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_report_doc
+msgid "<span style=\"font-size: 18px; font-weight: bold;\">Customer:</span>"
+msgstr "<span style=\"font-size: 18px; font-weight: bold;\">客戶：</ span>"
+
+#. module: sh_all_in_one_pms
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_report_doc
+msgid "<span style=\"font-size: 18px; font-weight: bold;\">Deadline Date:</span>"
+msgstr "<span style=\"font-size: 18px; font-weight: bold;\">截止日期：</ span>"
+
+#. module: sh_all_in_one_pms
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_report_doc
+msgid "<span style=\"font-size: 18px; font-weight: bold;\">Description</span>"
+msgstr "<span style=\"font-size: 18px; font-weight: bold;\">描述</ span>"
+
+#. module: sh_all_in_one_pms
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_report_doc
+msgid "<span style=\"font-size: 18px; font-weight: bold;\">Hours Spent:</span>"
+msgstr "<span style=\"font-size: 18px; font-weight: bold;\">花費時間：</ span>"
+
+#. module: sh_all_in_one_pms
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_report_doc
+msgid "<span style=\"font-size: 18px; font-weight: bold;\">Planned Hours:</span>"
+msgstr "<span style=\"font-size: 18px; font-weight: bold;\">計劃時間：</ span>"
+
+#. module: sh_all_in_one_pms
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_report_doc
+msgid "<span style=\"font-size: 18px; font-weight: bold;\">Priority:</span>"
+msgstr "<span style=\"font-size: 18px; font-weight: bold;\">優先級：</ span>"
+
+#. module: sh_all_in_one_pms
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_report_doc
+msgid "<span style=\"font-size: 18px; font-weight: bold;\">Progress:</span>"
+msgstr "<span style=\"font-size: 18px; font-weight: bold;\">進度：</ span>"
+
+#. module: sh_all_in_one_pms
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_report_doc
+msgid ""
+"<span style=\"font-size: 18px; font-weight: bold;\">Project Manager:</span>"
+msgstr ""
+"<span style=\"font-size: 18px; font-weight: bold;\">專案經理:</span>"
+
+#. module: sh_all_in_one_pms
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_report_doc
+msgid "<span style=\"font-size: 18px; font-weight: bold;\">Project Name:</span>"
+msgstr "<span style=\"font-size: 18px; font-weight: bold;\">項目名稱：</ span>"
+
+#. module: sh_all_in_one_pms
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_report_doc
+msgid ""
+"<span style=\"font-size: 18px; font-weight: bold;\">Remaining Hours:</span>"
+msgstr ""
+"<span style=\"font-size: 18px; font-weight: bold;\">剩下的時間:</span>"
+
+#. module: sh_all_in_one_pms
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_report_doc
+msgid ""
+"<span style=\"font-size: 18px; font-weight: bold;\">Responsible "
+"Users:</span>"
+msgstr ""
+"<span style=\"font-size: 18px; font-weight: bold;\">負責任的 "
+"用戶:</span>"
+
+#. module: sh_all_in_one_pms
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_report_doc
+msgid "<span style=\"font-size: 18px; font-weight: bold;\">Sub Tasks:</span>"
+msgstr "<span style=\"font-size: 18px; font-weight: bold;\">子任務：</ span>"
+
+#. module: sh_all_in_one_pms
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_report_doc
+msgid "<span style=\"font-size: 18px; font-weight: bold;\">Sub Tasks</span>"
+msgstr "<span style=\"font-size: 18px; font-weight: bold;\">子任務</ span>"
+
+#. module: sh_all_in_one_pms
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_report_doc
+msgid "<span style=\"font-size: 18px; font-weight: bold;\">Timesheets</span>"
+msgstr "<span style=\"font-size: 18px; font-weight: bold;\">時間表</ span>"
+
+#. module: sh_all_in_one_pms
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_custom_checklist_form_view_inherit
+msgid "<span style=\"padding-left: 50px;\">Check List </span>"
+msgstr "<span style = \"padding-left：50px; \">檢查列表</ span>"
+
+#. module: sh_all_in_one_pms
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_project_custom_checklist_form_view_inherit
+msgid "<span style=\"padding-left:50px;\">Checklist Template </span>"
+msgstr "<span style = \"padding-left：50px; \">清單模板</ span>"
+
+#. module: sh_all_in_one_pms
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_report_doc
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_report_doc
+msgid "<span>Checklist</span>"
+msgstr "<span>清單</ span>"
+
+#. module: sh_all_in_one_pms
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_custom_models_form_view_custom_fields
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_dynamic_models_form_view_custom_fields
+msgid "Access Rights"
+msgstr "訪問權限"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields.selection,name:sh_all_in_one_pms.selection__sh_project_project_mass_update_wizard__update_method_stages__add
+#: model:ir.model.fields.selection,name:sh_all_in_one_pms.selection__sh_project_stage_mass_update_wizard__update_method_project__add
+#: model:ir.model.fields.selection,name:sh_all_in_one_pms.selection__sh_project_task_mass_update_wizard__update_method_tags__add
+#: model:ir.model.fields.selection,name:sh_all_in_one_pms.selection__sh_project_task_mass_update_wizard__update_method_user__add
+msgid "Add"
+msgstr "添加"
+
+#. module: sh_all_in_one_pms
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_custom_fields_form_view_inherit
+msgid "Add Custom Field"
+msgstr "添加自定義字段"
+
+#. module: sh_all_in_one_pms
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_dynamic_tab_form_view_inherit
+msgid "Add Custom Tab"
+msgstr "添加自定義選項卡"
+
+#. module: sh_all_in_one_pms
+#: model:ir.actions.act_window,name:sh_all_in_one_pms.sh_project_stage_tag_wizard_action
+#: model:ir.actions.server,name:sh_all_in_one_pms.model_project_stage_action
+msgid "Add Project"
+msgstr "添加項目"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields.selection,name:sh_all_in_one_pms.selection__sh_custom_model_task__sh_position__after
+#: model:ir.model.fields.selection,name:sh_all_in_one_pms.selection__sh_custom_tab_task__sh_position__after
+msgid "After"
+msgstr "後"
+
+#. module: sh_all_in_one_pms
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.project_task_overdue_config_setting_view
+msgid "All in PMS Configuration"
+msgstr "全部採用PMS配置"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model,name:sh_all_in_one_pms.model_account_analytic_line
+msgid "Analytic Line"
+msgstr "分析線"
+
+#. module: sh_all_in_one_pms
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_report_doc
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_report_doc
+msgid "Assign Date"
+msgstr "分配日期"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task_type__assign_multi_user_ids
+msgid "Assign Multi User"
+msgstr "分配多用戶"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task_type__assign_to
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_project_task_mass_update_wizard__assign_to
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_report_doc
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_report_doc
+msgid "Assign To"
+msgstr "分配給"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task_overdue_notify__user_id
+msgid "Assigned To"
+msgstr "分配給"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task__sh_user_ids
+msgid "Assigned to multi users"
+msgstr "分配給多用戶"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields.selection,name:sh_all_in_one_pms.selection__sh_custom_model_task__sh_position__before
+#: model:ir.model.fields.selection,name:sh_all_in_one_pms.selection__sh_custom_tab_task__sh_position__before
+msgid "Before"
+msgstr "前"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields.selection,name:sh_all_in_one_pms.selection__sh_custom_model_task__widget_m2m_selection__many2many_binary
+msgid "Binary"
+msgstr "二進制"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task_type__sh_cancel
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_project_custom_checklist_form_view_inherit
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_project_update_wizard_form_view
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_stage_update_wizard_form_view
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_custom_checklist_form_view_inherit
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_custom_tab_wizrd_view
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_dynamic_models_form_view_custom_fields
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_time_account_line_form_view
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_update_wizard_form_view
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.start_timesheet_form
+msgid "Cancel"
+msgstr "取消"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields.selection,name:sh_all_in_one_pms.selection__project_custom_checklist_line__state__cancelled
+#: model:ir.model.fields.selection,name:sh_all_in_one_pms.selection__task_custom_checklist_line__state__cancelled
+msgid "Cancelled"
+msgstr "取消"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_task_checklist_template__checklist_ids
+msgid "Check List"
+msgstr "檢查清單"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task__check_list
+msgid "Check list"
+msgstr "檢查清單"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields.selection,name:sh_all_in_one_pms.selection__sh_custom_model_task__widget_m2m_selection__many2many_checkboxes
+msgid "Checkboxes"
+msgstr "複選框"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_project__custom_checklist_ids
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task__custom_checklist_ids
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_project_custom_checklist_form_view_inherit
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_project_custom_checklist_kanban_view_inherit
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_checklist_form_view_inherit
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_custom_checklist_form_view_inherit
+msgid "Checklist"
+msgstr "清單"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task__checklist_ids
+msgid "Checklist "
+msgstr "清單"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task__custom_checklist
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_project_custom_checklist_form_view_inherit
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_checklist_form_view_inherit
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_custom_checklist_form_view_inherit
+msgid "Checklist Completed"
+msgstr "清單完成"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_custom_checklist_template__checklist_template_ids
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_project__checklsit_template
+msgid "Checklist Template"
+msgstr "清單模板"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,help:sh_all_in_one_pms.field_sh_custom_model_task__compute
+msgid ""
+"Code to compute the value of the field.\n"
+"Iterate on the recordset 'self' and assign the field's value:\n"
+"\n"
+"    for record in self:\n"
+"        record['size'] = len(record.name)\n"
+"\n"
+"Modules time, datetime, dateutil are available."
+msgstr ""
+"代碼來計算字段的值.\n"
+"迭代Recordset'self'並分配字段的值:\n"
+"\n"
+"    for record in self:\n"
+"        record['size'] = len(record.name)\n"
+"\n"
+"可提供模塊時間，日期，Dateutil."
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__column1
+msgid "Column 1"
+msgstr "第1列"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__column2
+msgid "Column 2"
+msgstr "第2欄"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,help:sh_all_in_one_pms.field_sh_custom_model_task__column2
+msgid "Column referring to the record in the comodel table"
+msgstr "列指的是Comodel表中的記錄"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,help:sh_all_in_one_pms.field_sh_custom_model_task__column1
+msgid "Column referring to the record in the model table"
+msgstr "列引用模型表中的記錄"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model,name:sh_all_in_one_pms.model_res_company
+msgid "Companies"
+msgstr "公司"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_custom_checklist__company_id
+msgid "Company"
+msgstr "公司"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task_overdue_email__company_id
+msgid "Company Id"
+msgstr "公司ID"
+
+#. module: sh_all_in_one_pms
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_project_custom_checklist_form_view_inherit
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_custom_checklist_form_view_inherit
+msgid "Complete"
+msgstr "完全的"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__complete_name
+msgid "Complete Name"
+msgstr "全名"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields.selection,name:sh_all_in_one_pms.selection__project_custom_checklist_line__state__completed
+#: model:ir.model.fields.selection,name:sh_all_in_one_pms.selection__task_custom_checklist_line__state__completed
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_overdue_email_notification_search_view_inherit
+msgid "Completed"
+msgstr "完全的"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__compute
+msgid "Compute"
+msgstr "計算"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model,name:sh_all_in_one_pms.model_res_config_settings
+msgid "Config Settings"
+msgstr "配置設置"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__copied
+msgid "Copied"
+msgstr "複製"
+
+#. module: sh_all_in_one_pms
+#: model:ir.actions.act_window,name:sh_all_in_one_pms.sh_project_task_custom_fields
+msgid "Create Custom Fields"
+msgstr "創建自定義字段"
+
+#. module: sh_all_in_one_pms
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_dynamic_models_form_view_custom_fields
+msgid "Create Fields"
+msgstr "創建字段"
+
+#. module: sh_all_in_one_pms
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_custom_tab_wizrd_view
+msgid "Create Tab"
+msgstr "創建選項卡"
+
+#. module: sh_all_in_one_pms
+#: model_terms:ir.actions.act_window,help:sh_all_in_one_pms.sh_project_stage_template_action
+msgid "Create a new Project Stage Template"
+msgstr "創建一個新的項目階段模板"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_custom_checklist__create_uid
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_custom_checklist_line__create_uid
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_custom_checklist_template__create_uid
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task_overdue_email__create_uid
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task_overdue_notify__create_uid
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__create_uid
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_tab_task__create_uid
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_model_fields_selection__create_uid
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_project_project_mass_update_wizard__create_uid
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_project_stage_mass_update_wizard__create_uid
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_project_stage_template__create_uid
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_project_task_mass_update_wizard__create_uid
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_start_timesheet__create_uid
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_task_checklist_template__create_uid
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_task_checklist__create_uid
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_task_custom_checklist__create_uid
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_task_custom_checklist_line__create_uid
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_task_time_account_line__create_uid
+msgid "Created by"
+msgstr "由...製作"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_custom_checklist__create_date
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_custom_checklist_line__create_date
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_custom_checklist_template__create_date
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task_overdue_email__create_date
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task_overdue_notify__create_date
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__create_date
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_tab_task__create_date
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_model_fields_selection__create_date
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_project_project_mass_update_wizard__create_date
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_project_stage_mass_update_wizard__create_date
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_project_stage_template__create_date
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_project_task_mass_update_wizard__create_date
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_start_timesheet__create_date
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_task_checklist_template__create_date
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_task_checklist__create_date
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_task_custom_checklist__create_date
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_task_custom_checklist_line__create_date
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_task_time_account_line__create_date
+msgid "Created on"
+msgstr "創建於"
+
+#. module: sh_all_in_one_pms
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_custom_models_form_view_custom_fields
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_dynamic_models_form_view_custom_fields
+msgid "Custom Fields"
+msgstr "自定義字段"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model,name:sh_all_in_one_pms.model_sh_custom_model_task
+msgid "Custom Model Task"
+msgstr "自定義模型任務"
+
+#. module: sh_all_in_one_pms
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_custom_tab_wizrd_view
+msgid "Custom Tab"
+msgstr "自定義選項卡"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model,name:sh_all_in_one_pms.model_sh_custom_tab_task
+msgid "Custom Tab task"
+msgstr "自定義選項卡任務"
+
+#. module: sh_all_in_one_pms
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_form_custom_tab_form_view
+msgid "Custom Tabs"
+msgstr "自定義選項卡"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_custom_checklist_line__updated_date
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_task_custom_checklist_line__updated_date
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_report_doc
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_report_doc
+msgid "Date"
+msgstr "日期"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task_overdue_notify__date_deadline
+msgid "Date Deadline"
+msgstr "日期截止日期"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_project_task_mass_update_wizard__deadline
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_report_doc
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_report_doc
+msgid "Deadline"
+msgstr "最後期限"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_project__default_added_to_task
+msgid "Default Added To Task"
+msgstr "默認為任務添加到任務"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__depends
+msgid "Dependencies"
+msgstr "依賴性"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,help:sh_all_in_one_pms.field_sh_custom_model_task__depends
+msgid ""
+"Dependencies of compute method; a list of comma-separated field names, like\n"
+"\n"
+"    name, partner_id.name"
+msgstr ""
+"計算方法的依賴性;逗號分隔的字段名稱列表，如\n"
+"\n"
+"    姓名, partner_id.name"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_custom_checklist__description
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_custom_checklist_line__description
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_task_checklist__description
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_task_custom_checklist__description
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_task_custom_checklist_line__description
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_task_time_account_line__name
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_report_doc
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_report_doc
+msgid "Description"
+msgstr "描述"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_custom_checklist__display_name
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_custom_checklist_line__display_name
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_custom_checklist_template__display_name
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task_overdue_email__display_name
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task_overdue_notify__display_name
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__display_name
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_tab_task__display_name
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_model_fields_selection__display_name
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_project_project_mass_update_wizard__display_name
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_project_stage_mass_update_wizard__display_name
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_project_stage_template__display_name
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_project_task_mass_update_wizard__display_name
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_start_timesheet__display_name
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_task_checklist_template__display_name
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_task_checklist__display_name
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_task_custom_checklist__display_name
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_task_custom_checklist_line__display_name
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_task_time_account_line__display_name
+msgid "Display Name"
+msgstr "顯示名稱"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task__sh_multi_user
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_res_company__sh_multi_user
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_res_config_settings__sh_multi_user
+msgid "Display multi users in task ?"
+msgstr "在任務中顯示多用戶？"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__domain
+msgid "Domain"
+msgstr "領域"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__task_domain
+msgid "Domain "
+msgstr "領域"
+
+#. module: sh_all_in_one_pms
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_custom_models_form_view_custom_fields
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_dynamic_models_form_view_custom_fields
+msgid "Domains"
+msgstr "域名"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task_type__sh_done
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_project_update_wizard_form_view
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_stage_update_wizard_form_view
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_update_wizard_form_view
+msgid "Done"
+msgstr "完畢"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_task_time_account_line__duration
+msgid "Duration (HH:MM)"
+msgstr "持續時間（hh：mm）"
+
+#. module: sh_all_in_one_pms
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_report_doc
+msgid "Duration(in hours)"
+msgstr "持續時間（以小時為單位）"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task_overdue_notify__email_id
+msgid "Email Id"
+msgstr "電子郵件ID"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task_overdue_email__user_id
+msgid "Email Users"
+msgstr "電子郵件用戶"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model,name:sh_all_in_one_pms.model_mail_compose_message
+msgid "Email composition wizard"
+msgstr "電子郵件組成巫師"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_start_timesheet__employee_id
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_report_doc
+msgid "Employee"
+msgstr "員工"
+
+#. module: sh_all_in_one_pms
+#: code:addons/sh_all_in_one_pms/sh_project_stages/models/sh_project.py:0
+#, python-format
+msgid "Enable Configuration for Project Stage"
+msgstr "啟用項目階段的配置"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_res_company__enable_mass_project_stage
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_res_config_settings__enable_mass_project_stage
+msgid "Enable Mass Project Stage"
+msgstr "啟用大規模項目階段"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__tracking
+msgid "Enable Ordered Tracking"
+msgstr "啟用有序跟踪"
+
+#. module: sh_all_in_one_pms
+#: model:res.groups,name:sh_all_in_one_pms.group_project_custom_checklist
+msgid "Enable Project Custom Checklist"
+msgstr "啟用項目自定義清單"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_project__check_bool_project_priority
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task__check_bool_project_priority
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_res_company__enable_project_priority
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_res_config_settings__enable_project_priority
+msgid "Enable Project Priority"
+msgstr "啟用項目優先權"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_res_config_settings__group_enable_project_stage
+#: model:res.groups,name:sh_all_in_one_pms.group_enable_project_stage
+msgid "Enable Project Stages"
+msgstr "啟用項目階段"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task__check_bool_enable_task_check_list
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_res_company__enable_task_check_list
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_res_config_settings__enable_task_check_list
+msgid "Enable Task Check List"
+msgstr "啟用任務檢查列表"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_res_config_settings__group_enable_task_check_list
+msgid "Enable Task Check List "
+msgstr "啟用任務檢查列表"
+
+#. module: sh_all_in_one_pms
+#: model:res.groups,name:sh_all_in_one_pms.group_enable_task_check_list
+msgid "Enable Task Checklist"
+msgstr "啟用任務檢查表"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_res_config_settings__group_enable_task_custom_checklist
+msgid "Enable Task Custom CheckList"
+msgstr "啟用任務自定義清單"
+
+#. module: sh_all_in_one_pms
+#: model:res.groups,name:sh_all_in_one_pms.group_enable_task_custom_checklist
+msgid "Enable Task Custom Checklist"
+msgstr "啟用任務自定義清單"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task__check_bool_enable_task_send_by_email
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_res_company__enable_task_send_by_email
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_res_config_settings__enable_task_send_by_email
+msgid "Enable Task Send By Email"
+msgstr "啟用任務通過電子郵件發送"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task__check_bool_enable_task_sub_task
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_res_company__enable_task_sub_task
+msgid "Enable Task Sub Task"
+msgstr "啟用任務子任務"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_res_config_settings__enable_task_sub_task
+msgid "Enable Task Subtask"
+msgstr "啟用任務子任務"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task__check_bool_enable_task_timer
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_res_company__enable_task_timer
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_res_config_settings__enable_task_timer
+msgid "Enable Task Timer"
+msgstr "啟用任務計時器"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_res_config_settings__group_project_custom_checklist
+msgid "Enable project custom Checklist"
+msgstr "啟用項目自定義清單"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_account_analytic_line__end_date
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_task_time_account_line__end_date
+msgid "End Date"
+msgstr "結束日期"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task__end_task_bool
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_time_account_line_form_view
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_time_inherit_form_view
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_time_inherit_kanban_view
+msgid "End Task"
+msgstr "結束任務"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task__end_time
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_res_users__end_time
+msgid "End Time"
+msgstr "時間結束"
+
+#. module: sh_all_in_one_pms
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_time_account_line_form_view
+msgid "Enter Task Description"
+msgstr "輸入任務說明"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__group_expand
+msgid "Expand Groups"
+msgstr "展開團體"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields.selection,name:sh_all_in_one_pms.selection__sh_custom_model_task__position_selection__fields
+msgid "Field"
+msgstr "場地"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__help
+msgid "Field Help"
+msgstr "現場幫助"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__field_description
+msgid "Field Label"
+msgstr "現場標籤"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__ttype
+msgid "Field Type"
+msgstr "字段類型"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__field_type
+msgid "Field Type "
+msgstr "字段類型"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model,name:sh_all_in_one_pms.model_sh_model_fields_selection
+msgid "Fields Selection"
+msgstr "領域選擇"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields.selection,name:sh_all_in_one_pms.selection__sh_custom_model_task__widget_float_selection__float_time
+msgid "Float"
+msgstr "漂浮"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,help:sh_all_in_one_pms.field_sh_custom_model_task__relation_field
+msgid ""
+"For one2many fields, the field on the target model that implement the "
+"opposite many2one relationship"
+msgstr ""
+"對於One2many字段，實現目標模型上的字段 "
+"相反的人關係"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,help:sh_all_in_one_pms.field_sh_custom_model_task__relation
+msgid "For relationship fields, the technical name of the target model"
+msgstr "對於關係領域，目標模型的技術名稱"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__groups
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_tab_task__groups
+msgid "Groups"
+msgstr "團體"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__field_help
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_custom_models_form_view_custom_fields
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_dynamic_models_form_view_custom_fields
+msgid "Help"
+msgstr "幫助"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields.selection,name:sh_all_in_one_pms.selection__project_project__sh_priority__2
+#: model:ir.model.fields.selection,name:sh_all_in_one_pms.selection__project_task__sh_priority__2
+msgid "High"
+msgstr "高的"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields.selection,name:sh_all_in_one_pms.selection__sh_custom_model_task__widget_text_selection__html
+msgid "Html"
+msgstr "HTML."
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_custom_checklist__id
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_custom_checklist_line__id
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_custom_checklist_template__id
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task_overdue_email__id
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task_overdue_notify__id
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__id
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_tab_task__id
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_model_fields_selection__id
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_project_project_mass_update_wizard__id
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_project_stage_mass_update_wizard__id
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_project_stage_template__id
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_project_task_mass_update_wizard__id
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_start_timesheet__id
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_task_checklist_template__id
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_task_checklist__id
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_task_custom_checklist__id
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_task_custom_checklist_line__id
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_task_time_account_line__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,help:sh_all_in_one_pms.field_sh_custom_model_task__group_expand
+msgid ""
+"If checked, all the records of the target model will be included\n"
+"in a grouped result (e.g. 'Group By' filters, Kanban columns, etc.).\n"
+"Note that it can significantly reduce performance if the target model\n"
+"of the field contains a lot of records; usually used on models with\n"
+"few records (e.g. Stages, Job Positions, Event Types, etc.)."
+msgstr ""
+"如果選中，則將包含目標模型的所有記錄\n"
+"在分組結果（例如'篩選器，Kanban列等）.\n"
+"請注意，如果目標模型，它可以顯著降低性能\n"
+"該領域包含很多記錄;通常用於模型\n"
+"少數記錄（例如階段，工作職位，事件類型等）."
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,help:sh_all_in_one_pms.field_sh_custom_model_task__tracking
+#: model:ir.model.fields,help:sh_all_in_one_pms.field_sh_custom_model_task__tracking_visibility
+msgid ""
+"If set every modification done to this field is tracked in the chatter. "
+"Value is used to order tracking values."
+msgstr ""
+"如果在Chatter中跟踪對該字段所做的每一個修改都會被跟踪. "
+"值用於訂購跟踪值."
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__modules
+msgid "In Apps"
+msgstr "在應用中"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__index
+msgid "Indexed"
+msgstr "索引"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__inherit_view_obj
+msgid "Inherited UI View Saved Object"
+msgstr "繼承的UI View已保存對象"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task__is_user_working
+msgid "Is User working ?"
+msgstr "用戶工作嗎？"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_tab_task__label
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_custom_fields_tree_view
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_custom_models_form_view_custom_fields
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_dynamic_models_form_view_custom_fields
+msgid "Label"
+msgstr "標籤"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_custom_checklist____last_update
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_custom_checklist_line____last_update
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_custom_checklist_template____last_update
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task_overdue_email____last_update
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task_overdue_notify____last_update
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task____last_update
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_tab_task____last_update
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_model_fields_selection____last_update
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_project_project_mass_update_wizard____last_update
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_project_stage_mass_update_wizard____last_update
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_project_stage_template____last_update
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_project_task_mass_update_wizard____last_update
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_start_timesheet____last_update
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_task_checklist_template____last_update
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_task_checklist____last_update
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_task_custom_checklist____last_update
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_task_custom_checklist_line____last_update
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_task_time_account_line____last_update
+msgid "Last Modified on"
+msgstr "最後修改了"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_custom_checklist__write_uid
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_custom_checklist_line__write_uid
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_custom_checklist_template__write_uid
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task_overdue_email__write_uid
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task_overdue_notify__write_uid
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__write_uid
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_tab_task__write_uid
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_model_fields_selection__write_uid
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_project_project_mass_update_wizard__write_uid
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_project_stage_mass_update_wizard__write_uid
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_project_stage_template__write_uid
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_project_task_mass_update_wizard__write_uid
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_start_timesheet__write_uid
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_task_checklist_template__write_uid
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_task_checklist__write_uid
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_task_custom_checklist__write_uid
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_task_custom_checklist_line__write_uid
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_task_time_account_line__write_uid
+msgid "Last Updated by"
+msgstr "最後更新"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_custom_checklist__write_date
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_custom_checklist_line__write_date
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_custom_checklist_template__write_date
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task_overdue_email__write_date
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task_overdue_notify__write_date
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__write_date
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_tab_task__write_date
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_model_fields_selection__write_date
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_project_project_mass_update_wizard__write_date
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_project_stage_mass_update_wizard__write_date
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_project_stage_template__write_date
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_project_task_mass_update_wizard__write_date
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_start_timesheet__write_date
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_task_checklist_template__write_date
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_task_checklist__write_date
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_task_custom_checklist__write_date
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_task_custom_checklist_line__write_date
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_task_time_account_line__write_date
+msgid "Last Updated on"
+msgstr "上次更新了"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,help:sh_all_in_one_pms.field_sh_custom_model_task__modules
+msgid "List of modules in which the field is defined"
+msgstr "定義該字段的模塊列表"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields.selection,name:sh_all_in_one_pms.selection__project_project__sh_priority__0
+#: model:ir.model.fields.selection,name:sh_all_in_one_pms.selection__project_task__sh_priority__0
+msgid "Low"
+msgstr "低的"
+
+#. module: sh_all_in_one_pms
+#: model:ir.actions.server,name:sh_all_in_one_pms.model_project_projetc_tag_action
+msgid "Mass Stage Update"
+msgstr "質量階段更新"
+
+#. module: sh_all_in_one_pms
+#: model:ir.actions.server,name:sh_all_in_one_pms.model_project_task_tag_action
+msgid "Mass Update"
+msgstr "大眾更新"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model,name:sh_all_in_one_pms.model_sh_project_project_mass_update_wizard
+#: model:ir.model,name:sh_all_in_one_pms.model_sh_project_stage_mass_update_wizard
+#: model:ir.model,name:sh_all_in_one_pms.model_sh_project_task_mass_update_wizard
+msgid "Mass Update Wizard"
+msgstr "大眾更新嚮導"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields.selection,name:sh_all_in_one_pms.selection__project_project__sh_priority__1
+#: model:ir.model.fields.selection,name:sh_all_in_one_pms.selection__project_task__sh_priority__1
+msgid "Medium"
+msgstr "中等的"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__model_id
+msgid "Model"
+msgstr "模型"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__ref_model_id
+msgid "Model "
+msgstr "模型"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__model
+msgid "Model Name"
+msgstr "型號名稱"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__ir_model_fields_obj
+msgid "Models Fields Saved Object"
+msgstr "模型字段已保存對象"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_custom_checklist__name
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_custom_checklist_line__name
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_custom_checklist_template__name
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_tab_task__name
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_model_fields_selection__name
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_project_stage_template__name
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_task_checklist_template__name
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_task_checklist__name
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_task_custom_checklist__name
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_task_custom_checklist_line__name
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_report_doc
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_report_doc
+msgid "Name"
+msgstr "姓名"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields.selection,name:sh_all_in_one_pms.selection__project_custom_checklist_line__state__new
+#: model:ir.model.fields.selection,name:sh_all_in_one_pms.selection__task_custom_checklist_line__state__new
+msgid "New"
+msgstr "新的"
+
+#. module: sh_all_in_one_pms
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_overdue_email_notification_search_view_inherit
+msgid "Not Completed"
+msgstr "沒完成"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task_overdue_email__notify_ids
+msgid "Notify Id"
+msgstr "通知ID"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__on_delete
+msgid "On Delete"
+msgstr "在刪除"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,help:sh_all_in_one_pms.field_sh_custom_model_task__on_delete
+msgid "On delete property for many2one fields"
+msgstr "在刪除許多人的刪除屬性"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_res_company__overdue_days
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_res_config_settings__overdue_days
+msgid "Overdue Days"
+msgstr "逾期日子"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_res_company__notification_bool
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_res_config_settings__notification_bool
+msgid "Overdue Notification ?"
+msgstr "逾期通知？"
+
+#. module: sh_all_in_one_pms
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_report_doc
+msgid "Planned Hours"
+msgstr "計劃時間"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__sh_position
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_tab_task__sh_position
+msgid "Position"
+msgstr "位置"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__position_selection
+msgid "Position Based on"
+msgstr "基於的位置"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__sh_position_field
+msgid "Position Field"
+msgstr "位置領域"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_project__sh_priority
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task__sh_priority
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.project_project_priority_inherit_view_search
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.project_task_priority_inherit_view_search
+msgid "Priority"
+msgstr "優先事項"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model,name:sh_all_in_one_pms.model_project_project
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_custom_checklist_line__project_id
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task_overdue_notify__project_id
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_project_stage_mass_update_wizard__update_project_ids
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_project_task_mass_update_wizard__project_id
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_start_timesheet__project_id
+msgid "Project"
+msgstr "項目"
+
+#. module: sh_all_in_one_pms
+#: model:ir.actions.act_window,name:sh_all_in_one_pms.action_menu_project_custom_checklist
+#: model:ir.model,name:sh_all_in_one_pms.model_project_custom_checklist
+#: model:ir.ui.menu,name:sh_all_in_one_pms.menu_project_custom_checklist
+msgid "Project Custom Checklist"
+msgstr "項目自定義清單"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model,name:sh_all_in_one_pms.model_project_custom_checklist_line
+msgid "Project Custom Checklist Line"
+msgstr "項目自定義核對錶"
+
+#. module: sh_all_in_one_pms
+#: model:ir.actions.act_window,name:sh_all_in_one_pms.action_menu_project_custom_checklist_template
+#: model:ir.model,name:sh_all_in_one_pms.model_project_custom_checklist_template
+#: model:ir.ui.menu,name:sh_all_in_one_pms.menu_project_custom_checklist_template
+msgid "Project Custom Checklist Template"
+msgstr "項目自定義清單模板"
+
+#. module: sh_all_in_one_pms
+#: model:ir.actions.act_window,name:sh_all_in_one_pms.sh_action_project_task_custom_tab
+msgid "Project Custom Tab"
+msgstr "項目自定義選項卡"
+
+#. module: sh_all_in_one_pms
+#: model:ir.actions.report,name:sh_all_in_one_pms.sh_project_report
+msgid "Project Detail"
+msgstr "項目詳情"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_project_project_mass_update_wizard__project_project_ids
+msgid "Project Project"
+msgstr "項目項目"
+
+#. module: sh_all_in_one_pms
+#: model:ir.actions.act_window,name:sh_all_in_one_pms.sh_project_stage_template_action
+#: model:ir.ui.menu,name:sh_all_in_one_pms.sh_project_stage_template_menu
+msgid "Project Stage Template"
+msgstr "項目階段模板"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_project_task_mass_update_wizard__project_task_ids
+msgid "Project Task"
+msgstr "項目任務"
+
+#. module: sh_all_in_one_pms
+#: model:mail.template,name:sh_all_in_one_pms.template_project_task_overdue_notify_email
+msgid "Project Task Overdue - Send Email"
+msgstr "項目任務逾期 - 發送電子郵件"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model,name:sh_all_in_one_pms.model_project_task_overdue_email
+msgid "Project Task Overdue Email"
+msgstr "項目任務逾期電子郵件"
+
+#. module: sh_all_in_one_pms
+#: model:ir.actions.server,name:sh_all_in_one_pms.project_task_overdue_notify_ir_actions_server
+#: model:ir.cron,cron_name:sh_all_in_one_pms.project_task_overdue_notify
+#: model:ir.cron,name:sh_all_in_one_pms.project_task_overdue_notify
+#: model:ir.model,name:sh_all_in_one_pms.model_project_task_overdue_notify
+msgid "Project Task Overdue Notify"
+msgstr "項目任務逾期通知"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model,name:sh_all_in_one_pms.model_sh_project_stage_template
+msgid "Project Task Template"
+msgstr "項目任務模板"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__readonly
+msgid "Readonly"
+msgstr "只讀"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task__duration
+msgid "Real Duration"
+msgstr "真實的持續時間"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__related
+msgid "Related Field"
+msgstr "相關領域"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__relation
+msgid "Related Model"
+msgstr "相關模型"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__related_field_id
+msgid "Related field"
+msgstr "相關領域"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__relation_field
+msgid "Relation Field"
+msgstr "關係領域"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__relation_table
+msgid "Relation Table"
+msgstr "關係表"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__relation_field_id
+msgid "Relation field"
+msgstr "關係領域"
+
+#. module: sh_all_in_one_pms
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_report_doc
+msgid "Remaining Hours"
+msgstr "剩下的時間"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields.selection,name:sh_all_in_one_pms.selection__sh_project_project_mass_update_wizard__update_method_stages__replace
+#: model:ir.model.fields.selection,name:sh_all_in_one_pms.selection__sh_project_stage_mass_update_wizard__update_method_project__replace
+#: model:ir.model.fields.selection,name:sh_all_in_one_pms.selection__sh_project_task_mass_update_wizard__update_method_tags__replace
+#: model:ir.model.fields.selection,name:sh_all_in_one_pms.selection__sh_project_task_mass_update_wizard__update_method_user__replace
+msgid "Replace"
+msgstr "代替"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__required
+msgid "Required"
+msgstr "必需的"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task__responsible_user_names
+msgid "Responsible User Names"
+msgstr "負責任的用戶名"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task__task_runner_ids
+msgid "Runner"
+msgstr "賽跑者"
+
+#. module: sh_all_in_one_pms
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_time_inherit_search_view
+msgid "Running Task"
+msgstr "運行任務"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_model_fields_selection__sh_field_id
+msgid "SH Custom Task"
+msgstr "SH自定義任務"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__selectable
+msgid "Selectable"
+msgstr "可選"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__selection_ids
+msgid "Selection Options"
+msgstr "選擇選項"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__sh_selection_ids
+msgid "Selection Options "
+msgstr "選擇選項"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__selection
+msgid "Selection Options (Deprecated)"
+msgstr "選擇選項（已棄用）"
+
+#. module: sh_all_in_one_pms
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_email_template_form_inherit
+msgid "Send by Email"
+msgstr "通過電子郵件發送"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_tab_task__sequence
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_model_fields_selection__sequence
+msgid "Sequence"
+msgstr "序列"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__size
+msgid "Size"
+msgstr "尺寸"
+
+#. module: sh_all_in_one_pms
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_report_doc
+msgid "Spent Hours"
+msgstr "花了幾個小時"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_project_task_mass_update_wizard__stage_id
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_report_doc
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_report_doc
+msgid "Stage"
+msgstr "階段"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_project__sh_stage_template_id
+msgid "Stage Template"
+msgstr "舞台模板"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_project__sh_stage_ids
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_project_project_mass_update_wizard__update_stages
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_project_stage_mass_update_wizard__project_task_ids
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_project_stage_template__stage_ids
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_project_form_view_inherit
+msgid "Stages"
+msgstr "階段"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task__start_id
+msgid "Start"
+msgstr "開始"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_account_analytic_line__start_date
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_start_timesheet__start_date
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_task_time_account_line__start_date
+msgid "Start Date"
+msgstr "開始日期"
+
+#. module: sh_all_in_one_pms
+#: model:ir.actions.act_window,name:sh_all_in_one_pms.action_start_task
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task__start_task_bool
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_time_inherit_form_view
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_time_inherit_kanban_view
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.start_timesheet_form
+msgid "Start Task"
+msgstr "開始任務"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task__start_time
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_res_users__start_time
+msgid "Start Time"
+msgstr "開始時間"
+
+#. module: sh_all_in_one_pms
+#. openerp-web
+#: code:addons/sh_all_in_one_pms/static/src/xml/time_track.xml:0
+#, python-format
+msgid "Start Timer"
+msgstr "開始計時器"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_custom_checklist_line__state
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_task_custom_checklist_line__state
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_report_doc
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_report_doc
+msgid "State"
+msgstr "狀態"
+
+#. module: sh_all_in_one_pms
+#. openerp-web
+#: code:addons/sh_all_in_one_pms/static/src/xml/time_track.xml:0
+#, python-format
+msgid "Stop Timer"
+msgstr "停止計時器"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__store
+msgid "Stored"
+msgstr "儲存"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task__sh_sub_task_lines
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_task_view_inherit
+msgid "Sub Task"
+msgstr "子任務"
+
+#. module: sh_all_in_one_pms
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_task_view_inherit
+msgid "Sub Tasks"
+msgstr "子任務"
+
+#. module: sh_all_in_one_pms
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_task_view_inherit
+msgid "Sub-tasks"
+msgstr "子任務"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task__subtask_project_id
+msgid "Subtask Project"
+msgstr "子任務項目"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields.selection,name:sh_all_in_one_pms.selection__sh_custom_model_task__position_selection__tab
+msgid "Tab"
+msgstr "標籤"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_tab_task__invisible_tab
+msgid "Tab Invisible"
+msgstr "標籤隱形"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__tab_list
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_tab_task__tab_list
+msgid "Tab List"
+msgstr "標籤列表"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_project_task_mass_update_wizard__update_tags
+#: model:ir.model.fields.selection,name:sh_all_in_one_pms.selection__sh_custom_model_task__widget_m2m_selection__many2many_tags
+msgid "Tags"
+msgstr "標籤"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model,name:sh_all_in_one_pms.model_project_task
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task_overdue_email__name
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task_overdue_notify__name
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_res_users__task_id
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_start_timesheet__task_id
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_task_custom_checklist_line__task_id
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_report_doc
+msgid "Task"
+msgstr "任務"
+
+#. module: sh_all_in_one_pms
+#: model:mail.template,name:sh_all_in_one_pms.sh_task_mail_template_attachment
+msgid "Task - Send by Email"
+msgstr "任務 - 通過電子郵件發送"
+
+#. module: sh_all_in_one_pms
+#: model:ir.actions.act_window,name:sh_all_in_one_pms.action_menu_task_checklist
+#: model:ir.model,name:sh_all_in_one_pms.model_task_checklist
+#: model:ir.ui.menu,name:sh_all_in_one_pms.menu_task_checklist
+msgid "Task Checklist"
+msgstr "任務清單"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model,name:sh_all_in_one_pms.model_sh_task_checklist_template
+msgid "Task Checklist Template"
+msgstr "任務清單模板"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task__completed
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_overdue_email_notification_inherit_form_view
+msgid "Task Completed"
+msgstr "任務完成"
+
+#. module: sh_all_in_one_pms
+#: model:ir.actions.act_window,name:sh_all_in_one_pms.action_menu_task_custom_checklist
+#: model:ir.model,name:sh_all_in_one_pms.model_task_custom_checklist
+#: model:ir.ui.menu,name:sh_all_in_one_pms.menu_task_custom_checklist
+msgid "Task Custom Checklist"
+msgstr "任務自定義清單"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model,name:sh_all_in_one_pms.model_task_custom_checklist_line
+msgid "Task Custom Checklist Line"
+msgstr "任務自定義核對錶"
+
+#. module: sh_all_in_one_pms
+#: model:ir.actions.act_window,name:sh_all_in_one_pms.action_task_checklist_template
+#: model:ir.ui.menu,name:sh_all_in_one_pms.menu_task_check_list_template
+msgid "Task Custom Checklist Template"
+msgstr "任務自定義清單模板"
+
+#. module: sh_all_in_one_pms
+#: model:res.groups,name:sh_all_in_one_pms.group_task_custom_field
+msgid "Task Custom Field"
+msgstr "任務自定義字段"
+
+#. module: sh_all_in_one_pms
+#: model:ir.actions.act_window,name:sh_all_in_one_pms.sh_action_project_task_custom_fields
+#: model:ir.ui.menu,name:sh_all_in_one_pms.sh_task_custom_fields_menu
+msgid "Task Custom Fields"
+msgstr "任務自定義字段"
+
+#. module: sh_all_in_one_pms
+#: model:ir.actions.act_window,name:sh_all_in_one_pms.sh_action_project_task_custom_tab_form
+msgid "Task Custom Tab"
+msgstr "任務自定義選項卡"
+
+#. module: sh_all_in_one_pms
+#: model:ir.ui.menu,name:sh_all_in_one_pms.sh_task_custom_tab_action_menu
+msgid "Task Custom Tabs"
+msgstr "任務自定義選項卡"
+
+#. module: sh_all_in_one_pms
+#: model:ir.actions.report,name:sh_all_in_one_pms.sh_project_task
+msgid "Task Detail"
+msgstr "任務細節"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__task_model_name
+msgid "Task Model Name"
+msgstr "任務模型名稱"
+
+#. module: sh_all_in_one_pms
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_report_doc
+msgid "Task Name"
+msgstr "任務名稱"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task__task_runner
+msgid "Task Runner"
+msgstr "任務賽道"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task__task_running
+msgid "Task Running"
+msgstr "任務跑步"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model,name:sh_all_in_one_pms.model_project_task_type
+msgid "Task Stage"
+msgstr "任務階段"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model,name:sh_all_in_one_pms.model_task_time_account_line
+msgid "Task Time Account Line"
+msgstr "任務時間帳戶線"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__name
+msgid "Technical Field Name"
+msgstr "技術領域名稱"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task__test
+msgid "Test"
+msgstr "測試"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,help:sh_all_in_one_pms.field_sh_custom_model_task__related
+msgid ""
+"The corresponding related field, if any. This must be a dot-separated list "
+"of field names."
+msgstr ""
+"相應的相關字段，如果有的話。這必須是一個分隔的列表 "
+"場名稱."
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,help:sh_all_in_one_pms.field_sh_custom_model_task__model_id
+msgid "The model this field belongs to"
+msgstr "該領域的型號屬於"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.constraint,message:sh_all_in_one_pms.constraint_sh_custom_tab_task_name_uniq
+msgid "The name must be unique !"
+msgstr "名稱必須是獨一無二的！"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,help:sh_all_in_one_pms.field_sh_custom_model_task__domain
+msgid ""
+"The optional domain to restrict possible values for relationship fields, "
+"specified as a Python expression defining a list of triplets. For example: "
+"[('color','=','red')]"
+msgstr ""
+"可選域限制關係字段的可能值, "
+"指定為定義三胞胎列表的Python表達式。例如: "
+"[（'顏色'，'='，'紅色'）]"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,help:sh_all_in_one_pms.field_sh_custom_model_task__model
+msgid "The technical name of the model this field belongs to"
+msgstr "該字段所屬模型的技術名稱"
+
+#. module: sh_all_in_one_pms
+#: model:res.groups,comment:sh_all_in_one_pms.group_task_custom_field
+msgid "This user will be able to create custom field for task"
+msgstr "此用戶將能夠為任務創建自定義字段"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model,name:sh_all_in_one_pms.model_sh_start_timesheet
+msgid "Timesheet Start"
+msgstr "時間表開始"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_project_task__total_time
+msgid "Total Time"
+msgstr "總時間"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__tracking_visibility
+msgid "Tracking"
+msgstr "追踪"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__translate
+msgid "Translatable"
+msgstr "可翻譯"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__state
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_custom_fields_tree_view
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_custom_models_form_view_custom_fields
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_dynamic_models_form_view_custom_fields
+msgid "Type"
+msgstr "類型"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__ir_ui_view_obj
+msgid "UI View Saved Object"
+msgstr "UI View已保存對象"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_project_task_mass_update_wizard__update_assign_to_bool
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_update_wizard_form_view
+msgid "Update Assign To"
+msgstr "更新分配給"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_project_task_mass_update_wizard__update_deadline_bool
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_update_wizard_form_view
+msgid "Update Deadline"
+msgstr "更新截止日期"
+
+#. module: sh_all_in_one_pms
+#: model:ir.actions.act_window,name:sh_all_in_one_pms.sh_project_project_mass_stage_wizard_action
+msgid "Update Mass Stage"
+msgstr "更新質量階段"
+
+#. module: sh_all_in_one_pms
+#: model:ir.actions.act_window,name:sh_all_in_one_pms.sh_project_task_mass_tag_wizard_action
+msgid "Update Mass Tag"
+msgstr "更新大規模標籤"
+
+#. module: sh_all_in_one_pms
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_project_update_wizard_form_view
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_stage_update_wizard_form_view
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_update_wizard_form_view
+msgid "Update Mass Wizard"
+msgstr "更新大眾巫師"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_project_stage_mass_update_wizard__update_method_project
+msgid "Update Method Project"
+msgstr "更新方法項目"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_project_project_mass_update_wizard__update_method_stages
+msgid "Update Method Stages"
+msgstr "更新方法階段"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_project_task_mass_update_wizard__update_method_tags
+msgid "Update Method Tags"
+msgstr "更新方法標籤"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_project_task_mass_update_wizard__update_method_user
+msgid "Update Method User"
+msgstr "更新方法用戶"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_project_stage_mass_update_wizard__update_project_bool
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_project_task_mass_update_wizard__update_project_bool
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_stage_update_wizard_form_view
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_update_wizard_form_view
+msgid "Update Project"
+msgstr "更新項目"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_project_task_mass_update_wizard__update_stage_bool
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_project_update_wizard_form_view
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_update_wizard_form_view
+msgid "Update Stage"
+msgstr "更新階段"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_project_project_mass_update_wizard__update_stage_bool
+msgid "Update Stages"
+msgstr "更新階段"
+
+#. module: sh_all_in_one_pms
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_update_wizard_form_view
+msgid "Update Tag"
+msgstr "更新標記"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_project_task_mass_update_wizard__update_tags_bool
+msgid "Update Tags"
+msgstr "更新標記"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,help:sh_all_in_one_pms.field_sh_custom_model_task__relation_table
+msgid ""
+"Used for custom many2many fields to define a custom relation table name"
+msgstr ""
+"用於定制Many2many字段以定義自定義關係表名稱"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model,name:sh_all_in_one_pms.model_res_users
+msgid "Users"
+msgstr "用戶"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_model_fields_selection__value
+msgid "Value"
+msgstr "價值"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields.selection,name:sh_all_in_one_pms.selection__project_project__sh_priority__3
+#: model:ir.model.fields.selection,name:sh_all_in_one_pms.selection__project_task__sh_priority__3
+msgid "Very High"
+msgstr "很高"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_tab_task__view_id
+msgid "View"
+msgstr "看法"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,help:sh_all_in_one_pms.field_sh_custom_model_task__copied
+msgid "Whether the value is copied when duplicating a record."
+msgstr "複製記錄時是否複製了該值。"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,help:sh_all_in_one_pms.field_sh_custom_model_task__store
+msgid "Whether the value is stored in the database."
+msgstr "該值是存儲在數據庫中。"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,help:sh_all_in_one_pms.field_sh_custom_model_task__translate
+msgid ""
+"Whether values for this field can be translated (enables the translation "
+"mechanism for that field)"
+msgstr ""
+"可以翻譯此字段的值（啟用翻譯 "
+"該領域的機制）"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__widget_m2m_selection
+msgid "Widget"
+msgstr "小部件"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__widget_selctn_selection
+msgid "Widget "
+msgstr "小部件"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields,field_description:sh_all_in_one_pms.field_sh_custom_model_task__widget_binary_selection
+msgid "Widget  "
+msgstr "小部件"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields.selection,name:sh_all_in_one_pms.selection__sh_custom_model_task__widget_char_selection__email
+msgid "email"
+msgstr "電子郵件"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields.selection,name:sh_all_in_one_pms.selection__sh_custom_model_task__widget_binary_selection__image
+msgid "image"
+msgstr "圖片"
+
+#. module: sh_all_in_one_pms
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.start_timesheet_form
+msgid "or"
+msgstr "或者"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields.selection,name:sh_all_in_one_pms.selection__sh_custom_model_task__widget_char_selection__phone
+msgid "phone"
+msgstr "電話"
+
+#. module: sh_all_in_one_pms
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_pms.sh_project_task_report_doc
+msgid "planned hours"
+msgstr "計劃時間"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields.selection,name:sh_all_in_one_pms.selection__sh_custom_model_task__widget_selctn_selection__priority
+msgid "priority"
+msgstr "優先事項"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields.selection,name:sh_all_in_one_pms.selection__sh_custom_model_task__widget_selctn_selection__radio
+msgid "radio"
+msgstr "收音機"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields.selection,name:sh_all_in_one_pms.selection__sh_custom_model_task__widget_m2o_selection__selection
+msgid "selection"
+msgstr "選擇"
+
+#. module: sh_all_in_one_pms
+#: model:ir.model.fields.selection,name:sh_all_in_one_pms.selection__sh_custom_model_task__widget_char_selection__url
+msgid "url"
+msgstr "URL."
+
+#. module: sh_all_in_one_pms
+#: model:mail.template,subject:sh_all_in_one_pms.template_project_task_overdue_notify_email
+msgid "{{ object.company_id.name }} - Task Over Due Notification"
+msgstr "{{object.company_id.name}}  - 通過適當通知的任務"
+
+#. module: sh_all_in_one_pms
+#: model:mail.template,subject:sh_all_in_one_pms.sh_task_mail_template_attachment
+msgid "{{ object.name }}"
+msgstr "{{object.name}}"

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <!--        Views-->
+        <record id="departure_mode_view_list" model="ir.ui.view">
+            <field name="name">departure.mode.view.list</field>
+            <field name="model">departure.mode</field>
+            <field name="arch" type="xml">
+                <list editable="bottom">
+                    <field name="departure_mode"/>
+                </list>
+            </field>
+        </record>
+        <!--        Action-->
+        <record id="departure_mode_action" model="ir.actions.act_window">
+            <field name="name">Travel Modes</field>
+            <field name="res_model">departure.mode</field>
+            <field name="view_mode">list</field>
+        </record>
+    </data>
+</odoo>

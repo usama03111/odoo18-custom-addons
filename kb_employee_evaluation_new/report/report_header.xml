@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="header_id">
+            <div class="header">
+
+                <img t-att-src="'/kb_employee_evaluation_new/static/src/img/header.png'"
+                     style="display:block; width:100%; height:auto;"/>
+
+
+
+            </div>
+
+        </template>
+
+
+    </data>
+</odoo>

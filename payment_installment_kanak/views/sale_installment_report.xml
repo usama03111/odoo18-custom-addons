@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <template id="report_sale_installments_document">
+            <t t-call="web.basic_layout">
+                <t t-set="o" t-value="o.with_context(lang=lang)" />
+                <div>
+                    <div style="font-size:16.5px" class="header">
+                        <div style="border-bottom:1px solid; margin-bottom:-20px">
+                            <div style="height:100px; width:100px; margin-bottom:2px">
+                                <t t-if="o.user_id.company_id.logo">
+                                    <span t-field="o.user_id.company_id.logo" t-options='{"widget": "image"}' />
+                                </t>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="page">
+                        <h3>Payment Schedule</h3>
+                        <t t-set="names" t-value="o.get_product_names()" />
+                        <t t-if="len(names) == 1">
+                            <span style="margin-bottom:1px">Product:</span>
+                        </t>
+                        <t t-else="">
+                            <span style="margin-bottom:1px">Products:</span>
+                        </t>
+                        <t t-foreach="names" t-as="prod">
+                            <span t-esc="prod" />,
+                        </t>
+                        <br />
+                        <t t-set="data" t-value="o.get_payment_schedule_data()" />
+                        <div>
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td style="padding: 2px 0px 2px 0px"><strong>Plan Tenure</strong></td>
+                                    <td style="padding: 2px 0px 2px 0px; width:300px">
+                                        <t t-esc="data['tenure_plan']" />
+                                    </td>
+                                    <td style="padding: 2px 0px 2px 0px; width:300px; font-size:18px"><strong>Status</strong></td>
+                                    <td style="padding: 2px 0px 2px 0px"></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 2px 0px 2px 0px"><strong>Installments</strong></td>
+                                    <td style="padding: 2px 0px 2px 0px; width:300px">
+                                        <t t-esc="data['total_installment']" />
+                                    </td>
+                                    <td style="padding: 2px 0px 2px 0px; width:300px"></td>
+                                    <td style="padding: 2px 0px 2px 0px"></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 2px 0px 2px 0px"><strong>Total Price</strong></td>
+                                    <td style="padding: 2px 0px 2px 0px; width:300px">
+                                        <t t-esc="data['total_price']" />
+                                    </td>
+                                    <td style="padding: 2px 0px 2px 0px; width:300px"><strong>Amount Paid to Date</strong></td>
+                                    <td style="padding: 2px 0px 2px 0px">
+                                        <t t-esc="data['amount_paid_to_date']" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 2px 0px 2px 0px"><strong>Discount</strong></td>
+                                    <td style="padding: 2px 0px 2px 0px; width:300px">
+                                        <t t-esc="data['discount']" />
+                                    </td>
+                                    <td style="padding: 2px 0px 2px 0px; width:300px"><strong>Balance</strong></td>
+                                    <td style="padding: 2px 0px 2px 0px">
+                                        <t t-esc="data['balance']" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 2px 0px 2px 0px"><strong>New Price</strong></td>
+                                    <td style="padding: 2px 0px 2px 0px; width:300px">
+                                        <t t-esc="round(data['total_price'] - data['discount'],2)" />
+                                    </td>
+                                    <td style="padding: 2px 0px 2px 0px; width:300px"><strong>Overdue Amount</strong></td>
+                                    <td style="padding: 2px 0px 2px 0px">
+                                        <t t-esc="data['overdue_amount']" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <br />
+                        <div>
+                            <table class="table table-borderless">
+                                <thead style="border-bottom:1px solid black">
+                                    <th style="padding: 2px 0px 2px 0px">S.No.</th>
+                                    <th style="padding: 2px 0px 2px 0px">Description</th>
+                                    <th style="padding: 2px 0px 2px 0px">Amount</th>
+                                    <th style="padding: 2px 0px 2px 0px">Due Date</th>
+                                    <th style="padding: 2px 0px 2px 0px">Status</th>
+                                    <th style="padding: 2px 0px 2px 0px">Action</th>
+                                </thead>
+                                <tbody class="text-center">
+                                    <t t-set="sno" t-value="1" />
+                                    <t t-foreach="data['values']" t-as="rec">
+                                        <tr>
+                                            <td style="padding: 2px 0px 2px 0px">
+                                                <t t-esc="sno" />
+                                            </td>
+                                            <t t-if="rec['description'][2:] == 'installment'">
+                                                <td style="padding: 2px 0px 2px 0px">
+                                                    <t t-esc="rec['description'][2:].capitalize() + ' ' + rec['description'][0]" />
+                                                </td>
+                                            </t>
+                                            <t t-else="">
+                                                <td style="padding: 2px 0px 2px 0px"><strong>
+                                                        <t t-esc="rec['description']" /></strong></td>
+                                            </t>
+                                            <td style="padding: 2px 0px 2px 0px">
+                                                <t t-esc="round(rec['amount'],2)" />
+                                            </td>
+                                            <td style="padding: 2px 0px 2px 0px">
+                                                <t t-esc="rec['due_date']" />
+                                            </td>
+                                            <td style="padding: 2px 0px 2px 0px">
+                                                <t t-esc="rec['status']" />
+                                            </td>
+                                            <t t-if="rec['status'] == 'Due'">
+                                                <td style="padding: 2px 0px 2px 0px">Pay</td>
+                                            </t>
+                                            <t t-else="">
+                                                <td style="padding: 2px 0px 2px 0px"></td>
+                                            </t>
+                                        </tr>
+                                        <t t-set="sno" t-value="sno + 1" />
+                                    </t>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <div class="row">
+                            <div class="col-12 pull-center" style="margin-top:30px; text-align:center; color:grey">
+                                <span>Page</span>
+                                <span class="page" /> of <span class="topage" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+        <template id="report_saleorder_installments_new">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="payment_installment_kanak.report_sale_installments_document" t-lang="o.partner_id.lang" />
+                </t>
+            </t>
+        </template>
+        <record id="installment_paperformat" model="report.paperformat">
+            <field name="name">Sale Installment Paperformat</field>
+            <field name="default" eval="True" />
+            <field name="format">A4</field>
+            <field name="orientation">Landscape</field>
+            <field name="header_spacing">30</field>
+            <field name="dpi">80</field>
+        </record>
+        <record id="action_sale_report_installments" model="ir.actions.report">
+            <field name="name">Sale Installments</field>
+            <field name="model">sale.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">payment_installment_kanak.report_saleorder_installments_new</field>
+            <field name="report_file">payment_installment_kanak.report_saleorder_installments_new</field>
+            <field name="paperformat_id" ref="payment_installment_kanak.installment_paperformat" />
+            <field name="print_report_name">'Sale Installments - %s' % (object.name)</field>
+            <field name="binding_model_id" ref="sale.model_sale_order" />
+        </record>
+    </data>
+</odoo>

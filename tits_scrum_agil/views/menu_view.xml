@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--main scrum menu -->
+        <menuitem name="Scrum"
+                  id="menu_scrum_all"
+                  parent="project.menu_main_pm"
+                  sequence="3"
+                  groups="project.group_project_user">
+            <!--menu for accessing to userstories-->
+            <menuitem name="User Stories" id="menu_action_ps_us_all" action="action_ps_us_all" sequence="1"/>
+            <!--menu for accessing to sprint-->
+            <menuitem name="Sprint" id="menu_action_ps_sprint_all" action="action_ps_sprint_all" sequence="2"/>
+            <!--menu for accessing to meeting-->
+            <menuitem name="Meeting" id="menu_action_ps_meeting_all" action="action_ps_meeting_all" sequence="3"/>
+            <!-- menu for accessing to test case-->
+            <menuitem name="Test case" id="menu_action_ps_tc_all" action="action_ps_tc_all"  sequence="4"/>
+        </menuitem>
+
+
+    </data>
+</odoo>

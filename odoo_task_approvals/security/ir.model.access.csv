@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_project_task_portal,project.task.portal,model_project_task,base.group_portal,1,1,1,1
+access_task_approver,access_task_approver,model_task_approver,base.group_user,1,1,1,1
+access_task_category_approver,access_task_category_approver,model_task_category_approver,base.group_user,1,1,1,1
+access_task_approval_approver,access_task_approval_approver,model_task_approval_approver,base.group_user,1,1,1,1
+access_task_refuse_wizard_reason,access_task_refuse_wizard_reason,model_task_refuse_wizard_reason,base.group_user,1,1,1,1
+access_task_start_refuse_wizard_reason,access_task_start_refuse_wizard_reason,model_task_start_refuse_wizard_reason,base.group_user,1,1,1,1

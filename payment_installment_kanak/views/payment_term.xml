@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+	<record id="account.action_payment_term_form" model="ir.actions.act_window">
+        <field name="name">Payment Term - Installment Plans</field>
+    </record>
+
+    <record id="account.menu_action_payment_term_form" model="ir.ui.menu">
+        <field name="name">Payment Term/Installment Plans</field>
+    </record>
+
+    <record id="payment_term_installment_form_view" model="ir.ui.view">
+        <field name="name">payment.term.installment.form.view</field>
+        <field name="model">account.payment.term</field>
+        <field name="inherit_id" ref="account.view_payment_term_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='note']" position="replace">
+                <!-- Moved to new group below -->
+            </xpath>
+            <xpath expr="//field[@name='name']" position="after">
+                <separator/>
+                <group>
+                <group>
+                <field name="installment_due_days"/>
+<!--                <field name="note" placeholder="Installment Plans explanation for the customer..."/>-->
+                </group>
+                </group>
+
+            </xpath>
+            <xpath expr="//field[@name='display_on_invoice']" position="after">
+                <label for="is_plan"/>
+                <field name="is_plan" />
+            </xpath>
+            <xpath expr="//field[@name='line_ids']" position="replace">
+                <field name="line_ids" mode="list">
+                	<form>
+		    			<sheet>
+		    				<group>
+                                <group>
+    		    					<field name="value" string="Plan Type" widget="radio"/>
+                                    <field name="discount_percentage"/>
+                                    <field name="end_month" widget="boolean_toggle"/>
+                                </group>
+                                <group>
+<!--                                    <field name="description" attrs="{'invisible': [('value','=','balance')]}"/>-->
+                                    <field name="description" invisible="value == 'balance'"/>
+                                    <field name="period" invisible="value != 'balance'"/>
+                                    <field name="value_amount" invisible="value == 'balance'" digits="[2, 2]"/>
+                                    <field name="start_date" invisible="value != 'balance'" widget="datepicker"/>
+                                    <field name="days" invisible="period != 'days'"/>
+                                    <field name="months" invisible="period == 'days'"/>
+                                    <field name="discount_days"/>
+                                    <field name="days_after" invisible="end_month ==  False"/>
+                                </group>
+		    				</group>
+		    			</sheet>
+		    		</form>
+                    <list string="Payment Terms">
+                        <field name="description"/>
+                        <field name="period"/>
+                        <field name="value"/>
+<!--                        <field name="value_amount" attrs="{'invisible': [('value', '=', 'balance')]}" digits="[2, 2]"/>-->
+                        <field name="value_amount" invisible="value == 'balance'" digits="[2, 2]"/>
+                        <field name="start_date"/>
+                        <field name="months"/>
+                        <field name="days" invisible="1"/>
+                        <field name="end_month" widget="boolean_toggle" invisible="1"/>
+<!--                        <field name="days_after" attrs="{'invisible': [('end_month','=', False)]}" invisible="1"/>-->
+                        <field name="days_after" invisible="end_month ==  False"/>
+                        <field name="discount_percentage"/>
+                        <field name="discount_days"/>
+                    </list>
+                </field>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sale_advance_payment_inv_installment_form_view" model="ir.ui.view">
+        <field name="name">sale.advance.payment.inv.installment.form.view</field>
+        <field name="model">sale.advance.payment.inv</field>
+        <field name="inherit_id" ref="sale.view_sale_advance_payment_inv"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='amount']" position="before">
+                <field name="enable_installment" invisible="1"/>
+            </xpath>
+            <!-- <xpath expr="//field[@name='advance_payment_method']" position="attributes">
+                <attribute name="attrs">{'readonly': [('enable_installment','=',True)]}</attribute>
+            </xpath> -->
+            <xpath expr="//field[@name='amount']" position="attributes">
+                <attribute name="readonly">(enable_installment == True)</attribute>
+            </xpath>
+<!--            <xpath expr="//field[@name='deposit_account_id']" position="attributes">-->
+<!--                <attribute name="invisible">enable_installment == True</attribute>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='deposit_taxes_id']" position="attributes">-->
+<!--&lt;!&ndash;                <attribute name="attrs">{'invisible': [('enable_installment','=',True)]}</attribute>&ndash;&gt;-->
+<!--                <attribute name="invisible">(enable_installment == True)</attribute>-->
+<!--            </xpath>-->
+            <xpath expr="//field[@name='amount']" position="attributes">
+                <attribute name="invisible">(enable_installment == True)</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="installment_payment_account_payment_register_view" model="ir.ui.view">
+        <field name="name">installment.payment.account.payment.register.view</field>
+        <field name="model">account.payment.register</field>
+        <field name="inherit_id" ref="account.view_account_payment_register_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='line_ids']" position="after">
+                <field name="is_installment_payment" invisible="1"/>
+                <field name="is_part_payment" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='group_payment']" position="attributes">
+                <attribute name="invisible">(is_installment_payment == True) or (is_part_payment == True)</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

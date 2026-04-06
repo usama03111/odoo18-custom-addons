@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="sh_task_custom_checklist_form_view" model="ir.ui.view">
+        <field name="name">task.custom.checklist.form</field>
+        <field name="model">task.custom.checklist</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" />
+                            <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company" />
+                        </group>
+                        <group>
+                            <field name="description" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="sh_project_task_custom_checklist_tree_view" model="ir.ui.view">
+        <field name="name">task.custom.checklist.tree</field>
+        <field name="model">task.custom.checklist</field>
+        <field name="arch" type="xml">
+            <list multi_edit="1">
+                <field name="sequence" widget="handle" />
+                <field name="name" />
+                <field name="description" />
+            </list>
+        </field>
+    </record>
+
+    <record id="sh_task_custom_checklist_search_view" model="ir.ui.view">
+        <field name="name">task.custom.checklist.view.search</field>
+        <field name="model">task.custom.checklist</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="description" />
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_menu_task_custom_checklist">
+        <field name="name">Task Custom Checklist</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">task.custom.checklist</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_task_custom_checklist" name="Task Custom Checklist" action="action_menu_task_custom_checklist" parent="project.menu_project_config" groups="sh_all_in_one_pms.group_enable_task_custom_checklist"/>
+
+</odoo>

@@ -40,24 +40,6 @@ This module extends the Odoo Survey module to add image support for multiple-cho
 - Images are displayed with responsive styling (max-width: 200px, max-height: 150px)
 - Survey results now show both text answers and associated images
 
-## Files Structure
-
-```
-survey_image_extension/
-├── __init__.py
-├── __manifest__.py
-├── models/
-│   ├── __init__.py
-│   ├── survey_question_suggested_answer.py
-│   └── survey_user_input_line.py
-├── views/
-│   ├── survey_question_views.xml
-│   └── survey_templates.xml
-├── security/
-│   └── ir.model.access.csv
-└── README.md
-```
-
 ## Dependencies
 
 - survey (Odoo Survey module)

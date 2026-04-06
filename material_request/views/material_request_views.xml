@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Form view -->
+    <record id="view_material_request_form" model="ir.ui.view">
+        <field name="name">material.request.form</field>
+        <field name="model">material.request</field>
+        <field name="arch" type="xml">
+            <form string="Material Request">
+                <header>
+                    <button name="action_submit" string="Submit" type="object" invisible="state != 'draft'" class="oe_highlight"/>
+                    <button name="action_approve" string="Approve" type="object" invisible="state != 'submitted'" class="oe_highlight" groups="project.group_project_manager"/>
+                    <button name="action_cancel" string="Cancel" type="object" invisible="state not in ('draft', 'submitted')"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,submitted,approved"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_rfq" type="object" class="oe_stat_button" icon="fa-credit-card" invisible="purchase_count == 0">
+                            <field name="purchase_count" widget="statinfo" string="RFQs"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="project_id" readonly="state != 'draft'"/>
+                            <field name="user_id"/>
+                        </group>
+                        <group>
+                            <field name="date" readonly="state != 'draft'"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Products">
+                            <field name="line_ids" readonly="state != 'draft'">
+                                <list editable="bottom">
+                                    <field name="product_id"/>
+                                    <field name="description"/>
+                                    <field name="quantity"/>
+                                    <field name="uom_id"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- List view -->
+    <record id="view_material_request_tree" model="ir.ui.view">
+        <field name="name">material.request.tree</field>
+        <field name="model">material.request</field>
+        <field name="arch" type="xml">
+            <list string="Material Requests">
+                <field name="name"/>
+                <field name="project_id"/>
+                <field name="user_id"/>
+                <field name="date"/>
+                <field name="state" widget="badge" decoration-info="state == 'draft'" decoration-warning="state == 'submitted'" decoration-success="state == 'approved'" decoration-muted="state == 'cancelled'"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_material_request" model="ir.actions.act_window">
+        <field name="name">Material Requests</field>
+        <field name="res_model">material.request</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new Material Request
+            </p>
+        </field>
+    </record>
+
+    <!-- Parent and child menu -->
+    <menuitem id="menu_material_request_root" name="Material Requests" web_icon="material_request,static/description/icon.png">
+    <menuitem id="menu_material_request_main" name="Material Requests"  action="action_material_request"/>
+    </menuitem>
+
+</odoo>

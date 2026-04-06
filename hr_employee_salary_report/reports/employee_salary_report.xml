@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Paper Format (same as hr_offer_letter_report) -->
+    <record id="paperformat_custom_employee_salary_report" model="report.paperformat">
+        <field name="name">Custom Employee Salary Report A4</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">20</field>
+        <field name="margin_bottom">20</field>
+        <field name="margin_left">10</field>
+        <field name="margin_right">10</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">25</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <!-- Custom External Layout (same pattern as hr_offer_letter_report) -->
+    <template id="external_layout_employee_salary_custom" inherit_id="web.external_layout_standard" primary="True">
+        <!-- Ensure required variables exist -->
+        <xpath expr="//div[contains(@t-attf-class, 'header')][1]" position="before">
+            <t t-if="not o" t-set="o" t-value="doc"/>
+            <t t-if="not company">
+                <t t-if="company_id">
+                    <t t-set="company" t-value="company_id"/>
+                </t>
+                <t t-elif="o and 'company_id' in o and o.company_id.sudo()">
+                    <t t-set="company" t-value="o.company_id.sudo()"/>
+                </t>
+                <t t-else="else">
+                    <t t-set="company" t-value="res_company"/>
+                </t>
+            </t>
+        </xpath>
+
+        <!-- Remove the default company header block -->
+        <xpath expr="//div[contains(@t-attf-class, 'header')]" position="replace">
+            <div class="header">
+                <div class="row" style="align-items: center;">
+                    <div class="col-12">
+                        <!-- Header Content Removed as per request -->
+                    </div>
+                </div>
+            </div>
+        </xpath>
+
+        <!-- Remove default address block and title -->
+        <xpath expr="//t[@t-call='web.address_layout']" position="replace">
+            <t/>
+        </xpath>
+        <xpath expr="//h2[@t-out='layout_document_title']" position="replace">
+            <t/>
+        </xpath>
+
+        <!-- Replace default footer with custom footer -->
+        <xpath expr="//div[contains(@t-attf-class, 'footer')]" position="replace">
+            <div class="footer salary_report">
+                <div class="salary-footer-fullwidth"
+                     style="font-family: Arial, sans-serif; font-size: 10px; color: #666;">
+                    <!-- Footer Content Removed as per request -->
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+    <!-- Report Action -->
+    <record id="action_report_employee_salary_certificate" model="ir.actions.report">
+        <field name="name">Salary Certificate</field>
+        <field name="model">hr.employee</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">hr_employee_salary_report.report_employee_salary_certificate</field>
+        <field name="report_file">hr_employee_salary_report.report_employee_salary_certificate</field>
+        <field name="print_report_name">'Salary Certificate - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="hr.model_hr_employee"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="paperformat_custom_employee_salary_report"/>
+    </record>
+
+    <!-- Report Template -->
+    <template id="report_employee_salary_certificate">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="hr_employee_salary_report.external_layout_employee_salary_custom">
+                    <div class="page">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="card shadow-sm p-3" style="font-size:20px;">
+
+                                    <p class="mb-2">
+                                        <strong>DATE:</strong>
+                                        <span t-esc="datetime.date.today()"/>
+                                    </p>
+
+                                    <p class="mb-1">
+                                        <strong>TO:</strong>
+                                    </p>
+
+                                    <p class="mb-0">
+                                        <span t-field="o.salary_cert_addressee"/>
+                                    </p>
+
+                                </div>
+                            </div>
+                            <div class="col-4">
+                            </div>
+                            <div class="col-4">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
+
+                                <h1 style="
+                                    text-align:center;
+                                    font-weight:bold;
+                                    font-size:22px;
+                                    text-decoration: underline;
+                                    margin-bottom:25px;">
+                                    Salary Certificate
+                                </h1>
+                                <div style="width:70%; margin:0 auto;">
+                                    <p style="
+                                        font-size:18px;
+                                        line-height:2;
+                                        text-align:left;">
+
+                                        This letter to certify that Mr./Ms.
+                                        [
+                                        <span style="border-bottom:1px solid #000;  font-weight:bold;">
+                                            <t t-esc="o.name"/>
+                                        </span>
+                                        ]
+                                        holding valid Qatar ID Number
+                                        [
+                                        <span style="border-bottom:1px solid #000; font-weight:bold; ">
+                                            <t t-if="o.category_ids">
+                                                <t t-esc="', '.join(o.category_ids.mapped('name'))"/>
+                                            </t>
+                                            <t t-else="">-</t>
+                                        </span>
+                                        ]
+                                        and
+                                        [
+                                        <span style="border-bottom:1px solid #000;  font-weight:bold;">
+                                            <t t-esc="o.country_id.name or ''"/>
+                                        </span>
+                                        ]
+                                        Passport No.
+                                        [
+                                        <span style="border-bottom:1px solid #000; font-weight:bold;">
+                                            <t t-esc="o.passport_id or ''"/>
+                                        </span>
+                                        ]
+                                        is employed by
+                                        [
+                                        <span style="border-bottom:1px solid #000;  font-weight:bold;">
+                                            <t t-esc="o.company_id.name"/>
+                                        </span>
+                                        ]
+                                        in the capacity of
+                                        [
+                                        <span style="border-bottom:1px solid #000;  font-weight:bold;">
+                                            <t t-esc="o.job_id.name or ''"/>
+                                        </span>
+                                        ]
+                                        since
+                                        [
+                                        <span style="border-bottom:1px solid #000; display:inline-block; font-weight:bold;">
+                                            <t t-if="o.joining_date">
+                                                <t t-esc="o.joining_date.strftime('%d %B %Y')"/>
+                                            </t>
+                                        </span>
+                                        ],
+                                        till
+                                        present.
+
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
+
+                        <div style="width:70%; margin:0 auto;">
+                            <p style="
+                                font-size:18px;
+                                text-align:left;
+                                margin-top:20px;
+                                line-height:1.8;">
+
+                                His current salary breakdown is as per below:
+
+                            </p>
+                        </div>
+                        <br/>
+                        <style>
+                            .salary-table {
+                            width: 100%;
+                            border-collapse: collapse;
+                            border: 2px solid #000;
+                            font-family: Arial, sans-serif;
+                            }
+
+                            .salary-table td {
+                            padding: 10px 15px;
+                            border: 1px solid #000;
+                            text-align: left;
+                            vertical-align: middle;
+                            width: 50%;
+                            }
+
+                            .amount {
+                            display: inline-block;
+                            min-width: 80px;
+                            border-bottom: 1px solid #000;
+                            padding-bottom: 2px;
+                            }
+
+                            .gross-row td {
+                            font-weight: bold;
+                            font-size: 21px;
+                            }
+                        </style>
+
+                        <div style="width:50%; margin:0 auto;">
+                            <table class="salary-table" style="font-size:20px;">
+                                <tr>
+                                    <td>Basic Salary:</td>
+                                    <td>QAR
+                                        <span class="amount">
+                                            <t t-if="o.contract_id">
+                                                <t t-esc="'{:,.2f}'.format(o.contract_id.wage)"/>
+                                            </t>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>General Allowance:</td>
+                                    <td>QAR
+                                        <span class="amount">
+                                            <t t-if="o.contract_id">
+                                                <t t-esc="'{:,.2f}'.format(o.contract_id.gen_allowance)"/>
+                                            </t>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Transportation Allowance:</td>
+                                    <td>QAR
+                                        <span class="amount">
+                                            <t t-if="o.contract_id">
+                                                <t t-esc="'{:,.2f}'.format(o.contract_id.transportation)"/>
+                                            </t>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Housing Allowance:</td>
+                                    <td>QAR
+                                        <span class="amount">
+                                            <t t-if="o.contract_id">
+                                                <t t-esc="'{:,.2f}'.format(o.contract_id.hra)"/>
+                                            </t>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Food Allowance:</td>
+                                    <td>QAR
+                                        <span class="amount">
+                                            <t t-if="o.contract_id">
+                                                <t t-esc="'{:,.2f}'.format(o.contract_id.food_allow)"/>
+                                            </t>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr class="gross">
+                                    <td style="font-weight:bold; font-size:21px;">Gross Salary:</td>
+                                    <td style="font-weight:bold; font-size:21px;">QAR
+                                        <span class="amount">
+                                            <t t-if="o.contract_id">
+                                                <t t-esc="'{:,.2f}'.format(o.contract_id.wage + o.contract_id.total_allowance_month)"/>
+                                            </t>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <br/>
+                        <div style="width:70%; margin:0 auto; margin-top: 20px;">
+                            <p style="
+                                text-align: left;
+                                font-size:18px;
+                                color: #333;
+                                line-height: 1.6;
+                                font-family: 'Segoe UI', Arial, sans-serif;
+
+                            ">
+                                This letter is issued for Mr. [
+                                <strong>
+                                    <t t-esc="o.name"/>
+                                </strong>
+                                ] upon his/her
+                                request,
+                                and the employer<br/>bears no further responsibility whatsoever.
+                            </p>
+                        </div>
+                        <br/>
+                        <div style="width:70%; margin:0 auto;">
+                            <h4 style="font-weight:bold;text-align:left; font-size:18px;">For and on behalf of</h4>
+                            <p style="text-align:left; font-size:18px;">
+                                <t t-esc="o.company_id.name"/>
+                            </p>
+                        </div>
+                        <br/>
+                        <br/>
+                        <br/>
+
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

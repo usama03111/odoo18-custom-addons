@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Paper Format -->
+    <record id="paperformat_custom_hr_offer_letter_report" model="report.paperformat">
+        <field name="name">Custom Contract Report A4</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <!-- Reduce top margin so header appears closer to page top -->
+        <field name="margin_top">20</field>
+        <!-- Extra room for the repeated footer bars -->
+        <field name="margin_bottom">20</field>
+        <field name="margin_left">10</field>
+        <field name="margin_right">10</field>
+        <field name="header_line" eval="False"/>
+        <!-- Smaller spacing between (optional) header and body -->
+        <field name="header_spacing">25</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <!-- Custom External Layout -->
+    <template id="external_layout_contract_custom" inherit_id="web.external_layout_standard" primary="True">
+        <!-- Ensure required variables exist (web.external_layout normally sets these) -->
+        <xpath expr="//div[contains(@t-attf-class, 'header')][1]" position="before">
+            <t t-if="not o" t-set="o" t-value="doc"/>
+            <t t-if="not company">
+                <!-- Multicompany-safe company resolution (same idea as web.external_layout) -->
+                <t t-if="company_id">
+                    <t t-set="company" t-value="company_id"/>
+                </t>
+                <t t-elif="o and 'company_id' in o and o.company_id.sudo()">
+                    <t t-set="company" t-value="o.company_id.sudo()"/>
+                </t>
+                <t t-else="else">
+                    <t t-set="company" t-value="res_company"/>
+                </t>
+            </t>
+        </xpath>
+
+        <!-- Remove the default company header block -->
+        <xpath expr="//div[contains(@t-attf-class, 'header')]" position="replace">
+            <div class="header">
+                <div class="row" style="align-items: center;">
+                    <div class="col-12">
+                        <!-- Header Content Removed as per request -->
+                    </div>
+                </div>
+            </div>
+        </xpath>
+
+        <!-- Remove default address block and title, we control the whole body -->
+        <xpath expr="//t[@t-call='web.address_layout']" position="replace">
+            <t/>
+        </xpath>
+        <xpath expr="//h2[@t-out='layout_document_title']" position="replace">
+            <t/>
+        </xpath>
+
+        <!-- Replace default footer with the custom footer bars -->
+        <xpath expr="//div[contains(@t-attf-class, 'footer')]" position="replace">
+            <div class="footer contract_report">
+                <div class="alrouf-footer-fullwidth"
+                     style="font-family: Arial, sans-serif; font-size: 10px; color: #666;">
+                    <!-- Footer Content Removed as per request -->
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+    <!-- Report Action -->
+    <record id="action_report_contract_offer_employment" model="ir.actions.report">
+        <field name="name">Offer of Employment</field>
+        <field name="model">hr.contract</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">hr_offer_letter_report.report_offer_employment_document</field>
+        <field name="report_file">hr_offer_letter_report.report_offer_employment_document</field>
+        <field name="print_report_name">'Offer of Employment - %s' % (object.employee_id.name)</field>
+        <field name="binding_model_id" ref="hr_contract.model_hr_contract"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="paperformat_custom_hr_offer_letter_report"/>
+    </record>
+
+    <!-- Report Template -->
+    <template id="report_offer_employment_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="hr_offer_letter_report.external_layout_contract_custom">
+                    <t t-set="doc"
+                       t-value="doc.with_context(lang=doc.employee_id.user_partner_id.lang or env.user.lang)"/>
+                    <div class="page" style="font-family: Arial, sans-serif; font-size: 14px; color: #000;">
+
+                        <!-- Header / Title -->
+                        <div class="text-center mb-4">
+                            <h3 style="text-decoration: underline; font-weight: bold;">OFFER OF EMPLOYMENT</h3>
+                            <p class="mt-0">
+                                <strong>Date:</strong>
+                                <span t-esc="datetime.date.today()"/>
+                            </p>
+                        </div>
+
+                        <!-- Applicant Name -->
+                        <div class="text-center mb-4">
+                            <h4 style="font-weight: bold;">
+                                Applicant Name:
+                                <span t-field="doc.employee_id.name" style="text-decoration: underline;"/>
+                            </h4>
+                        </div>
+
+                        <!-- Introduction -->
+                        <div class="mb-4">
+                            <p>
+                                We are pleased to offer you employment with<span
+                                    style="font-weight: bold; text-decoration: underline;"
+                                    t-field="doc.company_id.name"/>. Your terms and conditions are as follows:
+                            </p>
+                        </div>
+
+                        <!-- Contract Details Table -->
+                        <table class="table table-bordered table-sm" style="border: 2px solid #000; width: 100%;">
+                            <tbody>
+                                <tr>
+                                    <td style="width: 40%; font-weight: bold; border: 1px solid #000;">Designation</td>
+                                    <td style="width: 60%; border: 1px solid #000;">
+                                        <span t-field="doc.job_id.name"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold; border: 1px solid #000;">Place of Employment</td>
+                                    <td style="border: 1px solid #000;">
+                                        <span t-field="doc.employee_id.work_location_id"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold; border: 1px solid #000;">Gross Salary</td>
+                                    <td style="border: 1px solid #000; font-weight: bold;">
+                                        <span t-field="doc.currency_id.name"/>
+                                        <span t-esc="'{:,.2f}'.format(doc.wage + doc.total_allowance_month)"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold; border: 1px solid #000;">Basic Salary</td>
+                                    <td style="border: 1px solid #000;">
+                                        <span t-field="doc.currency_id.name"/>
+                                        <span t-esc="'{:,.2f}'.format(doc.wage)"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold; border: 1px solid #000;">Food Allowance</td>
+                                    <td style="border: 1px solid #000;">
+                                        <t t-if="doc.food_allow &gt; 0">
+                                            <span t-field="doc.currency_id.name"/>
+                                            <span t-esc="'{:,.2f}'.format(doc.food_allow)"/>
+                                        </t>
+                                        <t t-else="">
+                                            0
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold; border: 1px solid #000;">General Allowance</td>
+                                    <td style="border: 1px solid #000;">
+                                        <t t-if="doc.gen_allowance &gt; 0">
+                                            <span t-field="doc.currency_id.name"/>
+                                            <span t-esc="'{:,.2f}'.format(doc.gen_allowance)"/>
+                                        </t>
+                                        <t t-else="">
+                                            0
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold; border: 1px solid #000;">Accommodation Allow.</td>
+                                    <td style="border: 1px solid #000;">Provided by the company</td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold; border: 1px solid #000;">Transportation Allow.</td>
+                                    <td style="border: 1px solid #000;">Provided by the company</td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold; border: 1px solid #000;">Employee Grade</td>
+                                    <td style="border: 1px solid #000;">
+                                        <span t-field="doc.employee_grade"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold; border: 1px solid #000;">Working Hours</td>
+                                    <td style="border: 1px solid #000;">
+                                        <span t-field="doc.employee_id.resource_calendar_id"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold; border: 1px solid #000;">
+                                        Period of Employment
+                                    </td>
+                                    <td style="border: 1px solid #000;">
+                                        <t t-if="doc.date_end">
+                                            Fixed-Term Contract (From
+                                            <span t-field="doc.date_start"/>
+                                            to
+                                            <span t-field="doc.date_end"/>)
+                                        </t>
+                                        <t t-else="">
+                                            Indefinite Contract
+                                        </t>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="font-weight: bold; border: 1px solid #000;">Joining Date</td>
+                                    <td style="border: 1px solid #000;">
+                                        <span t-field="doc.date_start"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold; border: 1px solid #000;">
+                                        Probation Period
+                                    </td>
+                                    <td style="border: 1px solid #000;">
+                                        <span t-field="doc.probation_period"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold; border: 1px solid #000;">
+                                        Airfare
+                                        <span style="font-size: 10px;">(International Airport Only)</span>
+                                    </td>
+                                    <td style="border: 1px solid #000;">
+                                        <span t-field="doc.airfare_policy"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold; border: 1px solid #000;">
+                                        Annual Vacation
+                                    </td>
+                                    <td style="border: 1px solid #000;">
+                                        <span t-field="doc.annual_vacation_policy"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold; border: 1px solid #000;">
+                                        Medical Care
+                                    </td>
+                                    <td style="border: 1px solid #000;">
+                                        <span t-field="doc.medical_care_policy"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold; border: 1px solid #000;">
+                                        This offer of employment is subject to:
+                                    </td>
+                                    <td style="border: 1px solid #000; font-size: 12px;">
+                                        <div t-field="doc.offer_subject_to"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold; border: 1px solid #000;">
+                                        Governing Law
+                                    </td>
+                                    <td style="border: 1px solid #000;">
+                                        <span t-field="doc.governing_law"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold; border: 1px solid #000;">Offer Validity</td>
+                                    <td style="border: 1px solid #000;">
+                                        <span t-field="doc.offer_validity"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!-- Acceptance Text -->
+                        <div class="mt-4 mb-4">
+                            <p style="font-style: italic;">
+                                If you agree to this offer, kindly confirm your acceptance by signing below. The company
+                                will proceed with the onboarding procedures as soon as your approval is received.
+                            </p>
+                        </div>
+
+                        <!-- Signature Section -->
+                        <div class="row mt-5" style="page-break-inside: avoid;">
+                            <div class="col-6">
+                                <p class="mb-1">For and on behalf of</p>
+                                <p style="font-weight: bold; font-size: 16px; margin-bottom: 60px;">
+                                    <span t-field="doc.company_id.name"/>
+                                </p>
+                                <div style="border-top: 1px solid #000; width: 90%; padding-top: 5px;">
+                                    <strong>
+                                        <span t-field="doc.owner_name"/>
+                                    </strong>
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <p class="mb-1" style="visibility: hidden;">Placeholder</p>
+
+                                <p style="font-weight: bold; font-size: 16px; margin-bottom: 60px; text-align: center; width: 90%; margin-left: auto;">
+                                    <span t-field="doc.employee_id.name"/>
+                                </p>
+
+                                <div style="border-top: 1px solid #000; width: 90%; margin-left: auto; padding-top: 5px; text-align: center;">
+                                    <strong>Signature &amp; Date Signed</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_employee_manager_evaluations"
+            model="ir.actions.report">
+        <field name="name">Employee Manager Evaluations</field>
+        <field name="model">hr.employee</field>
+        <field name="report_type">qweb-pdf</field>
+
+        <!-- MUST MATCH TEMPLATE ID -->
+        <field name="report_name">kb_managar_evo_form.report_employee_manager_evaluations</field>
+        <field name="report_file">kb_managar_evo_form.report_employee_manager_evaluations</field>
+
+        <field name="binding_model_id" ref="hr.model_hr_employee"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

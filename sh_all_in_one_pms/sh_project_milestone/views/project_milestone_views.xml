@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sh_project_milestone_form_view" model="ir.ui.view">
+        <field name="name">project.milestone.form</field>
+        <field name="model">project.milestone</field>
+        <field name="arch" type="xml">
+            <form string="Project Milestone">
+                <header>
+                    <button name="button_inprogress" state="new,cancelled" string="In Progress" type="object" class="oe_highlight" groups="project.group_project_manager" />
+                    <button name="button_completed" state="in_progress" string="Complete" type="object" groups="project.group_project_manager" />
+                    <button name="button_cancelled" state="in_progress" string="Cancel" type="object" groups="project.group_project_manager" />
+
+                    <field name="state" widget="statusbar" statusbar_visible="new,in_progress,completed,cancelled" readonly="1" />
+                </header>
+
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" type="object" icon="fa-tasks" name="sh_action_milestone_to_task_event" groups="project.group_project_manager">
+                            <field name="task_count" string="Task" widget="statinfo" />
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name" />
+                            <field name="deadline" />
+                        </group>
+                        <group>
+                            <field name="project_id" />
+                            <field name="is_reached"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="sh_pr_milestone_tree_view" model="ir.ui.view">
+        <field name="name">Project Milestone</field>
+        <field name="model">project.milestone</field>
+        <field name="arch" type="xml">
+            <list decoration-danger="is_deadline_exceeded" decoration-muted="is_reached">
+                <field name="name"/>
+                <field name="project_id" optional="show"/>
+                <field name="deadline" optional="show"/>
+                <field name="is_reached" optional="show"/>
+                <field name="is_deadline_exceeded" column_invisible="1"/>
+            </list>
+        </field>
+    </record>
+    <record id="sh_project_milestone_search_view" model="ir.ui.view">
+        <field name="name">project.milestone.search</field>
+        <field name="model">project.milestone</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" filter_domain="['|',('name','ilike',self),('project_id','ilike',self)]]" />
+                <field name="project_id" />
+                <field name="deadline"/>
+                <filter string="Expired" name="expired" domain="[( 'deadline' , '&lt;', context_today().strftime('%Y-%m-%d'))]" />
+                <filter string="Today Expire" name="today_expired" domain="[( 'deadline' ,'=' , context_today().strftime('%Y-%m-%d'))]" />
+                <separator />
+                <group expand="1" name="group_by" string="Group By">
+                    <filter name="group_project" string="Project" context="{'group_by': 'project_id'}" />
+                    <filter name="group_milestone" string="Milestone" context="{'group_by': 'name'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="sh_action_project_milestone" model="ir.actions.act_window">
+        <field name="name">Project Milestone</field>
+        <field name="res_model">project.milestone</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'list', 'view_id': ref('sh_pr_milestone_tree_view')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('sh_project_milestone_form_view')})]"/>
+        <field name="search_view_id" ref="sh_project_milestone_search_view"/>
+    </record>
+    <record id="project_project_milestone_all" model="ir.actions.act_window">
+        <field name="name">Milestones</field>
+        <field name="res_model">project.milestone</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('project_id', '=', active_id)]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+            No milestones found. Let's create one!
+            </p><p>
+            Track major progress points that must be reached to achieve success.
+            </p>
+        </field>
+    </record>
+</odoo>

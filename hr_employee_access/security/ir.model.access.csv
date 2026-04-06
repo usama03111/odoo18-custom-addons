@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_employee,hr.employee,hr.model_hr_employee,hr_employee_access.group_employee_private_access,1,1,1,1
+access_hr_resume_line,hr.resume.line,hr_skills.model_hr_resume_line,hr_employee_access.group_employee_private_access,1,1,1,1

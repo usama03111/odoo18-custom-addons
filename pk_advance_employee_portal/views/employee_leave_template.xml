@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--       # employee leave list view template                   -->
+    <template id="employee_leave_list_view_temp_id" name="Employee Lists">
+        <t t-if="checkouts" t-call="portal.portal_table">
+           <div class="d-flex justify-content-between align-items-center mb-3">
+            <h3 class="mb-0 mr-3">My Leaves Details   </h3>
+            <a href="/my/leaves/new" class="btn btn-primary">
+                <i class="fa fa-plus"/>    New Leave Request
+            </a>
+        </div>
+            <thead>
+                <tr>
+                    <th>Employee Name</th>
+                    <th>Total Leaves</th>
+                    <th>Used Leaves</th>
+                    <th>Remains Leaves</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <span t-out="user.name"/>
+                    </td>
+                    <td>
+                        <span t-out="days_off"/>
+                    </td>
+                    <td>
+                        <span t-out="taken_leave_days"/>
+                    </td>
+                    <td>
+                        <span t-out="scheduled_leave_days"/>
+                    </td>
+                </tr>
+            </tbody>
+        </t>
+        <t t-else="">
+            <div class="alert alert-warning" role="alert">There are no Record Found.</div>
+        </t>
+    </template>
+
+
+    <!--   # employee leave form view template    -->
+    <template id="employee_leave_form_view_temp_id" name="Employee Form View">
+        <t t-call="portal.portal_layout">
+            <t t-call="pk_advance_employee_portal.employee_leave_list_view_temp_id"/>
+            <div class="row col-12" t-if="checkouts">
+                <div class="col-6">
+                    <table class="table table-sm table-bordered border-black">
+                        <thead>
+                            <tr>
+                                <th style="text-align:center !important">Used Leaves Details</th>
+                            </tr>
+                        </thead>
+                        <t t-foreach="taken_leave_days_by_type.items()" t-as="leave_type">
+                            <tr>
+                                <td>
+                                    <span t-out="leave_type[0]"/>
+                                    :
+                                    <span t-out="leave_type[1]"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </table>
+                </div>
+                <div class="col-6">
+                    <table class="table table-sm table-bordered border-black">
+                        <thead>
+                            <tr>
+                                <th style="text-align:center !important">Scheduled Leaves Details</th>
+                            </tr>
+                        </thead>
+                        <t t-foreach="scheduled_leave_days_by_type.items()" t-as="leave_type">
+                            <tr>
+                                <td>
+                                    <span t-out="leave_type[0]"/>
+                                    :
+                                    <span t-out="leave_type[1]"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </table>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

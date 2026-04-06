@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--Report action for Contribution Register Report-->
+    <record id="payslip_batches_report_register_action" model="ir.actions.report">
+        <field name="name">Payslip Batches PDF</field>
+        <field name="model">hr.payslip.run</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="binding_model_id" ref="model_hr_payslip_run"/>
+        <field name="report_name">hr_payroll_account_community.hr_report_payslip_batches</field>
+        <field name="report_file">hr_payroll_account_community.hr_report_payslip_batches</field>
+    </record>
+</odoo>

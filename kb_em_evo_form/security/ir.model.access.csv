@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_kb_em_evo_form_hr,kb.em.evo.form hr,model_kb_em_evo_form,kb_em_evo_form.group_hr_employee_evaluation,1,1,1,1
+access_kb_em_evo_form_mgr,kb.em.evo.form mgr,model_kb_em_evo_form,kb_em_evo_form.group_manager_employee_evaluation,1,1,0,0
+access_kb_em_evo_form_line_hr,kb.em.evo.form.line hr,model_kb_em_evo_form_line,kb_em_evo_form.group_hr_employee_evaluation,1,1,1,1
+access_kb_em_evo_form_line_manager,kb.em.evo.form.line manager,model_kb_em_evo_form_line,kb_em_evo_form.group_manager_employee_evaluation,1,1,0,0

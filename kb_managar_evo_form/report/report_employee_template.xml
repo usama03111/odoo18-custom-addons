@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_employee_manager_evaluations">
+        <t t-call="web.html_container">
+            <t t-call="web.basic_layout">
+
+                <!-- EMPLOYEE LOOP (usually one employee) -->
+                <t t-foreach="docs" t-as="emp">
+
+                    <!-- HEADER -->
+                    <t t-call="kb_managar_evo_form.header_id"/>
+
+                    <div class="page" style="direction:rtl; font-size:13px;">
+
+                        <!-- TITLE (SHOW ONCE) -->
+                        <h3 style="text-align:center; margin-bottom:10px;">
+                            تقييمات المدير المباشر
+                        </h3>
+
+                        <!-- EMPLOYEE NAME (SHOW ONCE) -->
+                        <p style="text-align:right; margin-bottom:15px;">
+                            <b>الموظف:</b>
+                            <span t-esc="emp.name"/>
+                        </p>
+
+                        <!-- ========================= -->
+                        <!-- EVALUATIONS LOOP (YEARS) -->
+                        <!-- ========================= -->
+                        <t t-foreach="emp.manager_evaluation_ids" t-as="ev">
+
+                            <!-- YEAR -->
+                            <p style="margin:10px 0; font-weight:bold;">
+                                السنة:
+                                <span t-esc="ev.year"/>
+                            </p>
+
+                            <!-- TABLE -->
+                            <table style="width:100%; border-collapse:collapse;" border="1">
+                                <thead style="background:#f0f0f0;">
+                                    <tr>
+                                        <th style="width:5%;">#</th>
+                                        <th style="width:15%;">المجال</th>
+                                        <th>الوصف</th>
+                                        <th style="width:25%; direction:ltr;">التقييم (1 - 5)</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>القيادة</td>
+                                        <td>قدرة الموظف على توجيه وتحفيز الفريق لتحقيق الأهداف</td>
+                                        <td>
+                                            <t t-call="kb_managar_evo_form.eval_rating_scale">
+                                                <t t-set="value" t-value="ev.mgr_leadership"/>
+                                            </t>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>2</td>
+                                        <td>التواصل</td>
+                                        <td>وضوح وفعالية التواصل مع الآخرين</td>
+                                        <td>
+                                            <t t-call="kb_managar_evo_form.eval_rating_scale">
+                                                <t t-set="value" t-value="ev.mgr_communication"/>
+                                            </t>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>3</td>
+                                        <td>العمل الجماعي</td>
+                                        <td>المساهمة الإيجابية في الفريق ودعم الزملاء</td>
+                                        <td>
+                                            <t t-call="kb_managar_evo_form.eval_rating_scale">
+                                                <t t-set="value" t-value="ev.mgr_teamwork"/>
+                                            </t>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>4</td>
+                                        <td>حل المشكلات</td>
+                                        <td>القدرة على تحليل المشكلات واتخاذ قرارات مناسبة</td>
+                                        <td>
+                                            <t t-call="kb_managar_evo_form.eval_rating_scale">
+                                                <t t-set="value" t-value="ev.mgr_problem_solving"/>
+                                            </t>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>5</td>
+                                        <td>الالتزام</td>
+                                        <td>الالتزام بالسياسات والقيم وأخلاقيات العمل</td>
+                                        <td>
+                                            <t t-call="kb_managar_evo_form.eval_rating_scale">
+                                                <t t-set="value" t-value="ev.mgr_commitment"/>
+                                            </t>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <!-- NOTE -->
+                            <div style="margin-top:10px; font-size:12px;">
+                                <b>ملاحظة:</b>
+                                <br/>
+                                هذا التقييم خاص بالموظف ولا يحتاج ذكر اسمه، فقط ذكر القسم – الفرع.
+                                <br/>
+                                يعمل التقييم لمدير الموارد البشرية + مشرف الموارد البشرية.
+                                <br/>
+                                إضافة الورق الرسمي للشركة.
+                            </div>
+
+                            <!-- SPACE BETWEEN YEARS -->
+                            <div style="height:25px;"></div>
+
+                        </t>
+                        <!-- END EVALUATIONS LOOP -->
+
+                    </div>
+
+                    <!-- FOOTER -->
+                    <t t-call="kb_managar_evo_form.footer_id"/>
+
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

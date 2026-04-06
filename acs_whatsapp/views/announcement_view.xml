@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="whatsapp_announcement_search" model="ir.ui.view">
+        <field name="name">acs.whatsapp.announcement.search</field>
+        <field name="model">acs.whatsapp.announcement</field>
+        <field name="arch" type="xml">
+            <search string="WhatsApp Announcement">
+                <field name="message"/>
+                <field name="date"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="whatsapp_announcement_list_view" model="ir.ui.view">
+        <field name="name">acs.whatsapp.announcement.list.view</field>
+        <field name="model">acs.whatsapp.announcement</field>
+        <field name="arch" type="xml">
+            <list string="WhatsApp Announcement">
+                <field name="message"/>
+                <field name="employee_selection_type"/>
+                <field name="state" decoration-info="state=='draft'" decoration-success="state=='sent'"  widget="badge"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="whatsapp_announcement_form" model="ir.ui.view">
+        <field name="name">acs.whatsapp.announcement.form</field>
+        <field name="model">acs.whatsapp.announcement</field>
+        <field name="arch" type="xml">
+            <form string="WhatsApp Announcement">
+                <header>
+                    <button name="send_message" string="Send" type="object" invisible="state!='draft'" class="btn-primary"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name" required="1"/>
+                        <group>
+                            <field name="announcement_type" readonly="state=='sent'"/>
+                            <field name="employee_selection_type" invisible="announcement_type=='contacts'" readonly="state=='sent'"/>
+                            <field name="department_id"  invisible="employee_selection_type!='department' or announcement_type=='contacts'" required="employee_selection_type=='department'" readonly="state=='sent'" options="{'no_open': True, 'no_create': True}"/>
+                            <field name="template_id" readonly="state=='sent'"/>
+                            <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}" readonly="state=='sent'"/>
+                        </group>
+                        <group>
+                            <field name="message_type" readonly="state=='sent'"/>
+                            <field name="message" invisible="message_type!='message'" required="message_type=='message'" readonly="state=='sent'"/>
+                            <field name="file" filename="file_name" invisible="message_type!='file'" required="message_type=='file'" readonly="state=='sent'"/>
+                            <field name="file_name" invisible="1"/>
+                            <field name="link" invisible="message_type!='link'" required="message_type=='link'" readonly="state=='sent'"/>
+                            <field name="file_url" invisible="message_type!='file_url'" required="message_type=='file_url'" readonly="state=='sent'"/>
+                        </group>
+                        <field name="employee_ids" invisible="employee_selection_type!='employees' or announcement_type=='contacts'" required="employee_selection_type=='employees'" readonly="state=='sent'"/>
+                        <field name="partner_ids" invisible="announcement_type=='employees'" readonly="state=='sent'"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_whatsapp_announcement" model="ir.actions.act_window">
+        <field name="name">WhatsApp Announcement</field>
+        <field name="path">almightycs-whatsapp-announcement</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">acs.whatsapp.announcement</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Click to add a Announcement.
+            </p>
+        </field>
+    </record>
+
+</odoo>

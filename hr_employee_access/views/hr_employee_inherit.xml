@@ -1,0 +1,27 @@
+<odoo>
+  <record id="view_employee_form_inherit_private_resume" model="ir.ui.view">
+    <field name="name">hr.employee.form.inherit.private.resume</field>
+    <field name="model">hr.employee</field>
+    <field name="inherit_id" ref="hr.view_employee_form"/>
+    <field name="arch" type="xml">
+      <!-- Private Information tab -->
+      <xpath expr="//page[@name='personal_information']" position="attributes">
+        <attribute name="groups">hr_employee_access.group_employee_private_access</attribute>
+      </xpath>
+    </field>
+  </record>
+
+    <record id="skills_inherit_private_resume" model="ir.ui.view">
+    <field name="name">hr.skills.form.inherit.private.resume</field>
+    <field name="model">hr.employee</field>
+    <field name="inherit_id" ref="hr_skills.hr_employee_view_form"/>
+    <field name="arch" type="xml">
+      <!-- Private Information tab -->
+
+      <!-- Resume tab -->
+      <xpath expr="//page[@name='skills_resume']" position="attributes">
+        <attribute name="groups">hr_employee_access.group_employee_private_access</attribute>
+      </xpath>
+    </field>
+  </record>
+</odoo>

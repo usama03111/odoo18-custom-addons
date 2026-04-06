@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="sh_project_report_doc">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <t t-foreach="doc" t-as="p">
+                    <div class="page" style="border: 2px solid #000; margin-top: 5px;">
+                        <div class="row">
+                            <div class="col-12" style="text-align: center; line-height: 2;">
+                                <span style="font-size: 24px; font-weight: bold;" t-field="p.name" />
+                            </div>
+                        </div>
+                        <hr style="border-top: 2px solid #000; margin: 0px;" />
+                        <div class="row" style="margins: 0px; padding: 0px;">
+                            <div class="col-12">
+                                <table class="table table-borderless" style="margin: 0rem;">
+                                    <tbody>
+                                        <tr style="text-align: center;">
+                                            <td>
+                                                <span style="font-size: 18px; font-weight: bold;">Project Manager:</span>
+                                            </td>
+                                            <td style="text-align: left;">
+                                                <span style="font-size: 18px;" t-field="p.user_id" />
+                                            </td>
+                                            <td>
+                                                <span style="font-size: 18px; font-weight: bold;">Customer:</span>
+                                            </td>
+                                            <td>
+                                                <span style="font-size: 18px;" t-field="p.partner_id" />
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <table class="table table-borderless" style="margin: 0rem; margin-top: 5px !important;">
+                                    <thead>
+                                        <tr>
+                                            <td colspan="8" style="text-align: center; background-color: aliceblue; font-size: 22px; font-weight: bold; border-left: 1px solid black;">
+                                                <span t-field="p.label_tasks" />
+                                            </td>
+                                        </tr>
+                                    </thead>
+                                    <thead>
+                                        <tr style="vertical-align: top;">
+                                            <th>Task Name</th>
+                                            <th>Planned Hours</th>
+                                            <th>Spent Hours</th>
+                                            <th>Remaining Hours</th>
+                                            <th>Assign To</th>
+                                            <th>Assign Date</th>
+                                            <th>Deadline</th>
+                                            <th>Stage</th>
+                                        </tr>
+                                    </thead>
+                                    <t t-if="p.task_ids">
+                                        <t t-foreach="p.task_ids.filtered(lambda t: not t.parent_id)" t-as="task">
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <p style="font-size: 18px;" t-field="task.name" />
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <p style="font-size: 18px;" t-field="task.allocated_hours" />
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <p style="font-size: 18px;" t-field="task.effective_hours" />
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <p style="font-size: 18px;" t-field="task.remaining_hours" />
+                                                    </td>
+                                                    <td>
+                                                        <p style="font-size: 18px;" t-field="task.user_ids" />
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <p style="font-size: 18px;" t-field="task.date_assign" />
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <p style="font-size: 18px;" t-field="task.date_deadline" />
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <p style="font-size: 18px;" t-field="task.stage_id" />
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </t>
+                                    </t>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="sh_all_in_one_pms.report_project_paperformat" model="report.paperformat">
+        <field name="name">Project Detail</field>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">50</field>
+        <field name="margin_bottom">20</field>
+        <field name="margin_left">4</field>
+        <field name="margin_right">4</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">45</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <template id="report_project_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="sh_all_in_one_pms.sh_project_report_doc" t-lang="doc.partner_id.lang" />
+            </t>
+        </t>
+    </template>
+
+    <record id="sh_project_report" model="ir.actions.report">
+        <field name="name">Project Detail</field>
+        <field name="model">project.project</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">sh_all_in_one_pms.report_project_report</field>
+        <field name="report_file">sh_all_in_one_pms.report_project_report</field>
+        <field name="print_report_name">'Project Detail'</field>
+        <field name="binding_model_id" ref="project.model_project_project" />
+        <field name="paperformat_id" ref="sh_all_in_one_pms.report_project_paperformat" />
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

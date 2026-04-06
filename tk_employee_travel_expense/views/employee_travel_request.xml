@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <!--        Views-->
+        <record id="employee_travel_request_view_form" model="ir.ui.view">
+            <field name="name">employee.travel.request.view.form</field>
+            <field name="model">employee.travel.request</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="action_request_draft" string="Reset to Draft" type="object"
+                                invisible="state!='rejected'"/>
+                        <button name="action_request_confirm" string="Confirm" type="object"
+                                invisible="state!='draft'"
+                                class="btn-primary"/>
+                        <button name="action_request_approve" string="Approve" type="object"
+                                icon="fa-thumbs-up"
+                                invisible="state!='confirm'"
+                                groups="tk_employee_travel_expense.admin_group"
+                                class="btn-success"/>
+                        <button name="action_request_rejected" string="Reject" type="object"
+                                icon="fa-times-circle"
+                                invisible="state!='confirm'"
+                                groups="tk_employee_travel_expense.admin_group"
+                                class="btn-danger"/>
+                        <button name="action_request_expenses_submitted" string="Complete"
+                                groups="tk_employee_travel_expense.admin_group"
+                                icon="fa-check"
+                                confirm="Are you sure you want to submit these expenses?"
+                                invisible="state!='approve'"
+                                type="object"
+                                class="btn-info"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm"/>
+                    </header>
+                    <sheet>
+                        <div name="button_box" position="inside">
+                            <button class="oe_stat_button" type="object"
+                                    name="employee_expenses_action"
+                                    invisible="state in ['confirm', 'draft', 'rejected']"
+                                    icon="fa-credit-card">
+                                <field string="Expenses"
+                                       name="expense_count" widget="statinfo"/>
+                            </button>
+                        </div>
+                        <widget name="web_ribbon" title="Rejected" bg_color="bg-danger" invisible="state!='rejected'"/>
+                        <widget name="web_ribbon" title="Approved" bg_color="bg-success" invisible="state!='approve'"/>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="sequence" class="mb-3 mt-3" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group string="Employee Details">
+                            <group>
+                                <field name="employee_id" required="1"
+                                       readonly="state in ['confirm', 'approve', 'rejected','expenses_submitted']"
+                                       widget="many2one_avatar_user"/>
+                                <field name="department_id" required="1"
+                                       readonly="1"
+                                />
+                            </group>
+                            <group>
+                                <field name="manager_id" force_save="1"
+                                       readonly="state in ['confirm', 'approve', 'rejected','expenses_submitted']"
+                                       widget="many2one_avatar_user"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group string="Create By">
+                                <field name="request_date" readonly="1"/>
+                                <field name="request_by" readonly="1" widget="res_partner_many2one"/>
+                            </group>
+                            <group string="Confirmation details"
+                                   invisible="not confirm_date">
+                                <field name="confirm_date" readonly="1"/>
+                                <field name="confirm_by" readonly="1" widget="many2one_avatar_user"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group groups="tk_employee_travel_expense.admin_group"
+                                   string="Approval Details"
+                                   invisible="not approve_date">
+                                <field name="approve_date" readonly="1"/>
+                                <field name="approve_by" readonly="1" widget="many2one_avatar_user"/>
+                            </group>
+                            <group string="Advance Payment Register">
+                                <field name="is_advance_payment"
+                                       readonly="state in ['confirm', 'approve', 'rejected','expenses_submitted']"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Travel Information">
+                                <group>
+                                    <group>
+                                        <field name="travel_information"
+                                               required="1"
+                                               placeholder="International Tour"
+                                               readonly="state in ['confirm', 'approve', 'rejected','expenses_submitted']"/>
+                                        <field name="travel_mode_id"
+                                               required="1"
+                                               readonly="state in ['confirm', 'approve', 'rejected','expenses_submitted']"/>
+                                    </group>
+                                    <group>
+                                        <field name="project_id"
+                                               required="1"
+                                               readonly="state in ['confirm', 'approve', 'rejected','expenses_submitted']"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <group string="Employee Contact">
+                                        <field name="phone" placeholder="(123)-456-7890"
+                                               widget="phone"
+                                               readonly="state in ['confirm', 'approve', 'rejected','expenses_submitted']"/>
+                                        <field name="mobile"
+                                               widget="mobile"
+                                               readonly="state in ['confirm', 'approve', 'rejected','expenses_submitted']"/>
+                                        <field name="email" placeholder="example@gamil.com"
+                                               widget="email"
+                                               readonly="state in ['confirm', 'approve', 'rejected','expenses_submitted']"/>
+                                    </group>
+                                    <group string="Travel Duration">
+                                        <field name="request_departure_date"
+                                               required="1"
+                                               readonly="state in ['confirm', 'approve', 'rejected','expenses_submitted']"/>
+                                        <field name="request_return_date"
+                                               required="1"
+                                               readonly="state in ['confirm', 'approve', 'rejected','expenses_submitted']"/>
+                                        <field name="trip_days"
+                                               readonly="1"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <group string="Departure Details">
+                                        <field name="departure_mode_id"
+                                               required="1"
+                                               readonly="state in ['confirm', 'approve', 'rejected','expenses_submitted']"
+                                               placeholder="by Air" string="Departure Mode"/>
+                                        <field name="visa_agent"
+                                               readonly="state in ['confirm', 'approve', 'rejected','expenses_submitted']"
+                                               required="1"/>
+                                    </group>
+                                    <group string="Return Details">
+                                        <field name="return_departure_mode_id"
+                                               readonly="state in ['confirm', 'approve', 'rejected','expenses_submitted']"
+                                               required="1"
+                                               placeholder="by Air"
+                                               string="Return Mode"/>
+                                        <field name="ticket_booking_agent"
+                                               readonly="state in ['confirm', 'approve', 'rejected','expenses_submitted']"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <group string="From">
+                                        <label for="from_street" string="From"/>
+                                        <div class="o_address_format">
+                                            <field name="from_street" class="o_address_street"
+                                                   placeholder="Street1..."
+                                                   readonly="state in ['confirm', 'approve', 'rejected','expenses_submitted']"/>
+                                            <field name="from_street2" class="o_address_street"
+                                                   placeholder="Street2..."
+                                                   readonly="state in ['confirm', 'approve', 'rejected','expenses_submitted']"/>
+                                            <field name="from_city"
+                                                   required="1"
+                                                   string="City"
+                                                   class="o_address_city" placeholder="City"
+                                                   readonly="state in ['confirm', 'approve', 'rejected','expenses_submitted']"/>
+                                            <field name="state_id"
+                                                   class="o_address_state" placeholder="State"
+                                                   readonly="state in ['confirm', 'approve', 'rejected','expenses_submitted']"/>
+                                            <field name="from_zip"
+                                                   class="o_address_zip" placeholder="Zip"
+                                                   readonly="state in ['confirm', 'approve', 'rejected','expenses_submitted']"/>
+                                            <field name="country_id"
+                                                   string="Country"
+                                                   class="o_address_country"
+                                                   readonly="state in ['confirm', 'approve', 'rejected','expenses_submitted']"
+                                                   placeholder="Country"/>
+                                        </div>
+                                    </group>
+                                    <group string="To">
+                                        <label for="to_street" string="To"/>
+                                        <div class="o_address_format">
+                                            <field name="to_street" class="o_address_street"
+                                                   placeholder="Street1..."
+                                                   readonly="state in ['confirm', 'approve', 'rejected','expenses_submitted']"
+                                            />
+                                            <field name="to_street2" class="o_address_street"
+                                                   placeholder="Street2..."
+                                                   readonly="state in ['confirm', 'approve', 'rejected','expenses_submitted']"
+                                            />
+                                            <field name="to_city"
+                                                   required="1"
+                                                   string="City"
+                                                   class="o_address_city"
+                                                   readonly="state in ['confirm', 'approve', 'rejected','expenses_submitted']"
+                                                   placeholder="City"/>
+                                            <field name="to_state_id"
+                                                   class="o_address_state"
+                                                   readonly="state in ['confirm', 'approve', 'rejected','expenses_submitted']"
+                                                   placeholder="State"/>
+                                            <field name="to_zip"
+                                                   class="o_address_zip"
+                                                   readonly="state in ['confirm', 'approve', 'rejected','expenses_submitted']"
+                                                   placeholder="Zip"/>
+                                            <field name="to_country_id"
+                                                   string="Country"
+                                                   class="o_address_country"
+                                                   readonly="state in ['confirm', 'approve', 'rejected','expenses_submitted']"
+                                                   placeholder="Country"/>
+                                        </div>
+                                    </group>
+                                </group>
+
+                                <group string="Accounting" invisible="1">
+                                    <group>
+                                        <field name="bank_id"
+                                               readonly="state in ['confirm', 'approve', 'rejected','expenses_submitted']"/>
+                                        <field name="cheque_no"
+                                               readonly="state in ['confirm', 'approve', 'rejected','expenses_submitted']"/>
+                                    </group>
+                                    <group>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Reject Reason" invisible="state!='rejected'">
+                                <group>
+                                    <group>
+                                        <field name="request_reject_reason"
+                                               invisible="state!='rejected'"
+                                               readonly="1"/>
+                                    </group>
+                                    <group>
+                                        <field name="closing_notes"
+                                               readonly="1"
+                                               invisible="not closing_notes or state!='rejected'"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Advance Payment Register" invisible="is_advance_payment!=1">
+                                <group>
+                                    <group>
+                                        <field name="product_id"
+                                               required="is_advance_payment!=0"
+                                               readonly="state in ['confirm', 'approve', 'rejected','expenses_submitted']"/>
+                                        <field name="date"
+                                               required="is_advance_payment!=0"
+                                               readonly="state in ['confirm', 'approve', 'rejected','expenses_submitted']"/>
+                                        <field name="description"
+                                               readonly="state in ['confirm', 'approve', 'rejected','expenses_submitted']"/>
+                                    </group>
+                                    <group>
+                                        <field name="currency_id" invisible="1"/>
+                                        <field name="company_id" invisible="1"/>
+                                        <field name="unit_price"
+                                               widget="monetary"
+                                               readonly="state in ['confirm', 'approve', 'rejected','expenses_submitted']"
+                                               invisible="is_advance_payment!=1"/>
+                                        <field name="quantity"
+                                               readonly="state in ['confirm', 'approve', 'rejected','expenses_submitted']"
+                                               invisible="is_advance_payment!=1"/>
+                                        <field name="sub_total"
+                                               widget="monetary"
+                                               invisible="is_advance_payment!=1"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Expenses"
+                                  invisible="state in ['confirm', 'draft', 'rejected']">
+                                <button name="action_add_expense" string="Add Expense" type="object"
+                                        invisible="state!='approve'"
+                                        icon="fa-credit-card"
+                                        class="btn-primary"/>
+                                <field name="expense_ids" readonly="1" string=" ">
+                                    <list>
+                                        <field name="date" optional="show"/>
+                                        <field name="name" optional="show"/>
+                                        <field name="product_id" optional="show"/>
+                                        <field name="description" optional="hide"/>
+                                        <field name="payment_mode" optional="hide"/>
+                                        <field name="nb_attachment" column_invisible="1"/>
+                                        <field name="currency_id" column_invisible="1"/>
+                                        <field name="state"
+                                               widget="badge"
+                                               decoration-muted="state == 'draft'"
+                                               decoration-info="state == 'submitted'"
+                                               decoration-success="state == 'paid' or state == 'approve' or state == 'posted'"
+                                               decoration-danger="state == 'refused'"/>
+                                        <field name="total_amount_currency" optional="show"/>
+                                    </list>
+                                </field>
+                                <div style="text-align:right">
+                                    <field name="currency_id" invisible="1"/>
+                                    <label for="expense_total"
+                                           string="Expense Total"/>
+                                    <field name="expense_total"
+                                           widget="monetary"
+                                           style="margin-left:10px;"/>
+                                    <br/>
+                                    <label for="approve_expense_total"
+                                           string="Approve Expense Total"/>
+                                    <field name="approve_expense_total"
+                                           widget="monetary"
+                                           style="margin-left:15px;"/>
+                                </div>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <!--                    Chatter-->
+                    <chatter/>
+                </form>
+            </field>
+        </record>
+        <record id="employee_travel_request_view_list" model="ir.ui.view">
+            <field name="name">employee.travel.request.view.list</field>
+            <field name="model">employee.travel.request</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="sequence" string="Name"/>
+                    <field name="employee_id"/>
+                    <field name="department_id"/>
+                    <field name="manager_id"/>
+                    <field name="request_date"/>
+                    <field name="request_by"/>
+                    <field name="currency_id" column_invisible="1"/>
+                    <field name="state" widget="badge"
+                           decoration-primary="state == 'confirm'"
+                           decoration-success="state == 'approve'"
+                           decoration-danger="state == 'rejected'"
+                           decoration-info="state == 'expenses_submitted'"/>
+                    <field name="expense_total"/>
+                </list>
+            </field>
+        </record>
+        <record id="employee_travel_request_view_search" model="ir.ui.view">
+            <field name="name">employee.travel.request.view.search</field>
+            <field name="model">employee.travel.request</field>
+            <field name="arch" type="xml">
+                <search>
+                    <filter string="Draft" name="state" domain="[('state', '=', 'draft')]"/>
+                    <filter string="Confirm" name="state" domain="[('state', '=', 'confirm')]"/>
+                    <filter string="Approve" name="state" domain="[('state', '=', 'approve')]"/>
+                    <filter string="Rejected" name="state" domain="[('state', '=', 'rejected')]"/>
+                    <filter string="Expenses Submitted" name="state" domain="[('state', '=', 'expenses_submitted')]"/>
+                    <separator/>
+                    <field name="sequence"/>
+                    <field name="employee_id"/>
+                    <field name="department_id"/>
+                    <field name="request_by"/>
+                    <group>
+                        <filter name="group_by_employee_id" string="Employee"
+                                context="{'group_by':'employee_id'}"/>
+                        <filter name="group_by_department_id" string="Department"
+                                context="{'group_by':'department_id'}"/>
+                        <separator/>
+                        <filter name="group_request_by" string="Create By"
+                                context="{'group_by':'request_by'}"/>
+                        <filter name="group_confirm_by" string="Confirm By"
+                                context="{'group_by':'confirm_by'}"/>
+                        <filter name="group_approve_by" string="Approve By"
+                                context="{'group_by':'approve_by'}"/>
+                        <separator/>
+                        <filter name="group_by_departure_mode_id" string="Departure Mode"
+                                context="{'group_by':'departure_mode_id'}"/>
+                        <filter name="group_by_return_departure_mode_id" string="Return Mode"
+                                context="{'group_by':'return_departure_mode_id'}"/>
+                        <filter name="group_by_visa_agent" string="Visa Agent"
+                                context="{'group_by':'visa_agent'}"/>
+                        <filter name="group_by_return_ticket_booking_agent" string="Ticket Booking Agent"
+                                context="{'group_by':'ticket_booking_agent'}"/>
+                        <separator/>
+                        <filter name="group_by_status" string="Status"
+                                context="{'group_by':'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!--        Action-->
+        <record id="employee_travel_request_action" model="ir.actions.act_window">
+            <field name="name">Expense Request</field>
+            <field name="res_model">employee.travel.request</field>
+            <field name="view_mode">list,form,search</field>
+        </record>
+    </data>
+</odoo>

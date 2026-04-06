@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!--project search-->
+        <record id="view_ps_project_project_filter" model="ir.ui.view">
+            <field name="name">project.project.select</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.view_project_project_filter"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//filter[@name='own_projects']" position='after'>
+                    <filter string="Using Scrum" name="use_scrum" domain="[('use_scrum','=',True)]"/>
+
+                </xpath>
+            </field>
+        </record>
+
+        <!--Add buttons on project form view that can connect to user stories and sprints-->
+        <record id="edit_ps_project" model="ir.ui.view">
+            <field name="name">project.scrum.project.form</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.edit_project"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='project_update_all_action']" position="after">
+                    <button class="oe_inline oe_stat_button" type="action" icon="fa-files-o"
+                            invisible="use_scrum == False" name="%(action_ps_us_current)d">
+                        <field name="user_story_count" widget="statinfo"/>
+                    </button>
+                    <button class="oe_inline oe_stat_button" type="action" icon="fa-tasks"
+                            invisible="use_scrum == False" name="%(action_ps_sprint_current)d">
+                        <field name="sprint_count" widget="statinfo"/>
+                    </button>
+                    <button class="oe_inline oe_stat_button" type="action" icon="fa-files-o"
+                            invisible="use_scrum == False" name="%(action_ps_tc_current)d">
+                        <field name="test_case_count" widget="statinfo"/>
+                    </button>
+                    <button class="oe_inline oe_stat_button" type="action" icon="fa-files-o"
+                            invisible="use_scrum == False" name="%(action_ps_meeting_current)d">
+                        <field name="meeting_count" widget="statinfo"/>
+                    </button>
+                </xpath>
+
+                <field name="partner_id" position="before">
+                    <field name="use_scrum" class="oe_inline"/>
+                </field>
+                <field name="user_id" position="replace">
+                    <label for="user_id" string="Scrum Master" invisible="use_scrum == False"/>
+                    <label for="user_id" invisible="use_scrum == True"/>
+                    <field name="user_id" nolabel="1"/>
+                </field>
+                <field name="partner_id" position="replace">
+                    <label for="partner_id" string="Product Owner" invisible="use_scrum == False"/>
+                    <label for="partner_id" invisible="use_scrum == True"/>
+                    <field name="partner_id" nolabel="1"/>
+                </field>
+                <page name="settings" position="after">
+                    <page name="tasks" string="Tasks">
+                        <field name="task_ids" string="Task" context="{
+                                        'default_project_id': id,}">
+                            <list>
+                                <field name="sequence" widget="handle"/>
+                                <field name="priority"/>
+                                <field name="name"/>
+                                <field name="user_id"/>
+                                <field name="date_deadline"/>
+                                <field name="stage_id"/>
+                            </list>
+                        </field>
+                    </page>
+                    <page string="Scrum" invisible="use_scrum == False">
+                        <!--Page for scrum-->
+                        <group string="Sprint" name="sprint">
+                            <field name="manhours"/>
+                            <field name="default_sprintduration"/>
+                        </group>
+                    </page>
+                </page>
+            </field>
+        </record>
+        <!--user stories and sprints can be seen in project kanban view-->
+        <record id="view_ps_kanban" model="ir.ui.view">
+            <field name="name">project.scrum.project.kanban</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.view_project_kanban"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//div[hasclass('o_project_kanban_boxes')]" position="inside">
+
+                    <field name="user_story_count"/><![CDATA[&nbsp;]]> User Stories
+
+                    <field name="sprint_count"/><![CDATA[&nbsp;]]> Sprints
+                    <field name="meeting_count"/><![CDATA[&nbsp;]]> Meetings
+
+                </xpath>
+
+
+            </field>
+        </record>
+        <!--project tree view-->
+        <record id="project_ps_view" model="ir.ui.view">
+            <field name="name">project.project.tree</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.view_project"/>
+            <field name="arch" type="xml">
+                <field name="display_name" position="after">
+                    <field name="use_scrum" string="Using Scrum"/>
+                </field>
+                <field name="user_id" position="attributes">
+                    <attribute name="string">Scrum Master/Project Manager</attribute>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <template id="portal_employee_attendence_my_home" inherit_id="portal.portal_my_home"
+              name="Employee Attendance Details" priority="100" customize_show="True">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+           <t t-call="portal.portal_docs_entry">
+                <t t-set="icon" t-value="'/hr_employee_leave/static/description/icon.png'"/>
+                <t t-set="title">Employee Attendance</t>
+               <t t-set="text">Employee Attendance Report</t>
+               <t t-set="url" t-value="'/employee/leaves'"/>
+               <t t-set="placeholder_count" t-value="'employee_attendance_count'"/>
+            </t>
+        </xpath>
+    </template>
+
+
+</odoo>

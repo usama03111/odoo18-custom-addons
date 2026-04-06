@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_project_custom_checklist" groups="sh_all_in_one_pms.group_project_custom_checklist" name="Project Custom Checklist" sequence="21" action="action_menu_project_custom_checklist" parent="project.menu_project_config" />
+    <menuitem id="menu_import_project_custom_checklist" groups="sh_all_in_one_pms.group_project_custom_checklist" name="Import Project Custom Checklist" sequence="22" action="sh_all_in_one_pms.sh_import_project_custom_cl_action" parent="project.menu_project_config" />
+</odoo>

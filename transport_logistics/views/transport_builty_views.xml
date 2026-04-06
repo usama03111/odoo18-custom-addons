@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="view_transport_builty_tree" model="ir.ui.view">
+        <field name="name">transport.builty.tree</field>
+        <field name="model">transport.builty</field>
+        <field name="arch" type="xml">
+            <list string="Builties">
+                <field name="name"/>
+                <field name="date"/>
+                <field name="source_city_id"/>
+                <field name="dest_city_id"/>
+                <field name="sender_id"/>
+                <field name="receiver_id"/>
+                <field name="item_count"/>
+                <field name="amount_total"/>
+                <field name="state" widget="badge" decoration-info="state == 'draft'" decoration-success="state == 'booked'"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_transport_builty_form" model="ir.ui.view">
+        <field name="name">transport.builty.form</field>
+        <field name="model">transport.builty</field>
+        <field name="arch" type="xml">
+            <form string="Order Booking (Builty)">
+                <header>
+                    <button name="action_confirm" string="Confirm Booking" type="object" class="oe_highlight" invisible="state != 'draft'"/>
+                    <button name="action_cancel" string="Cancel" type="object" invisible="state not in ('draft', 'booked')"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,booked,transit,delivered"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Route">
+                            <field name="source_city_id"/>
+                            <field name="dest_city_id"/>
+                            <field name="branch_id" domain="[('city_id', '=', dest_city_id)]"/>
+                            <field name="date"/>
+                        </group>
+                        <group string="Service Type">
+                            <field name="service_type" widget="radio" options="{'horizontal': true}"/>
+                            <field name="pickup_location" invisible="service_type == 'counter'"/>
+                        </group>
+                    </group>
+                    
+                    <group>
+                        <group string="Sender">
+                            <field name="sender_id"/>
+                            <field name="sender_phone"/>
+                            <field name="sender_cnic"/>
+                        </group>
+                        <group string="Receiver">
+                            <field name="receiver_id"/>
+                            <field name="receiver_phone"/>
+                            <field name="receiver_address"/>
+                        </group>
+                    </group>
+
+                    <group string="Cargo Details">
+                        <group>
+                            <field name="item_count"/>
+                            <field name="weight"/>
+                            <field name="is_estimated_weight"/>
+                        </group>
+                        <group>
+                            <field name="volume_cbm"/>
+                            <field name="description"/>
+                        </group>
+                    </group>
+
+                    <group string="Charges &amp; Payment">
+                        <group>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="charges_fare"/>
+                            <field name="charges_labor"/>
+                            <field name="charges_service"/>
+                            <field name="amount_total" class="oe_subtotal_footer_separator"/>
+                        </group>
+                        <group>
+                            <field name="payment_type"/>
+                            <field name="amount_paid"/>
+                            <field name="amount_remaining" class="oe_subtotal_footer_separator"/>
+                        </group>
+                    </group>
+                    <field name="remarks" placeholder="Internal Remarks..."/>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_transport_builty" model="ir.actions.act_window">
+        <field name="name">Order Booking</field>
+        <field name="res_model">transport.builty</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first Builty!
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu -->
+    <menuitem id="menu_transport_root" name="Transport" sequence="10"/>
+    <menuitem id="menu_transport_booking" name="Bookings" parent="menu_transport_root" sequence="1" action="action_transport_builty"/>
+    
+    <!-- Branch Menu (Temporary for setup) -->
+    <record id="action_transport_branch" model="ir.actions.act_window">
+        <field name="name">Branches</field>
+        <field name="res_model">transport.branch</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <menuitem id="menu_transport_config" name="Configuration" parent="menu_transport_root" sequence="100"/>
+    <menuitem id="menu_transport_branch" name="Branches" parent="menu_transport_config" action="action_transport_branch"/>
+
+</odoo>

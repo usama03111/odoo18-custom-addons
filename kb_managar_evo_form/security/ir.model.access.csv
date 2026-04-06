@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_employee_manager_evaluation_user,hr.employee.manager.evaluation user,model_hr_employee_manager_evaluation,base.group_user,1,1,1,0
+access_hr_employee_manager_evaluation_hr,hr.employee.manager.evaluation hr,model_hr_employee_manager_evaluation,hr.group_hr_user,1,1,1,1

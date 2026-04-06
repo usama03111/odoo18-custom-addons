@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates >
+<t t-name="TaskTimerTemplate">
+    <div style="display: flex; align-items: center; background: transparent; position: relative; top: 1px;">
+        <li class="sh_timer_task" style="width: fit-content; display: flex; position: relative; justify-content: center; align-items: center; height: 38px;">
+            <span id="user_task" style="display: none;"></span>
+            <span id="task_timer" style="display: none;"></span>
+            <a href="#" id="timer_start" style="display: flex;" title="Start Timer" t-on-click="_start_timer">
+                <i class="fa fa-play" style="color:#fff;" />
+            </a>
+            <a href="#" id="timer_stop" style="display: none;" title="Stop Timer" t-on-click="_stop_timer">
+                <i class="fa fa-stop" style="color:#fff;" />
+            </a>
+        </li>
+    </div>
+</t>
+     <t t-name="sh_all_in_one_pms.KanbanTimerCount">
+        <span t-ref="timer_kanban_ref"
+              style="color:#6f42c1;background:#fff; border:1px solid #6f42c1;
+                     padding:5px; margin:5px; border-radius:5px; min-width:90px; display:inline-block; text-align:center;">
+        </span>
+    </t>
+</templates>

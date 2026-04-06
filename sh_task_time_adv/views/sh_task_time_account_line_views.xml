@@ -1,0 +1,29 @@
+<?xml version ="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sh_project_task_time_account_line_form_view" model="ir.ui.view">
+        <field name="name">sh.task.time.account.line</field>
+        <field name="model">sh.task.time.account.line</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name" string="Enter Task Description" />
+                    </group>
+                    <group>
+                        <group>
+                            <field name="start_date" />
+                            <field name="duration" widget="float_time" />
+                        </group>
+                        <group>
+                            <field name="end_date" />
+                        </group>
+                    </group>
+                </sheet>
+                <footer>
+                    <button string="End Task" name="end_task" type="object" default_focus="1" class="btn-primary" />
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<!-- Inherit the main question container to add attachment question type -->
+<template id="survey_question_container_inherit" inherit_id="survey.question_container">
+    <xpath expr="//div[@class='mb-4']" position="after">
+        <t t-if="question.question_type == 'attachment'" t-call="survey_image_extension.survey_question_attachment"/>
+    </xpath>
+</template>
+
+
+<!-- Custom template for the new "attachment" question type (advanced add/remove UI) -->
+<template id="survey_question_attachment" name="Question: attachment">
+    <t t-set="qid" t-value="question.id"/>
+    <div class="o_survey_answer_wrapper p-1 rounded"
+         t-att-data-question-type="question.question_type"
+         t-att-data-question-id="qid">
+
+        <!-- Text area -->
+        <div class="mb-2">
+            <textarea t-att-name="qid"
+                      class="form-control o_survey_question_text_box bg-transparent rounded-0 p-0"
+                      rows="3"
+                      placeholder="Enter your answer or notes here..."/>
+        </div>
+
+        <!-- Advanced file upload area -->
+        <div class="mt-5">
+            <label class="form-label fw-bold">Attach Images or Files</label>
+            <div class="border border-2 border-dashed rounded p-3 bg-light text-center">
+                <input t-att-id="'file_input_%s' % qid"
+                       t-att-data-qid="qid"
+                       type="file"
+                       class="d-none"
+                       accept=".jpg,.jpeg,.png,.pdf,.xlsx,.xls"
+                       multiple="true"
+                       onchange="addFile(event)" />
+                <button type="button" class="btn btn-outline-primary btn-sm"
+                        t-att-onclick="'document.getElementById(\'file_input_%s\').click()' % qid">
+                    <i class="fa fa-plus"></i> Add File
+                </button>
+            </div>
+            <ul t-att-id="'file_list_%s' % qid" class="list-group mt-3"></ul>
+        </div>
+    </div>
+</template>
+
+
+
+</odoo>

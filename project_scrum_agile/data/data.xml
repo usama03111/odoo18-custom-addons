@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <data noupdate="1">
+
+
+<!--        <record id="seq_task_number" model="ir.sequence">-->
+<!--            <field name="name">Task Number</field>-->
+<!--            <field name="code">project.task.number</field>-->
+<!--            <field name="prefix">TAR-</field>-->
+<!--            <field name="padding">10</field>-->
+<!--        </record>-->
+
+        <record id="seq_issue_number" model="ir.sequence">
+            <field name="name">Issue Number</field>
+            <field name="code">project.issue.number</field>
+            <field name="prefix">INC-</field>
+            <field name="padding">10</field>
+        </record>
+
+        <record id="seq_story_number" model="ir.sequence">
+            <field name="name">Story Number</field>
+            <field name="code">product.backlog.number</field>
+            <field name="prefix">REQ-</field>
+            <field name="padding">10</field>
+        </record>
+
+        <record id="seq_sprint_number" model="ir.sequence">
+            <field name="name">Sprint Number</field>
+            <field name="code">product.sprint.number</field>
+            <field name="prefix">SPR-</field>
+            <field name="padding">10</field>
+        </record>
+
+        <record id="seq_release_number" model="ir.sequence">
+            <field name="name">Release Number</field>
+            <field name="code">project.scrum.release</field>
+            <field name="prefix">MOD-</field>
+            <field name="padding">10</field>
+        </record>
+    </data>
+
+</odoo>

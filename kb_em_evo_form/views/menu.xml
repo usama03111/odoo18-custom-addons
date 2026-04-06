@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Menu under Employees app -->
+        <menuitem id="menu_kb_em_evo_root"
+                  name="Employee Evaluations"
+                  parent="hr.menu_hr_root"
+                  sequence="80"
+                  groups="kb_em_evo_form.group_hr_employee_evaluation,kb_em_evo_form.group_manager_employee_evaluation"/>
+
+        <menuitem id="menu_kb_em_evo_forms"
+                  name="Evaluations"
+                  parent="kb_em_evo_form.menu_kb_em_evo_root"
+                  action="kb_em_evo_form.action_kb_em_evo_form"
+                  sequence="10"
+                  groups="kb_em_evo_form.group_hr_employee_evaluation,kb_em_evo_form.group_manager_employee_evaluation"/>
+    </data>
+</odoo>

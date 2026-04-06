@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- HR full access -->
+    <record id="access_kb_manager_evaluation_hr" model="ir.model.access">
+        <field name="name">kb.manager.evaluation hr</field>
+        <field name="model_id"
+               search="[('model','=','kb.manager.evaluation')]"/>
+        <field name="group_id" ref="hr.group_hr_user"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <!-- Manager limited access -->
+    <record id="access_kb_manager_evaluation_manager" model="ir.model.access">
+        <field name="name">kb.manager.evaluation manager</field>
+        <field name="model_id"
+               search="[('model','=','kb.manager.evaluation')]"/>
+        <field name="group_id" ref="kb_em_evo_form.group_manager_evaluator"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+
+</odoo>

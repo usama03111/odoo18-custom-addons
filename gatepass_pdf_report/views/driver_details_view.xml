@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- DRIVER DETAILS TAB IN INVOICE FORM -->
+    <record id="view_account_move_driver_details" model="ir.ui.view">
+        <field name="name">account.move.driver.details</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+
+            <!-- Add new page after Other Info tab -->
+            <xpath expr="//page[@name='other_info']" position="after">
+                <page name="driver_details"
+                      string="Driver Details"
+                      invisible="move_type == 'in_invoice'">
+
+                    <group>
+                        <group>
+                            <field name="vehicle_no"/>
+                            <field name="driver_name"/>
+                        </group>
+
+                        <group>
+                            <field name="driver_contact"/>
+                            <!-- <field name="goods_shipped_to"/> -->
+                        </group>
+                    </group>
+
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

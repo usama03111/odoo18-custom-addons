@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_transport_booking_list" model="ir.ui.view">
+        <field name="name">transport.booking.list</field>
+        <field name="model">transport.booking</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="customer_name"/>
+                <field name="route_id"/>
+                <field name="vehicle_id"/>
+                <field name="booking_date"/>
+                <field name="seats"/>
+                <field name="amount"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_transport_booking_data_action" model="ir.actions.act_window">
+        <field name="name">Booking Data</field>
+        <field name="res_model">transport.booking</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

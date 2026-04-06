@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="header_id">
+        <div class="header">
+            <img t-att-src="'/kb_managar_evo_form/static/src/img/header.png'"
+                 style="width:100%; height:auto;"/>
+        </div>
+    </template>
+</odoo>

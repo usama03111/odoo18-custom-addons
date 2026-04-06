@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="model_kb_manager_evaluation" model="ir.model">
+        <field name="name">kb.manager.evaluation</field>
+        <field name="model">kb.manager.evaluation</field>
+        <field name="state">manual</field>
+    </record>
+
+</odoo>

@@ -1,7 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_transport_builty,transport.builty,model_transport_builty,base.group_user,1,1,1,1
-access_transport_branch,transport.branch,model_transport_branch,base.group_user,1,1,1,1
-access_transport_batch,transport.batch,model_transport_batch,base.group_user,1,1,1,1
-access_transport_city,transport.city,model_transport_city,base.group_user,1,1,1,1
-
-

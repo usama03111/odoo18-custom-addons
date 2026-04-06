@@ -1,8 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_hr_leave_portal_user,hr.leave portal user,hr_holidays.model_hr_leave,base.group_portal,1,1,1,1
-access_planning_slot_portal_user,planning.slot portal user,planning.model_planning_slot,base.group_portal,1,1,1,1
-access_mail_activity_type_portal_user,mail.activity.type portal user,mail.model_mail_activity_type,base.group_portal,1,1,1,1
-access_mail_activity_portal_user,mail.activity portal user,mail.model_mail_activity,base.group_portal,1,1,1,1
-access_calendar_event_portal_user,calendar.event portal user,calendar.model_calendar_event,base.group_portal,1,1,1,1
-access_calendar_attendee_portal_user,calendar.attendee portal user,calendar.model_calendar_attendee,base.group_portal,1,1,1,1
-

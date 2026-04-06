@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <menuitem id="project_milestone" name="Project Milestone" action="sh_action_project_milestone" parent="project.menu_project_config" groups="project.group_project_manager" />
-</odoo>

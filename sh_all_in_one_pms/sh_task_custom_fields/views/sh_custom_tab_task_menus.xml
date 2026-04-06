@@ -1,4 +1,0 @@
-<?xml version ="1.0" encoding="utf-8"?>
-<odoo>
-    <menuitem id="sh_task_custom_tab_action_menu" name="Task Custom Tabs" parent="project.menu_project_config" groups="sh_all_in_one_pms.group_task_custom_field" sequence="15" action="sh_action_project_task_custom_tab_form" />
-</odoo>

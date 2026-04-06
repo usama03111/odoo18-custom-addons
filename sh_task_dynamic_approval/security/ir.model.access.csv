@@ -1,8 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_sh_task_approval_config_user,sh.task.approval.config.user,model_sh_task_approval_config,project.group_project_user,1,0,0,0
-access_sh_task_approval_config_manager,sh.task.approval.config.manager,model_sh_task_approval_config,project.group_project_manager,1,1,1,1
-access_sh_task_approval_config_line_user,sh.task.approval.config.line.user,model_sh_task_approval_config_line,project.group_project_user,1,0,0,0
-access_sh_task_approval_config_line_manager,sh.task.approval.config.line.manager,model_sh_task_approval_config_line,project.group_project_manager,1,1,1,1
-access_sh_task_approval_info_user,sh.task.approval.info.user,model_sh_task_approval_info,project.group_project_user,1,1,1,0
-access_sh_task_approval_info_manager,sh.task.approval.info.manager,model_sh_task_approval_info,project.group_project_manager,1,1,1,1
-access_sh_task_rejection_wizard_user,sh.task.rejection.wizard.user,model_sh_task_rejection_wizard,project.group_project_user,1,1,1,0

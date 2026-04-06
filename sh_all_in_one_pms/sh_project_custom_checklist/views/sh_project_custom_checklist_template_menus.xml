@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <menuitem id="menu_project_custom_checklist_template" sequence="20" groups="sh_all_in_one_pms.group_project_custom_checklist" name="Project Custom Checklist Template" action="action_menu_project_custom_checklist_template" parent="project.menu_project_config" />
-</odoo>

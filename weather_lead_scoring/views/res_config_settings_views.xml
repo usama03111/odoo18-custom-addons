@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_inherit_weather" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.weather.lead.scoring</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="crm.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//app[@name='crm']" position="inside">
+                <block title="Weather Lead Scoring">
+                    <setting help="Enter your OpenWeather API key .">
+                        <field name="openweather_api_key" placeholder="Enter OpenWeather API key"/>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo> 
